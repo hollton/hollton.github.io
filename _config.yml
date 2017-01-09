@@ -76,5 +76,5 @@ duoshuo_shortname: hollton
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/hollton/hollton.github.io.git
+  repo: git@github.com:hollton/hollton.github.io.git
   branch: master
