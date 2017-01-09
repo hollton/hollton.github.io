@@ -9,6 +9,7 @@
 > git clone https://github.com/hollton/hollton.github.io.git (hexo)
 
 > cd <文件夹> ，npm install hexo，npm install，npm install hexo-deployer-git
+
 ## Change
 > git push ortgin hexo 提交修改的source文件（hexo）
 
