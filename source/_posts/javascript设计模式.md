@@ -12,9 +12,9 @@ tags: [javascript,设计模式]
 特点：简单，但无法创建可以保存状态且具有仅对其内部状态进行操作的方法的对象。
 ##### 1.1.2 定义类，并把方法赋给该类的prototype属性
 	var Run = function(){ ... };
-	Run,prototype = {
-	    start:function(){ ... },
-	    stop:function(){ ... }
+	Run.prototype = {
+		start:function(){ ... },
+		stop:function(){ ... }
 	};
 	/* usage */
 	var myRun = new Run();
