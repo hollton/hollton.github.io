@@ -3,24 +3,24 @@ date: 2016-12-19 10:41:40
 tags: [vue]
 
 ---
-##准备
+## 准备
 安装node.js、git
-##shell 命令
-<code>$ npm install -g cnpm --registry=https://registry.npm.taobao.org</code>(使用taobao NPM镜像，可用cnpm代替npm)
+## shell 命令
+`$ npm install -g cnpm --registry=https://registry.npm.taobao.org`(使用taobao NPM镜像，可用cnpm代替npm)
 
-<code>cd E:/WWW</code>
+`cd E:/WWW`
 
-<code>npm install -g vue-cli</code>(全局安装vue-cli)
+`npm install -g vue-cli`(全局安装vue-cli)
 
-<code>vue init webpack#1.0 vue-project</code>(可选安装1.0)
+`vue init webpack#1.0 vue-project`(可选安装1.0)
 
-<code>cd vue-project</code>
+`cd vue-project`
 
-<code>npm install</code>(安装依赖)
+`npm install`(安装依赖)
 
-<code>npm run dev</code>(启动)
-##官方模版
-<code>vue init template-name project-name</code>
+`npm run dev`(启动)
+## 官方模版
+`vue init template-name project-name`
 
 [browserify](https://github.com/vuejs-templates/browserify)--全功能的Browserify + vueify，包括热加载，静态检测，单元测试
 
