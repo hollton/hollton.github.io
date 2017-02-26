@@ -3,13 +3,13 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hollton Blog
-subtitle: By hollton
-description:
+title: HOLLTON
+subtitle: 懂点编程，懂点艺术，懂点美。
+description: 前端开发一枚
 author: hollton
 author_title: 'Web Developer'
 avatar: css/images/avatar.png
-language: zh-CN
+language: zh-Hans
 location: 'Fuzhou, China'
 follow: 'https://github.com/hollton'
 timezone:
@@ -66,7 +66,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: http://hexo.io/plugins/
 ## Themes: http://hexo.io/themes/
-theme: icarus
+theme: next
 duoshuo_shortname: hollton
 
 # plugins:
