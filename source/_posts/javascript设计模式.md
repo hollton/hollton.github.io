@@ -135,3 +135,44 @@ tags: [javascript,设计模式]
 创建子类实例则不变
 
 	var holltonliu = new Programmer('hollton','javascript_code');
+### 自定义extend函数
+仿照extend关键字自定义函数实现基于给定类结构创建新类。其中添加一个空函数fn，其prototype指向超类的prototype并创建对象实例插入到子类的原型链中。这样是为了避免创建超类的实例（直接使用超类可能：比较大；有副作用；执行大量计算任务）。
+
+	/* Extend function */
+	function extend(subClass, superClass) {
+		var fn = function(){};
+		fn.prototype = superClass.prototype;
+		subClass.prototype = new fn();
+		subClass.prototype.constructor = subClass;
+	}
+使用extend函数对上述例子改造：
+
+    function Programmer(name,program){
+        Person.call(this,name);  //存在耦合
+        this.program = program;
+    };
+    extend(Programmer,Person);
+    Programmer.prototype.getProgram = function(){
+        return this.program;
+    };
+存在缺陷：超类（Person）被固化在子类（Programmer）的声明中，为子类添加superPrototype属性解决↓
+
+    /* ---Improved Extend function--- */
+    function extend(subClass, superClass) {
+        var fn = function(){};
+        fn.prototype = superClass.prototype;
+        subClass.prototype = new fn();
+        subClass.prototype.constructor = subClass;
+
+        subClass.superPrototype = superClass.prototype;
+        //？？
+        if(superClass.prototype.constructor == Object.prototype.constructor){
+            superClass.prototype.constructor = superClass;
+        }
+    }
+    function Programmer(name,program){
+        Person.superPrototype.constructor.call(this,name);
+        this.program = program;
+    };
+    extend(Programmer,Person);
+## 原型式继承
