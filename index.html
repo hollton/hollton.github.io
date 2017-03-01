@@ -1,488 +1,1376 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
-  <title>Hollton Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hollton Blog">
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="前端开发一枚">
+<meta property="og:type" content="website">
+<meta property="og:title" content="HOLLTON">
 <meta property="og:url" content="http://hollton.github.io/index.html">
-<meta property="og:site_name" content="Hollton Blog">
+<meta property="og:site_name" content="HOLLTON">
+<meta property="og:description" content="前端开发一枚">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hollton Blog">
-  
-  
-    <link rel="icon" href="/favicon.ico">
-  
-  <link href='//fonts.useso.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
-  <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
-  
+<meta name="twitter:title" content="HOLLTON">
+<meta name="twitter:description" content="前端开发一枚">
 
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://hollton.github.io/"/>
+
+
+
+
+
+  <title> HOLLTON </title>
 </head>
-<body>
-  <div id="container">
-    <header id="header">
-  <div id="header-main" class="header-inner">
-    <div class="outer">
-      <a href="/" id="logo"><i class="logo"></i><span class="site-title">Hollton Blog</span></a>
-      <nav id="main-nav">
-        
-          <a class="main-nav-link" href="/">首页</a>
-        
-          <a class="main-nav-link" href="/archives">存档</a>
-        
-          <a class="main-nav-link" href="/about">关于</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        <div class="profile" id="profile-nav">
-          <a id="profile-anchor" href="javascript:;"><img class="avatar" src="/css/images/avatar.png"><i class="fa fa-caret-down"></i></a>
-        </div>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://hollton.github.io"></form>
-      </div>
-    </div>
-  </div>
-  <div id="main-nav-mobile" class="header-sub header-inner">
-    <table class="menu outer">
-      <tr>
-      
-        <td><a class="main-nav-link" href="/">首页</a></td>
-      
-        <td><a class="main-nav-link" href="/archives">存档</a></td>
-      
-        <td><a class="main-nav-link" href="/about">关于</a></td>
-      
-      <td>
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="hidden" name="sitesearch" value="http://hollton.github.io"></form>
-      </td>
-      </tr>
-    </table>
-  </div>
-  
-</header>
-    <div class="outer">
-      <aside id="profile">
-  <div class="inner profile-inner">
-  	<div class="base-info profile-block">
-		  <img id="avatar" src="/css/images/avatar.png">
-      <h2 id="name">hollton</h2>
-      <h3 id="title">Web Developer</h3>
-      <span id="location"><i class="fa fa-map-marker"></i>Fuzhou, China</span>
-      <a id="follow" href="https://github.com/hollton">关注我</a>
-  	</div>
-    <div class="article-info profile-block">
-      <div class="article-info-block">
-        4
-        <span>文章</span>
-      </div>
-      <div class="article-info-block">
-        7
-        <span>标签</span>
-      </div>
-    </div>
-    <div class="contact-info profile-block">
-      <table class="contact-list">
-        <tr>
-        
-          <td><a href="https://github.com/hollton" title="github"><i class="fa fa-github"></i></a></td>
-        
-          <td><a href="http://weibo.com/hollton" title="weibo"><i class="fa fa-weibo"></i></a></td>
-        
-          <td><a href="/atom.xml" title="rss"><i class="fa fa-rss"></i></a></td>
-        
-        </tr>
-      </table>
-    </div>
-  </div>
-</aside>
-      <section id="main">
-  
-    <article id="post-vue-cli" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/19/vue-cli/">vue-cli构建工具</a>
-    </h1>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
   
 
-        <div class="article-meta">
-          <div class="article-date">
-  <i class="fa fa-calendar"></i>
-  <a href="/2016/12/19/vue-cli/">
-    <time datetime="2016-12-19T02:41:40.000Z" itemprop="datePublished">2016-12-19</time>
-  </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">HOLLTON</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">懂点编程，懂点艺术，懂点美。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2017/02/25/javascript设计模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hollton">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/css/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HOLLTON">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/25/javascript设计模式/" itemprop="url">
+                  javascript设计模式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-25T16:05:40+08:00">
+                2017-02-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/25/javascript设计模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/25/javascript设计模式/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
         </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>##准备<br>安装node.js、git</p>
-<p>##shell 命令<br><code>$ npm install -g cnpm –registry=<a href="https://registry.npm.taobao.org" target="_blank" rel="external">https://registry.npm.taobao.org</a></code>(使用taobao NPM镜像，可用cnpm代替npm)</p>
+      
+
+      
+        
+          
+            <h1 id="第一章-富有表现力的javascript"><a href="#第一章-富有表现力的javascript" class="headerlink" title="第一章 富有表现力的javascript"></a>第一章 富有表现力的javascript</h1><h2 id="javascript的灵活性"><a href="#javascript的灵活性" class="headerlink" title="javascript的灵活性"></a>javascript的灵活性</h2><h3 id="过程式程序设计模式"><a href="#过程式程序设计模式" class="headerlink" title="过程式程序设计模式"></a>过程式程序设计模式</h3><pre><code>function startRun(){ ... };
+function stopRun(){ ... };
+</code></pre><p>特点：简单，但无法创建可以保存状态且具有仅对其内部状态进行操作的方法的对象。</p>
+<h3 id="定义类，并把方法赋给该类的prototype属性"><a href="#定义类，并把方法赋给该类的prototype属性" class="headerlink" title="定义类，并把方法赋给该类的prototype属性"></a>定义类，并把方法赋给该类的prototype属性</h3><pre><code>var Run = function(){ ... };
+Run.prototype = {
+    start:function(){ ... },
+    stop:function(){ ... }
+};
+/* usage */
+var myRun = new Run();
+myRun.start();
+</code></pre><h3 id="自定义为类添加新方法"><a href="#自定义为类添加新方法" class="headerlink" title="自定义为类添加新方法"></a>自定义为类添加新方法</h3><pre><code>/* 给函数添加可自定义方法的方法 */
+Function.prototype.customMethod = function(name,fn){
+    this.prototype[name] = fn;
+    //以下代码可使customMethod被链式调用
+    //return this;
+};
+var Run = function(){ ... }
+Run.customMethod(&apos;start&apos;,fuction(){
+    ...
+});
+</code></pre><h2 id="弱类型语言"><a href="#弱类型语言" class="headerlink" title="弱类型语言"></a>弱类型语言</h2><h3 id="原始数据类型"><a href="#原始数据类型" class="headerlink" title="原始数据类型"></a>原始数据类型</h3><p>布尔（Boolean），数值（Number不区分整数、浮点数），字符串（String），空（Null），未定义（Undefined）：按值传送</p>
+<h3 id="复合数据类型"><a href="#复合数据类型" class="headerlink" title="复合数据类型"></a>复合数据类型</h3><p>对象（Object：无序键值对；数组特殊对象：为有序集合）：按引用传送</p>
+<h1 id="第二章-接口"><a href="#第二章-接口" class="headerlink" title="第二章 接口"></a>第二章 接口</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>接口提供了一种用以说明一个对象应该具有哪些方法的手段。我的理解是接口声明了一个方法所需的参数及返回的数据，并在类中去实现它。</p>
+<h2 id="js模仿接口"><a href="#js模仿接口" class="headerlink" title="js模仿接口"></a>js模仿接口</h2><h3 id="注释描述"><a href="#注释描述" class="headerlink" title="注释描述"></a>注释描述</h3><p>在注释中使用interface,implements关键字。实现简单但仅限制于文档规范阶段，并没做实现检查，也不会抛出错误提示。</p>
+<pre><code>/*
+    interface Composite {
+        function add(item);
+    }
+*/
+var CompositeForm = function(id,method,action){  //implements Composite
+};
+//implement the Composite interface
+CompositeForm.prototype.add = function(item){ ... }
+</code></pre><h3 id="属性检查"><a href="#属性检查" class="headerlink" title="属性检查"></a>属性检查</h3><p>即通过检查属性判断是否实现此接口，没有则抛出错误，但并未对接口的真正实现做检查。</p>
+<h3 id="鸭式辨型"><a href="#鸭式辨型" class="headerlink" title="鸭式辨型"></a>鸭式辨型</h3><p>不关注是否声明支持哪些方法，而只要具有这些接口的方法就行。双重遍历检测每个接口是否实现了某种方法.</p>
+<h2 id="interface类"><a href="#interface类" class="headerlink" title="interface类"></a>interface类</h2><p>接口在运用设计模式实现复杂系统时能体现其价值，可降低对象间的耦合度，但对于小型项目，好处并不明显且徒增复杂度。</p>
+<h1 id="第三章-封装和信息隐藏"><a href="#第三章-封装和信息隐藏" class="headerlink" title="第三章 封装和信息隐藏"></a>第三章 封装和信息隐藏</h1><h2 id="封装是面向对象设计的基石"><a href="#封装是面向对象设计的基石" class="headerlink" title="封装是面向对象设计的基石"></a>封装是面向对象设计的基石</h2><p>将方法或属性声明为私用，可以让对象的实现细节对其他对象保密以降低对象间耦合度，且可以保持数据的完整性并对其修改方式加以约束。js中可使用闭包创建只允许从对象内部访问的属性和方法，以达到封装数据的效果。</p>
+<h2 id="创建对象的基本模式"><a href="#创建对象的基本模式" class="headerlink" title="创建对象的基本模式"></a>创建对象的基本模式</h2><h3 id="门户大开型"><a href="#门户大开型" class="headerlink" title="门户大开型"></a>门户大开型</h3><p>传统方式，用函数做其构造器，属性和方法公开，用this关键字创建属性。</p>
+<pre><code>var book = function(title){
+    this.setTitle(title);
+};
+book.prototype = {
+    getTitle:function(){
+        return this.title;
+    },
+    setTitle:function(title){
+        this.title = title;
+    },
+    display:function(){ ... }
+};
+</code></pre><h3 id="命名规范（-）"><a href="#命名规范（-）" class="headerlink" title="命名规范（_）"></a>命名规范（_）</h3><p>属性和方法前添加下划线（_）以示其私有性。</p>
+<h3 id="作用域、嵌套函数、闭包"><a href="#作用域、嵌套函数、闭包" class="headerlink" title="作用域、嵌套函数、闭包"></a>作用域、嵌套函数、闭包</h3><p>闭包函数能够访问另一个函数的内部变量，函数作用域内return一个嵌套函数即构成闭包。<br>之所以会产生闭包是因为js的作用域是词法性的，即函数运行在定义它们的作用域中，而不是调用它们的作用域。</p>
+<pre><code>var book = function(newTitle){
+    //私有属性
+    var title;
+    //特权方法（privileged method，公用却能访问私有属性）
+    this.getTitle = function(){
+        return title;
+    };
+    this.setTitle = function(newTitle){
+        title = newTitle;
+    };
+    //构造函数代码
+    this.setTitle(newTitle);
+};
+//公用方法
+book.prototype.display = function(){ ... };
+</code></pre><p>前两种方式的方法都创建在原型对象中，无论生成多少对象实例，方法只在内存中存一份。而采用闭包则每生成一个对象实例都为每一个私有方法和特权方法生成新副本，更耗内存。</p>
+<h1 id="第四章-继承"><a href="#第四章-继承" class="headerlink" title="第四章 继承"></a>第四章 继承</h1><h2 id="类式继承"><a href="#类式继承" class="headerlink" title="类式继承"></a>类式继承</h2><h3 id="简单类声明"><a href="#简单类声明" class="headerlink" title="简单类声明"></a>简单类声明</h3><p>函数声明类，new关键字创建实例。创建构造函数，其名称就是类名，首字母大写，实例属性使用this关键字，方法添加到其prototype对象中。</p>
+<pre><code>/* Class Person */
+function Person (name){
+    this.name = name;
+};
+Person.prototype.getName = function(){
+    return this.name;
+};
+</code></pre><p>关键字new调用构造函数创建该类实例，即可访问实例属性及方法。</p>
+<pre><code>var hollton = new Person(&apos;hollton&apos;);
+</code></pre><h3 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h3><ol><br>    <li>创建一个构造函数，在函数中调用超类的构造函数。<ul><li>使用new时，系统会创建一个空对象，然后调用构造函数，在此过程中这个空对象处于作用域链最前端。而子类调用超类的构造函数时，必须手动完成这项工作。“Person.call(this,name)”使空对象（用this代表），name作参数传入。</li></ul></li><br>    <li>设置原型链，指向实例超类<ul><li>访问对象的某个成员时，如果在当前对象中查找不到，javascript会沿着对象的原型链向上逐一访问其原型对象查找，因此将子类的prototype指向超类的一个实例，即可使子类继承超类。</li></ul></li><br>    <li>重新设置constructor属性为本构造函数<ul><li>定义构造函数时，默认的prototype对象是Object类型的实例，其constructor属性会被自动设置为该构造函数。但手动将其prototype设置为另一个对象时，其constructor属也变成新对象的constructor值，因此需要重新设置为本构造函数。</li></ul></li><br></ol>
+
+<pre><code>/* Class Programmer */
+function Programmer(name,programs){
+    Person.call(this,name);//当前作用域调用超类的构造函数
+    this.programs = programs;//添加新属性
+};
+Programmer.prototype = new Person();//设置原型链
+Programmer.prototype.constructor = Programmer;//重新设置constructor属性
+Programmer.prototype.getPrograms = function(){//添加新方法
+    return this.programs;
+};
+</code></pre><p>创建子类实例则不变</p>
+<pre><code>var holltonliu = new Programmer(&apos;hollton&apos;,[&apos;javascript_code&apos;]);
+</code></pre><h3 id="自定义extend函数"><a href="#自定义extend函数" class="headerlink" title="自定义extend函数"></a>自定义extend函数</h3><p>仿照extend关键字自定义函数实现基于给定类结构创建新类。其中添加一个空函数fn，其prototype指向超类的prototype并创建对象实例插入到子类的原型链中。这样是为了避免创建超类的实例（直接使用超类可能：比较大；有副作用；执行大量计算任务）。</p>
+<pre><code>/* Extend function */
+function extend(subClass, superClass) {
+    var fn = function(){};
+    fn.prototype = superClass.prototype;
+    subClass.prototype = new fn();
+    subClass.prototype.constructor = subClass;
+}
+</code></pre><p>使用extend函数对上述例子改造：</p>
+<pre><code>function Programmer(name,programs){
+    Person.call(this,name);  //存在耦合
+    this.programs = programs;
+};
+extend(Programmer,Person);
+Programmer.prototype.getPrograms = function(){
+    return this.programs;
+};
+</code></pre><p>存在缺陷：超类（Person）被固化在子类（Programmer）的声明中，为子类添加superPrototype属性解决↓</p>
+<pre><code>/* ---Improved Extend function--- */
+function extend(subClass, superClass) {
+    var fn = function(){};
+    fn.prototype = superClass.prototype;
+    subClass.prototype = new fn();
+    subClass.prototype.constructor = subClass;
+
+    subClass.superPrototype = superClass.prototype;
+    //超类为Object类或也由他处继承而来时，有可能导致constructor指向不正确，不正确时修复。
+    //子类会通过constructor指向调用超类构造函数，因此这个判断修复很重要！
+    if(superClass.prototype.constructor == Object.prototype.constructor){
+        superClass.prototype.constructor = superClass;
+    }
+}
+function Programmer(name,programs){
+    Person.superPrototype.constructor.call(this,name);
+    this.programs = programs;
+};
+extend(Programmer,Person);
+</code></pre><h2 id="原型式继承"><a href="#原型式继承" class="headerlink" title="原型式继承"></a>原型式继承</h2><h3 id="实现机制"><a href="#实现机制" class="headerlink" title="实现机制"></a>实现机制</h3><p>创建一个对象，由于原型链的查找机制，新对象只需重用此对象即可实现继承。</p>
+<pre><code>/* Person Prototype Object */
+var Person = {
+    name:&apos;default&apos;,
+    getName:function(){
+        return this.name;
+    }
+};
+//customClone创建并返回新空对象，其原型对象指向父级对象
+//当新对象找不到某个属性或方法时会在原型链上查找
+function customClone(superObject) {
+    function fn() {};
+    fn.prototype = superObject;
+    return new fn;  //相当于new fn()
+}
+/* Programmer Prototype Object */
+var Programmer = customClone(Person);
+Programmer.programs = [];
+Programmer.getPrograms = function(){
+    return this.programs;
+};
+var hollton = customClone(Programmer);
+hollton.name = &apos;hollton&apos;;
+hollton.programs = [&apos;javascript_code&apos;];
+hollton.getName();
+hollton.getPrograms();
+</code></pre><h3 id="继承成员的读写不对等性"><a href="#继承成员的读写不对等性" class="headerlink" title="继承成员的读写不对等性"></a>继承成员的读写不对等性</h3><p>在类式继承中，每个实例都有一份自己的副本，而通过原型继承，实例只是以父对象为原型对象的空对象，没为其指定属性时，读取是返指原型链上的同名属性，写入则为其定义一个新属性。这里特别要注意的是，对于引用传递的数据类型如数组，对新对象第一次不赋值写入而做操作如push时会修改其原型链上的数据。</p>
+<pre><code>var hd = customClone(Programmer);
+console.log(Programmer.programs);  //[]
+//不应这么做
+hd.programs.push(&apos;javascript_code&apos;);
+console.log(Programmer.programs);  //[&apos;javascript_code&apos;]
+//应该
+hd.programs = [];  //为hd对象添加新属性
+hd.programs.push(&apos;javascript_code&apos;);
+console.log(Programmer.programs);  //[]
+</code></pre><h3 id="工厂方式实现"><a href="#工厂方式实现" class="headerlink" title="工厂方式实现"></a>工厂方式实现</h3><p>如果需求继承一个对象而只修改其子对象的的一个属性保留其他，应用上种方法你必须知道对象的全部属性及其默认值并做覆盖操作，显然不合适。</p>
+<pre><code>var CompoundObject = {};
+CompoundObject.name = &apos;haha&apos;;
+CompoundObject.createChildObject = function(){
+    return {
+        num:10,
+        bool:true
+    }
+};
+CompoundObject.childObject = CompoundObject.createChildObject();
+
+var compoundObjectClone = customClone(CompoundObject);
+compoundObjectClone.childObject = CompoundObject.createChildObject();
+compoundObjectClone.childObject.num = 5;  //修改不会影响CompoundObject
+</code></pre><h2 id="类式继承与原型式继承对比"><a href="#类式继承与原型式继承对比" class="headerlink" title="类式继承与原型式继承对比"></a>类式继承与原型式继承对比</h2>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2016/12/19/vue-cli/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hollton">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/css/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HOLLTON">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/19/vue-cli/" itemprop="url">
+                  vue-cli构建工具
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-19T10:41:40+08:00">
+                2016-12-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/12/19/vue-cli/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/19/vue-cli/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>安装node.js、git</p>
+<h2 id="shell-命令"><a href="#shell-命令" class="headerlink" title="shell 命令"></a>shell 命令</h2><p><code>$ npm install -g cnpm --registry=https://registry.npm.taobao.org</code>(使用taobao NPM镜像，可用cnpm代替npm)</p>
 <p><code>cd E:/WWW</code></p>
 <p><code>npm install -g vue-cli</code>(全局安装vue-cli)</p>
 <p><code>vue init webpack#1.0 vue-project</code>(可选安装1.0)</p>
 <p><code>cd vue-project</code></p>
 <p><code>npm install</code>(安装依赖)</p>
 <p><code>npm run dev</code>(启动)</p>
-<p>##官方模版<br><code>vue init template-name project-name</code></p>
+<h2 id="官方模版"><a href="#官方模版" class="headerlink" title="官方模版"></a>官方模版</h2><p><code>vue init template-name project-name</code></p>
 <p><a href="https://github.com/vuejs-templates/browserify" target="_blank" rel="external">browserify</a>–全功能的Browserify + vueify，包括热加载，静态检测，单元测试</p>
 <p><a href="https://github.com/vuejs-templates/browserify-simple" target="_blank" rel="external">browserify-simple</a>–一个简易的Browserify + vueify，以便于快速开始</p>
 <p><a href="https://github.com/vuejs-templates/webpack" target="_blank" rel="external">webpack</a>–全功能的Webpack + vueify，包括热加载，静态检测，单元测试</p>
 <p><a href="https://github.com/vuejs-templates/webpack-simple" target="_blank" rel="external">webpack-simple</a>–一个简易的Webpack + vueify，以便于快速开始</p>
 
+          
+        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://hollton.github.io/2016/12/19/vue-cli/" data-id="cixpzf3jc000354ajhk8pssp5" class="article-share-link">分享到</a>
-      
-        <a href="http://hollton.github.io/2016/12/19/vue-cli/#ds-thread" class="article-comment-link">评论</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
 
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
     </footer>
-  </div>
-  
-</article>
+  </article>
 
 
-
-<!--百度分享-->
-<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a></div>
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["qzone","tqq","sqq","mail","fbook","linkedin","copy","print"],"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
-  
-    <article id="post-github如何更新自己Fork的代码" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2015/05/11/github如何更新自己Fork的代码/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hollton">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/css/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HOLLTON">
+    </span>
+
     
-      <header class="article-header">
+      <header class="post-header">
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/05/11/github如何更新自己Fork的代码/">github如何更新自己Fork的代码</a>
-    </h1>
-  
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/05/11/github如何更新自己Fork的代码/" itemprop="url">
+                  github如何更新自己Fork的代码
+                </a>
+              
+            
+          </h1>
+        
 
-        <div class="article-meta">
-          <div class="article-date">
-  <i class="fa fa-calendar"></i>
-  <a href="/2015/05/11/github如何更新自己Fork的代码/">
-    <time datetime="2015-05-11T07:27:36.000Z" itemprop="datePublished">2015-05-11</time>
-  </a>
-</div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-05-11T15:27:36+08:00">
+                2015-05-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/05/11/github如何更新自己Fork的代码/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/11/github如何更新自己Fork的代码/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
         </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>github有fork功能，可以将别人的项目复制到自己账号下，但其有一个缺点就是当别人的源项目更新后，你fork的分支并不会一起更新，需要我们手动去更新。<br>下面就以我的帐号：hollton，以及fork的项目：<a href="https://github.com/fat/zoom.js.git" target="_blank" rel="external">zoom.js</a>为例为大家讲述如何同步更新自己的代码。</p>
-<p>#####1、clone自己账号里fork的分支<br>    $ git clone <a href="https://github.com/hollton/zoom.js.git" target="_blank" rel="external">https://github.com/hollton/zoom.js.git</a><br>    $ cd zoom.js</p>
-<p>#####2、增加远程原始分支<br>    $ git remote add fat.zoom.js <a href="https://github.com/fat/zoom.js.git" target="_blank" rel="external">https://github.com/fat/zoom.js.git</a><br>其中fat.zoom.js可随意写</p>
-<p>######接着可以查看远程分支列表<br>    $ git remote -v<br><img src="/img/fork.png" alt=""></p>
-<p>#####3、fetch源分支的新版本到本地仓库<br>    $ git fetch fat.zoom.js</p>
-<p>#####4、合并源新版本与自己版本代码<br>    git merge fat.zoom.js/master</p>
-<p>#####5、把合并后的代码push到自己的github上<br>    $ git push origin master</p>
 
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>github有fork功能，可以将别人的项目复制到自己账号下，但其有一个缺点就是当别人的源项目更新后，你fork的分支并不会一起更新，需要我们手动去更新。<br>下面就以我的帐号：hollton，以及fork的项目：<a href="https://github.com/fat/zoom.js.git" target="_blank" rel="external">zoom.js</a>为例为大家讲述如何同步更新自己的代码。</p>
+<h5 id="1、clone自己账号里fork的分支"><a href="#1、clone自己账号里fork的分支" class="headerlink" title="1、clone自己账号里fork的分支"></a>1、clone自己账号里fork的分支</h5><pre><code>$ git clone https://github.com/hollton/zoom.js.git
+$ cd zoom.js
+</code></pre><h5 id="2、增加远程原始分支"><a href="#2、增加远程原始分支" class="headerlink" title="2、增加远程原始分支"></a>2、增加远程原始分支</h5><pre><code>$ git remote add fat.zoom.js https://github.com/fat/zoom.js.git
+</code></pre><p>其中fat.zoom.js可随意写</p>
+<h6 id="接着可以查看远程分支列表"><a href="#接着可以查看远程分支列表" class="headerlink" title="接着可以查看远程分支列表"></a>接着可以查看远程分支列表</h6><pre><code>$ git remote -v
+</code></pre><p><img src="/img/fork.png" alt=""></p>
+<h5 id="3、fetch源分支的新版本到本地仓库"><a href="#3、fetch源分支的新版本到本地仓库" class="headerlink" title="3、fetch源分支的新版本到本地仓库"></a>3、fetch源分支的新版本到本地仓库</h5><pre><code>$ git fetch fat.zoom.js
+</code></pre><h5 id="4、合并源新版本与自己版本代码"><a href="#4、合并源新版本与自己版本代码" class="headerlink" title="4、合并源新版本与自己版本代码"></a>4、合并源新版本与自己版本代码</h5><pre><code>git merge fat.zoom.js/master
+</code></pre><h5 id="5、把合并后的代码push到自己的github上"><a href="#5、把合并后的代码push到自己的github上" class="headerlink" title="5、把合并后的代码push到自己的github上"></a>5、把合并后的代码push到自己的github上</h5><pre><code>$ git push origin master
+</code></pre>
+          
+        
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://hollton.github.io/2015/05/11/github如何更新自己Fork的代码/" data-id="cixpzf3jr000654ajdx5n51aa" class="article-share-link">分享到</a>
-      
-        <a href="http://hollton.github.io/2015/05/11/github如何更新自己Fork的代码/#ds-thread" class="article-comment-link">评论</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/fork/">fork</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/同步/">同步</a></li></ul>
 
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
     </footer>
-  </div>
-  
-</article>
+  </article>
 
 
-
-<!--百度分享-->
-<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a></div>
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["qzone","tqq","sqq","mail","fbook","linkedin","copy","print"],"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
-  
-    <article id="post-Unveil-js图片延时加载" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2015/04/23/Unveil-js图片延时加载/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hollton">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/css/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HOLLTON">
+    </span>
+
     
-      <header class="article-header">
+      <header class="post-header">
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/23/Unveil-js图片延时加载/">Unveil.js图片延时加载</a>
-    </h1>
-  
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/04/23/Unveil-js图片延时加载/" itemprop="url">
+                  Unveil.js图片延时加载
+                </a>
+              
+            
+          </h1>
+        
 
-        <div class="article-meta">
-          <div class="article-date">
-  <i class="fa fa-calendar"></i>
-  <a href="/2015/04/23/Unveil-js图片延时加载/">
-    <time datetime="2015-04-23T03:37:34.000Z" itemprop="datePublished">2015-04-23</time>
-  </a>
-</div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-04-23T11:37:34+08:00">
+                2015-04-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/04/23/Unveil-js图片延时加载/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/23/Unveil-js图片延时加载/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
         </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>##Unveil.js是一个jQuery图片延时加载插件且极轻量。支持IE7。</p>
-<p>####使用方法<br>    <img src="bg.png" data-src="original-img.jpg" data-src-retina="img-retina.jpg" /></p>
-<pre><code>&lt;script src=&quot;http://libs.baidu.com/jquery/2.0.0/jquery.min.js&quot;&gt;&lt;/script&gt;
+      
+
+      
+        
+          
+            <h2 id="Unveil-js是一个jQuery图片延时加载插件且极轻量。支持IE7。"><a href="#Unveil-js是一个jQuery图片延时加载插件且极轻量。支持IE7。" class="headerlink" title="Unveil.js是一个jQuery图片延时加载插件且极轻量。支持IE7。"></a>Unveil.js是一个jQuery图片延时加载插件且极轻量。支持IE7。</h2><h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><pre><code>&lt;img src=&quot;bg.png&quot; data-src=&quot;original-img.jpg&quot; data-src-retina=&quot;img-retina.jpg&quot; /&gt;
+
+&lt;script src=&quot;http://libs.baidu.com/jquery/2.0.0/jquery.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;jquery.unveil.js&quot;&gt;&lt;/script&gt;
 &lt;script&gt;
     $(document).ready(function() {
         $(&quot;img&quot;).unveil();
     });
 &lt;/script&gt;
-</code></pre><p>首先src属性里需要一个占位图片。<br>data-src为要加载的原始图片，当页面滑动到其可视窗口时再显示。<br>如果想支持视网膜设备加载高分辨率图片，则需要使用data-src-retina，但这不是必需的。<br>
-        
-          <p class="article-more-link">
-            <a href="/2015/04/23/Unveil-js图片延时加载/#more">Read More</a>
-          </p>
+</code></pre><p>首先src属性里需要一个占位图片。<br>data-src为要加载的原始图片，当页面滑动到其可视窗口时再显示。<br>如果想支持视网膜设备加载高分辨率图片，则需要使用data-src-retina，但这不是必需的。</p>
+<h3 id="如果担心用户没有启用javascript，则使用下面降级。"><a href="#如果担心用户没有启用javascript，则使用下面降级。" class="headerlink" title="如果担心用户没有启用javascript，则使用下面降级。"></a>如果担心用户没有启用javascript，则使用下面降级。</h3><pre><code>&lt;noscript&gt;
+    &lt;img src=&quot;original-img.jpg.jpg&quot; /&gt;
+&lt;/noscript&gt;
+</code></pre><h3 id="使用参数可使图片距离视口100px就开始加载。"><a href="#使用参数可使图片距离视口100px就开始加载。" class="headerlink" title="使用参数可使图片距离视口100px就开始加载。"></a>使用参数可使图片距离视口100px就开始加载。</h3><pre><code>$(&quot;img&quot;).unveil(100);
+</code></pre><h3 id="更好的是它支持回调函数，如："><a href="#更好的是它支持回调函数，如：" class="headerlink" title="更好的是它支持回调函数，如："></a>更好的是它支持回调函数，如：</h3><pre><code>$(&quot;img&quot;).unveil(100,callback);
+</code></pre><h3 id="图片淡出加载例子"><a href="#图片淡出加载例子" class="headerlink" title="图片淡出加载例子"></a>图片淡出加载例子</h3><pre><code>img {
+    opacity: 0;
+    transition: opacity .3s ease-in;
+}
+
+$(&quot;img&quot;).unveil(100, function() {
+    $(this).load(function() {
+    this.style.opacity = 1;
+    });
+});
+</code></pre><h3 id="手动触发"><a href="#手动触发" class="headerlink" title="手动触发"></a>手动触发</h3><pre><code>$(&quot;img#tri&quot;).trigger(&quot;unveil&quot;);
+</code></pre><p>手动触发加载特定图片而不使用此方法。</p>
+<h3 id="Layzr-js"><a href="#Layzr-js" class="headerlink" title="Layzr.js"></a>Layzr.js</h3><p>顺便再说一个刚发布的轻巧、不依赖jQuery的延时加载，同样支持视网膜设备。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code>&lt;img src=&quot;bg.png&quot; data-src=&quot;original-img.jpg&quot; data-src-retina=&quot;img-retina.jpg&quot; /&gt;
+&lt;script src=&quot;layzr.min..js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var layzr = new Layzr({
+        selector: &apos;[data-layzr]&apos;, 
+        attr: &apos;data-layzr&apos;, 
+        retinaAttr: &apos;data-layzr-retina&apos;, 
+        bgAttr: &apos;data-layzr-bg&apos;, 
+        threshold: 0, 
+        callback: null 
+    });
+&lt;/script&gt;
+</code></pre><h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>支持IE10+。</p>
+
+          
         
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://hollton.github.io/2015/04/23/Unveil-js图片延时加载/" data-id="cixpzf3jc000154ajfr0n71gs" class="article-share-link">分享到</a>
-      
-        <a href="http://hollton.github.io/2015/04/23/Unveil-js图片延时加载/#ds-thread" class="article-comment-link">评论</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Layzr-js/">Layzr.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unveil-js/">Unveil.js</a></li></ul>
 
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
     </footer>
-  </div>
-  
-</article>
+  </article>
 
 
-
-<!--百度分享-->
-<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a></div>
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["qzone","tqq","sqq","mail","fbook","linkedin","copy","print"],"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
-  
-    <article id="post-hexo" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2015/01/04/hexo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hollton">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/css/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HOLLTON">
+    </span>
+
     
-      <header class="article-header">
+      <header class="post-header">
+
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/01/04/hexo/">利用hexo搭建github博客总结</a>
-    </h1>
-  
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/01/04/hexo/" itemprop="url">
+                  利用hexo搭建github博客总结
+                </a>
+              
+            
+          </h1>
+        
 
-        <div class="article-meta">
-          <div class="article-date">
-  <i class="fa fa-calendar"></i>
-  <a href="/2015/01/04/hexo/">
-    <time datetime="2015-01-04T14:09:43.000Z" itemprop="datePublished">2015-01-04</time>
-  </a>
-</div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-01-04T22:09:43+08:00">
+                2015-01-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/01/04/hexo/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/01/04/hexo/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
         </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
-        <p>##hexo搭建github博客<br>有用github写博文的想法已经已久了，但时至今日才理出个时间把它搞定。其中要多谢<a href="http://zipperary.com">zippera</a>的博文的极大帮助，原文出处：<a href="http://zipperary.com/categories/hexo/">hexo系列教程</a>。你也可以参考<a href="http://hexo.io/">hexo.io</a>以及其<a href="http://hexo.io/zh-cn/">中文站点</a>。本文主要是对自己今天的搭建过程做一个回顾与总结，还请大神指教，若有新手也想尝试github博客，看看下面的介绍也是个不错的选择呢。</p>
-<p>###hexo是什么<br>hexo是一个基于Node.js的静态博客程序，可以方便的生成静态网页托管在github以及Heroku上。而且平时的使用过程中仅需要<code>hexo new</code> <code>hexo generate</code> <code>hexo server</code> <code>hexo deploy</code>四个命令即可完成操作。<br>
+      
+
+      
         
-          <p class="article-more-link">
-            <a href="/2015/01/04/hexo/#more">Read More</a>
-          </p>
+          <h2 id="hexo-搭建github博客"><a href="#hexo-搭建github博客" class="headerlink" title="hexo 搭建github博客"></a>hexo 搭建github博客</h2><p>有用github写博文的想法已经已久了，但时至今日才理出个时间把它搞定。其中要多谢<a href="http://zipperary.com">zippera</a>的博文的极大帮助，原文出处：<a href="http://zipperary.com/categories/hexo/">hexo系列教程</a>。你也可以参考<a href="http://hexo.io/">hexo.io</a>以及其<a href="http://hexo.io/zh-cn/">中文站点</a>。本文主要是对自己今天的搭建过程做一个回顾与总结，还请大神指教，若有新手也想尝试github博客，看看下面的介绍也是个不错的选择呢。</p>
+<h3 id="hexo是什么"><a href="#hexo是什么" class="headerlink" title="hexo是什么"></a>hexo是什么</h3><p>hexo是一个基于Node.js的静态博客程序，可以方便的生成静态网页托管在github以及Heroku上。而且平时的使用过程中仅需要<code>hexo new</code> <code>hexo generate</code> <code>hexo server</code> <code>hexo deploy</code>四个命令即可完成操作。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2015/01/04/hexo/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://hollton.github.io/2015/01/04/hexo/" data-id="cixpzf3jr000554ajlggajrk6" class="article-share-link">分享到</a>
-      
-        <a href="http://hollton.github.io/2015/01/04/hexo/#ds-thread" class="article-comment-link">评论</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
 
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
     </footer>
+  </article>
+
+
+    
+  </section>
+
+  
+
+          
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
   </div>
-  
-</article>
 
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
 
-
-<!--百度分享-->
-<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a></div>
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["qzone","tqq","sqq","mail","fbook","linkedin","copy","print"],"bdPic":"","bdStyle":"1","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
-  
-  
-</section>
       
-        <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul id="recent-post" class="">
-        
-          <li>
-            
-            <div class="item-thumbnail">
-              <a href="/2016/12/19/vue-cli/" class="thumbnail">
-  
-    <span class="thumbnail-image thumbnail-none"></span>
-  
-</a>
-            </div>
-            
-            <div class="item-inner">
-              <p class="item-category"></p>
-              <p class="item-title"><a href="/2016/12/19/vue-cli/" class="title">vue-cli构建工具</a></p>
-              <p class="item-date"><time datetime="2016-12-19T02:41:40.000Z" itemprop="datePublished">2016-12-19</time></p>
-            </div>
-          </li>
-        
-          <li>
-            
-            <div class="item-thumbnail">
-              <a href="/2015/05/11/github如何更新自己Fork的代码/" class="thumbnail">
-  
-    <span style="background-image:url(/img/fork.png
-)" alt="github如何更新自己Fork的代码" class="thumbnail-image"></span>
-  
-</a>
-            </div>
-            
-            <div class="item-inner">
-              <p class="item-category"></p>
-              <p class="item-title"><a href="/2015/05/11/github如何更新自己Fork的代码/" class="title">github如何更新自己Fork的代码</a></p>
-              <p class="item-date"><time datetime="2015-05-11T07:27:36.000Z" itemprop="datePublished">2015-05-11</time></p>
-            </div>
-          </li>
-        
-          <li>
-            
-            <div class="item-thumbnail">
-              <a href="/2015/04/23/Unveil-js图片延时加载/" class="thumbnail">
-  
-    <span style="background-image:url(/bg.png
-)" alt="Unveil.js图片延时加载" class="thumbnail-image"></span>
-  
-</a>
-            </div>
-            
-            <div class="item-inner">
-              <p class="item-category"></p>
-              <p class="item-title"><a href="/2015/04/23/Unveil-js图片延时加载/" class="title">Unveil.js图片延时加载</a></p>
-              <p class="item-date"><time datetime="2015-04-23T03:37:34.000Z" itemprop="datePublished">2015-04-23</time></p>
-            </div>
-          </li>
-        
-          <li>
-            
-            <div class="item-thumbnail">
-              <a href="/2015/01/04/hexo/" class="thumbnail">
-  
-    <span style="background-image:url(/img/repo.png
-)" alt="利用hexo搭建github博客总结" class="thumbnail-image"></span>
-  
-</a>
-            </div>
-            
-            <div class="item-inner">
-              <p class="item-category"></p>
-              <p class="item-title"><a href="/2015/01/04/hexo/" class="title">利用hexo搭建github博客总结</a></p>
-              <p class="item-date"><time datetime="2015-01-04T14:09:43.000Z" itemprop="datePublished">2015-01-04</time></p>
-            </div>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
 
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li></ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap widget-list">
-    <h3 class="widget-title">友情链接</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="http://www.hfut.edu.cn">合肥工业大学</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-
-  
-    <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=1&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2613509231&verifier=30f306f1&dpc=1"></iframe>
-  
-  <div id="toTop" class="fa fa-chevron-up"></div>
-</aside>
       
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/css/images/avatar.png"
+               alt="hollton" />
+          <p class="site-author-name" itemprop="name">hollton</p>
+           
+              <p class="site-description motion-element" itemprop="description">前端开发一枚</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
     </div>
-    <footer id="footer">
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
   
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2017 hollton<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
-    </div>
-  </div>
-</footer>
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hollton</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
     
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
 
 <script type="text/javascript">
-  var duoshuoQuery = {short_name:"hollton"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] 
-     || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
 </script>
 
 
-<script src="//libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js"></script>
 
-  </div>
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"hollton"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
 </body>
 </html>

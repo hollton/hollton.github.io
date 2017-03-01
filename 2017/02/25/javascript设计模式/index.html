@@ -1,0 +1,870 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript,设计模式," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="第一章 富有表现力的javascriptjavascript的灵活性过程式程序设计模式function startRun(){ ... };
+function stopRun(){ ... };
+特点：简单，但无法创建可以保存状态且具有仅对其内部状态进行操作的方法的对象。
+定义类，并把方法赋给该类的prototype属性var Run = function(){ ... };
+Run.protot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript设计模式">
+<meta property="og:url" content="http://hollton.github.io/2017/02/25/javascript设计模式/index.html">
+<meta property="og:site_name" content="HOLLTON">
+<meta property="og:description" content="第一章 富有表现力的javascriptjavascript的灵活性过程式程序设计模式function startRun(){ ... };
+function stopRun(){ ... };
+特点：简单，但无法创建可以保存状态且具有仅对其内部状态进行操作的方法的对象。
+定义类，并把方法赋给该类的prototype属性var Run = function(){ ... };
+Run.protot">
+<meta property="og:updated_time" content="2017-03-01T14:00:35.497Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="javascript设计模式">
+<meta name="twitter:description" content="第一章 富有表现力的javascriptjavascript的灵活性过程式程序设计模式function startRun(){ ... };
+function stopRun(){ ... };
+特点：简单，但无法创建可以保存状态且具有仅对其内部状态进行操作的方法的对象。
+定义类，并把方法赋给该类的prototype属性var Run = function(){ ... };
+Run.protot">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://hollton.github.io/2017/02/25/javascript设计模式/"/>
+
+
+
+
+
+  <title> javascript设计模式 | HOLLTON </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">HOLLTON</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">懂点编程，懂点艺术，懂点美。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2017/02/25/javascript设计模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hollton">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/css/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HOLLTON">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                javascript设计模式
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-25T16:05:40+08:00">
+                2017-02-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/25/javascript设计模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/25/javascript设计模式/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="第一章-富有表现力的javascript"><a href="#第一章-富有表现力的javascript" class="headerlink" title="第一章 富有表现力的javascript"></a>第一章 富有表现力的javascript</h1><h2 id="javascript的灵活性"><a href="#javascript的灵活性" class="headerlink" title="javascript的灵活性"></a>javascript的灵活性</h2><h3 id="过程式程序设计模式"><a href="#过程式程序设计模式" class="headerlink" title="过程式程序设计模式"></a>过程式程序设计模式</h3><pre><code>function startRun(){ ... };
+function stopRun(){ ... };
+</code></pre><p>特点：简单，但无法创建可以保存状态且具有仅对其内部状态进行操作的方法的对象。</p>
+<h3 id="定义类，并把方法赋给该类的prototype属性"><a href="#定义类，并把方法赋给该类的prototype属性" class="headerlink" title="定义类，并把方法赋给该类的prototype属性"></a>定义类，并把方法赋给该类的prototype属性</h3><pre><code>var Run = function(){ ... };
+Run.prototype = {
+    start:function(){ ... },
+    stop:function(){ ... }
+};
+/* usage */
+var myRun = new Run();
+myRun.start();
+</code></pre><h3 id="自定义为类添加新方法"><a href="#自定义为类添加新方法" class="headerlink" title="自定义为类添加新方法"></a>自定义为类添加新方法</h3><pre><code>/* 给函数添加可自定义方法的方法 */
+Function.prototype.customMethod = function(name,fn){
+    this.prototype[name] = fn;
+    //以下代码可使customMethod被链式调用
+    //return this;
+};
+var Run = function(){ ... }
+Run.customMethod(&apos;start&apos;,fuction(){
+    ...
+});
+</code></pre><h2 id="弱类型语言"><a href="#弱类型语言" class="headerlink" title="弱类型语言"></a>弱类型语言</h2><h3 id="原始数据类型"><a href="#原始数据类型" class="headerlink" title="原始数据类型"></a>原始数据类型</h3><p>布尔（Boolean），数值（Number不区分整数、浮点数），字符串（String），空（Null），未定义（Undefined）：按值传送</p>
+<h3 id="复合数据类型"><a href="#复合数据类型" class="headerlink" title="复合数据类型"></a>复合数据类型</h3><p>对象（Object：无序键值对；数组特殊对象：为有序集合）：按引用传送</p>
+<h1 id="第二章-接口"><a href="#第二章-接口" class="headerlink" title="第二章 接口"></a>第二章 接口</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>接口提供了一种用以说明一个对象应该具有哪些方法的手段。我的理解是接口声明了一个方法所需的参数及返回的数据，并在类中去实现它。</p>
+<h2 id="js模仿接口"><a href="#js模仿接口" class="headerlink" title="js模仿接口"></a>js模仿接口</h2><h3 id="注释描述"><a href="#注释描述" class="headerlink" title="注释描述"></a>注释描述</h3><p>在注释中使用interface,implements关键字。实现简单但仅限制于文档规范阶段，并没做实现检查，也不会抛出错误提示。</p>
+<pre><code>/*
+    interface Composite {
+        function add(item);
+    }
+*/
+var CompositeForm = function(id,method,action){  //implements Composite
+};
+//implement the Composite interface
+CompositeForm.prototype.add = function(item){ ... }
+</code></pre><h3 id="属性检查"><a href="#属性检查" class="headerlink" title="属性检查"></a>属性检查</h3><p>即通过检查属性判断是否实现此接口，没有则抛出错误，但并未对接口的真正实现做检查。</p>
+<h3 id="鸭式辨型"><a href="#鸭式辨型" class="headerlink" title="鸭式辨型"></a>鸭式辨型</h3><p>不关注是否声明支持哪些方法，而只要具有这些接口的方法就行。双重遍历检测每个接口是否实现了某种方法.</p>
+<h2 id="interface类"><a href="#interface类" class="headerlink" title="interface类"></a>interface类</h2><p>接口在运用设计模式实现复杂系统时能体现其价值，可降低对象间的耦合度，但对于小型项目，好处并不明显且徒增复杂度。</p>
+<h1 id="第三章-封装和信息隐藏"><a href="#第三章-封装和信息隐藏" class="headerlink" title="第三章 封装和信息隐藏"></a>第三章 封装和信息隐藏</h1><h2 id="封装是面向对象设计的基石"><a href="#封装是面向对象设计的基石" class="headerlink" title="封装是面向对象设计的基石"></a>封装是面向对象设计的基石</h2><p>将方法或属性声明为私用，可以让对象的实现细节对其他对象保密以降低对象间耦合度，且可以保持数据的完整性并对其修改方式加以约束。js中可使用闭包创建只允许从对象内部访问的属性和方法，以达到封装数据的效果。</p>
+<h2 id="创建对象的基本模式"><a href="#创建对象的基本模式" class="headerlink" title="创建对象的基本模式"></a>创建对象的基本模式</h2><h3 id="门户大开型"><a href="#门户大开型" class="headerlink" title="门户大开型"></a>门户大开型</h3><p>传统方式，用函数做其构造器，属性和方法公开，用this关键字创建属性。</p>
+<pre><code>var book = function(title){
+    this.setTitle(title);
+};
+book.prototype = {
+    getTitle:function(){
+        return this.title;
+    },
+    setTitle:function(title){
+        this.title = title;
+    },
+    display:function(){ ... }
+};
+</code></pre><h3 id="命名规范（-）"><a href="#命名规范（-）" class="headerlink" title="命名规范（_）"></a>命名规范（_）</h3><p>属性和方法前添加下划线（_）以示其私有性。</p>
+<h3 id="作用域、嵌套函数、闭包"><a href="#作用域、嵌套函数、闭包" class="headerlink" title="作用域、嵌套函数、闭包"></a>作用域、嵌套函数、闭包</h3><p>闭包函数能够访问另一个函数的内部变量，函数作用域内return一个嵌套函数即构成闭包。<br>之所以会产生闭包是因为js的作用域是词法性的，即函数运行在定义它们的作用域中，而不是调用它们的作用域。</p>
+<pre><code>var book = function(newTitle){
+    //私有属性
+    var title;
+    //特权方法（privileged method，公用却能访问私有属性）
+    this.getTitle = function(){
+        return title;
+    };
+    this.setTitle = function(newTitle){
+        title = newTitle;
+    };
+    //构造函数代码
+    this.setTitle(newTitle);
+};
+//公用方法
+book.prototype.display = function(){ ... };
+</code></pre><p>前两种方式的方法都创建在原型对象中，无论生成多少对象实例，方法只在内存中存一份。而采用闭包则每生成一个对象实例都为每一个私有方法和特权方法生成新副本，更耗内存。</p>
+<h1 id="第四章-继承"><a href="#第四章-继承" class="headerlink" title="第四章 继承"></a>第四章 继承</h1><h2 id="类式继承"><a href="#类式继承" class="headerlink" title="类式继承"></a>类式继承</h2><h3 id="简单类声明"><a href="#简单类声明" class="headerlink" title="简单类声明"></a>简单类声明</h3><p>函数声明类，new关键字创建实例。创建构造函数，其名称就是类名，首字母大写，实例属性使用this关键字，方法添加到其prototype对象中。</p>
+<pre><code>/* Class Person */
+function Person (name){
+    this.name = name;
+};
+Person.prototype.getName = function(){
+    return this.name;
+};
+</code></pre><p>关键字new调用构造函数创建该类实例，即可访问实例属性及方法。</p>
+<pre><code>var hollton = new Person(&apos;hollton&apos;);
+</code></pre><h3 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h3><ol><br>    <li>创建一个构造函数，在函数中调用超类的构造函数。<ul><li>使用new时，系统会创建一个空对象，然后调用构造函数，在此过程中这个空对象处于作用域链最前端。而子类调用超类的构造函数时，必须手动完成这项工作。“Person.call(this,name)”使空对象（用this代表），name作参数传入。</li></ul></li><br>    <li>设置原型链，指向实例超类<ul><li>访问对象的某个成员时，如果在当前对象中查找不到，javascript会沿着对象的原型链向上逐一访问其原型对象查找，因此将子类的prototype指向超类的一个实例，即可使子类继承超类。</li></ul></li><br>    <li>重新设置constructor属性为本构造函数<ul><li>定义构造函数时，默认的prototype对象是Object类型的实例，其constructor属性会被自动设置为该构造函数。但手动将其prototype设置为另一个对象时，其constructor属也变成新对象的constructor值，因此需要重新设置为本构造函数。</li></ul></li><br></ol>
+
+<pre><code>/* Class Programmer */
+function Programmer(name,programs){
+    Person.call(this,name);//当前作用域调用超类的构造函数
+    this.programs = programs;//添加新属性
+};
+Programmer.prototype = new Person();//设置原型链
+Programmer.prototype.constructor = Programmer;//重新设置constructor属性
+Programmer.prototype.getPrograms = function(){//添加新方法
+    return this.programs;
+};
+</code></pre><p>创建子类实例则不变</p>
+<pre><code>var holltonliu = new Programmer(&apos;hollton&apos;,[&apos;javascript_code&apos;]);
+</code></pre><h3 id="自定义extend函数"><a href="#自定义extend函数" class="headerlink" title="自定义extend函数"></a>自定义extend函数</h3><p>仿照extend关键字自定义函数实现基于给定类结构创建新类。其中添加一个空函数fn，其prototype指向超类的prototype并创建对象实例插入到子类的原型链中。这样是为了避免创建超类的实例（直接使用超类可能：比较大；有副作用；执行大量计算任务）。</p>
+<pre><code>/* Extend function */
+function extend(subClass, superClass) {
+    var fn = function(){};
+    fn.prototype = superClass.prototype;
+    subClass.prototype = new fn();
+    subClass.prototype.constructor = subClass;
+}
+</code></pre><p>使用extend函数对上述例子改造：</p>
+<pre><code>function Programmer(name,programs){
+    Person.call(this,name);  //存在耦合
+    this.programs = programs;
+};
+extend(Programmer,Person);
+Programmer.prototype.getPrograms = function(){
+    return this.programs;
+};
+</code></pre><p>存在缺陷：超类（Person）被固化在子类（Programmer）的声明中，为子类添加superPrototype属性解决↓</p>
+<pre><code>/* ---Improved Extend function--- */
+function extend(subClass, superClass) {
+    var fn = function(){};
+    fn.prototype = superClass.prototype;
+    subClass.prototype = new fn();
+    subClass.prototype.constructor = subClass;
+
+    subClass.superPrototype = superClass.prototype;
+    //超类为Object类或也由他处继承而来时，有可能导致constructor指向不正确，不正确时修复。
+    //子类会通过constructor指向调用超类构造函数，因此这个判断修复很重要！
+    if(superClass.prototype.constructor == Object.prototype.constructor){
+        superClass.prototype.constructor = superClass;
+    }
+}
+function Programmer(name,programs){
+    Person.superPrototype.constructor.call(this,name);
+    this.programs = programs;
+};
+extend(Programmer,Person);
+</code></pre><h2 id="原型式继承"><a href="#原型式继承" class="headerlink" title="原型式继承"></a>原型式继承</h2><h3 id="实现机制"><a href="#实现机制" class="headerlink" title="实现机制"></a>实现机制</h3><p>创建一个对象，由于原型链的查找机制，新对象只需重用此对象即可实现继承。</p>
+<pre><code>/* Person Prototype Object */
+var Person = {
+    name:&apos;default&apos;,
+    getName:function(){
+        return this.name;
+    }
+};
+//customClone创建并返回新空对象，其原型对象指向父级对象
+//当新对象找不到某个属性或方法时会在原型链上查找
+function customClone(superObject) {
+    function fn() {};
+    fn.prototype = superObject;
+    return new fn;  //相当于new fn()
+}
+/* Programmer Prototype Object */
+var Programmer = customClone(Person);
+Programmer.programs = [];
+Programmer.getPrograms = function(){
+    return this.programs;
+};
+var hollton = customClone(Programmer);
+hollton.name = &apos;hollton&apos;;
+hollton.programs = [&apos;javascript_code&apos;];
+hollton.getName();
+hollton.getPrograms();
+</code></pre><h3 id="继承成员的读写不对等性"><a href="#继承成员的读写不对等性" class="headerlink" title="继承成员的读写不对等性"></a>继承成员的读写不对等性</h3><p>在类式继承中，每个实例都有一份自己的副本，而通过原型继承，实例只是以父对象为原型对象的空对象，没为其指定属性时，读取是返指原型链上的同名属性，写入则为其定义一个新属性。这里特别要注意的是，对于引用传递的数据类型如数组，对新对象第一次不赋值写入而做操作如push时会修改其原型链上的数据。</p>
+<pre><code>var hd = customClone(Programmer);
+console.log(Programmer.programs);  //[]
+//不应这么做
+hd.programs.push(&apos;javascript_code&apos;);
+console.log(Programmer.programs);  //[&apos;javascript_code&apos;]
+//应该
+hd.programs = [];  //为hd对象添加新属性
+hd.programs.push(&apos;javascript_code&apos;);
+console.log(Programmer.programs);  //[]
+</code></pre><h3 id="工厂方式实现"><a href="#工厂方式实现" class="headerlink" title="工厂方式实现"></a>工厂方式实现</h3><p>如果需求继承一个对象而只修改其子对象的的一个属性保留其他，应用上种方法你必须知道对象的全部属性及其默认值并做覆盖操作，显然不合适。</p>
+<pre><code>var CompoundObject = {};
+CompoundObject.name = &apos;haha&apos;;
+CompoundObject.createChildObject = function(){
+    return {
+        num:10,
+        bool:true
+    }
+};
+CompoundObject.childObject = CompoundObject.createChildObject();
+
+var compoundObjectClone = customClone(CompoundObject);
+compoundObjectClone.childObject = CompoundObject.createChildObject();
+compoundObjectClone.childObject.num = 5;  //修改不会影响CompoundObject
+</code></pre><h2 id="类式继承与原型式继承对比"><a href="#类式继承与原型式继承对比" class="headerlink" title="类式继承与原型式继承对比"></a>类式继承与原型式继承对比</h2>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/19/vue-cli/" rel="next" title="vue-cli构建工具">
+                <i class="fa fa-chevron-left"></i> vue-cli构建工具
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/25/javascript设计模式/"
+           data-title="javascript设计模式" data-url="http://hollton.github.io/2017/02/25/javascript设计模式/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/css/images/avatar.png"
+               alt="hollton" />
+          <p class="site-author-name" itemprop="name">hollton</p>
+           
+              <p class="site-description motion-element" itemprop="description">前端开发一枚</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第一章-富有表现力的javascript"><span class="nav-number">1.</span> <span class="nav-text">第一章 富有表现力的javascript</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#javascript的灵活性"><span class="nav-number">1.1.</span> <span class="nav-text">javascript的灵活性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#过程式程序设计模式"><span class="nav-number">1.1.1.</span> <span class="nav-text">过程式程序设计模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义类，并把方法赋给该类的prototype属性"><span class="nav-number">1.1.2.</span> <span class="nav-text">定义类，并把方法赋给该类的prototype属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义为类添加新方法"><span class="nav-number">1.1.3.</span> <span class="nav-text">自定义为类添加新方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#弱类型语言"><span class="nav-number">1.2.</span> <span class="nav-text">弱类型语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原始数据类型"><span class="nav-number">1.2.1.</span> <span class="nav-text">原始数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复合数据类型"><span class="nav-number">1.2.2.</span> <span class="nav-text">复合数据类型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第二章-接口"><span class="nav-number">2.</span> <span class="nav-text">第二章 接口</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#js模仿接口"><span class="nav-number">2.2.</span> <span class="nav-text">js模仿接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注释描述"><span class="nav-number">2.2.1.</span> <span class="nav-text">注释描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性检查"><span class="nav-number">2.2.2.</span> <span class="nav-text">属性检查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#鸭式辨型"><span class="nav-number">2.2.3.</span> <span class="nav-text">鸭式辨型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#interface类"><span class="nav-number">2.3.</span> <span class="nav-text">interface类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第三章-封装和信息隐藏"><span class="nav-number">3.</span> <span class="nav-text">第三章 封装和信息隐藏</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#封装是面向对象设计的基石"><span class="nav-number">3.1.</span> <span class="nav-text">封装是面向对象设计的基石</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建对象的基本模式"><span class="nav-number">3.2.</span> <span class="nav-text">创建对象的基本模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#门户大开型"><span class="nav-number">3.2.1.</span> <span class="nav-text">门户大开型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命名规范（-）"><span class="nav-number">3.2.2.</span> <span class="nav-text">命名规范（_）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作用域、嵌套函数、闭包"><span class="nav-number">3.2.3.</span> <span class="nav-text">作用域、嵌套函数、闭包</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第四章-继承"><span class="nav-number">4.</span> <span class="nav-text">第四章 继承</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#类式继承"><span class="nav-number">4.1.</span> <span class="nav-text">类式继承</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简单类声明"><span class="nav-number">4.1.1.</span> <span class="nav-text">简单类声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原型链"><span class="nav-number">4.1.2.</span> <span class="nav-text">原型链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义extend函数"><span class="nav-number">4.1.3.</span> <span class="nav-text">自定义extend函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型式继承"><span class="nav-number">4.2.</span> <span class="nav-text">原型式继承</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现机制"><span class="nav-number">4.2.1.</span> <span class="nav-text">实现机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继承成员的读写不对等性"><span class="nav-number">4.2.2.</span> <span class="nav-text">继承成员的读写不对等性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工厂方式实现"><span class="nav-number">4.2.3.</span> <span class="nav-text">工厂方式实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类式继承与原型式继承对比"><span class="nav-number">4.3.</span> <span class="nav-text">类式继承与原型式继承对比</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hollton</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"hollton"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
