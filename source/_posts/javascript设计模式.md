@@ -123,18 +123,18 @@ tags: [javascript,设计模式]
 </ol>
 
     /* Class Programmer */
-    function Programmer(name,program){
+    function Programmer(name,programs){
         Person.call(this,name);//当前作用域调用超类的构造函数
-        this.program = program;//添加新属性
+        this.programs = programs;//添加新属性
     };
     Programmer.prototype = new Person();//设置原型链
     Programmer.prototype.constructor = Programmer;//重新设置constructor属性
-    Programmer.prototype.getProgram = function(){//添加新方法
-        return this.program;
+    Programmer.prototype.getPrograms = function(){//添加新方法
+        return this.programs;
     };
 创建子类实例则不变
 
-	var holltonliu = new Programmer('hollton','javascript_code');
+	var holltonliu = new Programmer('hollton',['javascript_code']);
 ### 自定义extend函数
 仿照extend关键字自定义函数实现基于给定类结构创建新类。其中添加一个空函数fn，其prototype指向超类的prototype并创建对象实例插入到子类的原型链中。这样是为了避免创建超类的实例（直接使用超类可能：比较大；有副作用；执行大量计算任务）。
 
@@ -147,13 +147,13 @@ tags: [javascript,设计模式]
 	}
 使用extend函数对上述例子改造：
 
-    function Programmer(name,program){
+    function Programmer(name,programs){
         Person.call(this,name);  //存在耦合
-        this.program = program;
+        this.programs = programs;
     };
     extend(Programmer,Person);
-    Programmer.prototype.getProgram = function(){
-        return this.program;
+    Programmer.prototype.getPrograms = function(){
+        return this.programs;
     };
 存在缺陷：超类（Person）被固化在子类（Programmer）的声明中，为子类添加superPrototype属性解决↓
 
@@ -165,14 +165,72 @@ tags: [javascript,设计模式]
         subClass.prototype.constructor = subClass;
 
         subClass.superPrototype = superClass.prototype;
-        //？？
+        //超类为Object类或也由他处继承而来时，有可能导致constructor指向不正确，不正确时修复。
+        //子类会通过constructor指向调用超类构造函数，因此这个判断修复很重要！
         if(superClass.prototype.constructor == Object.prototype.constructor){
             superClass.prototype.constructor = superClass;
         }
     }
-    function Programmer(name,program){
+    function Programmer(name,programs){
         Person.superPrototype.constructor.call(this,name);
-        this.program = program;
+        this.programs = programs;
     };
     extend(Programmer,Person);
 ## 原型式继承
+### 实现机制
+创建一个对象，由于原型链的查找机制，新对象只需重用此对象即可实现继承。
+
+    /* Person Prototype Object */
+    var Person = {
+        name:'default',
+        getName:function(){
+            return this.name;
+        }
+    };
+    //customClone创建并返回新空对象，其原型对象指向父级对象
+    //当新对象找不到某个属性或方法时会在原型链上查找
+    function customClone(superObject) {
+        function fn() {};
+        fn.prototype = superObject;
+        return new fn;  //相当于new fn()
+    }
+    /* Programmer Prototype Object */
+    var Programmer = customClone(Person);
+    Programmer.programs = [];
+    Programmer.getPrograms = function(){
+        return this.programs;
+    };
+    var hollton = customClone(Programmer);
+    hollton.name = 'hollton';
+    hollton.programs = ['javascript_code'];
+    hollton.getName();
+    hollton.getPrograms();
+### 继承成员的读写不对等性
+在类式继承中，每个实例都有一份自己的副本，而通过原型继承，实例只是以父对象为原型对象的空对象，没为其指定属性时，读取是返指原型链上的同名属性，写入则为其定义一个新属性。这里特别要注意的是，对于引用传递的数据类型如数组，对新对象第一次不赋值写入而做操作如push时会修改其原型链上的数据。
+
+    var hd = customClone(Programmer);
+    console.log(Programmer.programs);  //[]
+    //不应这么做
+    hd.programs.push('javascript_code');
+    console.log(Programmer.programs);  //['javascript_code']
+    //应该
+    hd.programs = [];  //为hd对象添加新属性
+    hd.programs.push('javascript_code');
+    console.log(Programmer.programs);  //[]
+### 工厂方式实现
+如果需求继承一个对象而只修改其子对象的的一个属性保留其他，应用上种方法你必须知道对象的全部属性及其默认值并做覆盖操作，显然不合适。
+
+    var CompoundObject = {};
+    CompoundObject.name = 'haha';
+    CompoundObject.createChildObject = function(){
+        return {
+            num:10,
+            bool:true
+        }
+    };
+    CompoundObject.childObject = CompoundObject.createChildObject();
+
+    var compoundObjectClone = customClone(CompoundObject);
+    compoundObjectClone.childObject = CompoundObject.createChildObject();
+    compoundObjectClone.childObject.num = 5;  //修改不会影响CompoundObject
+## 类式继承与原型式继承对比
