@@ -233,4 +233,72 @@ tags: [javascript,设计模式]
     var compoundObjectClone = customClone(CompoundObject);
     compoundObjectClone.childObject = CompoundObject.createChildObject();
     compoundObjectClone.childObject.num = 5;  //修改不会影响CompoundObject
-## 类式继承与原型式继承对比
+## 参元类
+包含通用方法的类，用来扩充其他类，称这个通用类为参元类(mixin class)。它们通常不会被实例或直接调用，只是向其他类提供自己的方法。
+
+    /* Mixin class */
+    var Mixin = function(){};
+    Mixin.prototype = {
+        fnName:function(){ ... }
+    }
+这个方法在不同类中用到时，没必要都去继承它，我们可以自定义个customArgument函数将它添加到需要用到它的类中。
+
+    function customArgument(receiveClass, giveClass){
+        for(methodName in giveClass.prototype){
+            if(!receiveClass.prototype[methodName]){
+                receiveClass.prototype[methodName] = giveClass.prototype[methodName];
+            }
+        }
+    }
+
+    customArgument(Programmer,Mixin);
+    var hd. = new Programmer('hollton',['javascript_code']);
+    hd.fnName();  //使用参元类方法
+# 单体模式
+单体是一个用来划分命名空间并将一批相关方法和属性组织在一起的对象，如果可被实例化，则只能被实例化一次。
+## 基本结构
+
+    /* 简单单体（对象字面量） */
+    var Singleton = {
+        attribute:10,
+        method:function(){}
+    };
+## 拥有私有成员的单体
+创建类的私有成员的做法缺点在于较耗内存，因为每个实例都具有方法的一份新副本。由于单体对象只会被实例化一次，因此为其定义私用方法是不必考虑内存方面的问题。
+### 下划线标识
+### 使用闭包
+
+    MyNamespace.Singleton = (function(){
+        //私有
+        var privateAtti = false;
+        function privateMethod = function(){};
+        //公有
+        return {
+            publicAtti = true;
+            publicMethod = function(){};
+        };
+    })();
+这种单体模式又称模块模式，它可以把一批相关的方法和属性组织为模块并起到划分命名空间的作用。
+## 惰性实例化
+将单体对象实例化推迟到需要使用的时候，称为惰性加载。特别之处是需借助静态方法调用MyNamespace.Singleton.publicMethod -> MyNamespace.Singleton.getInstace().publicMethod。getInstace方法会检查并返回该单体的实例化对象。
+
+    MyNamespace.Singleton = (function(){
+        function constructor(){
+            var privateAtti = false;
+            function privateMethod = function(){};
+            return {
+                publicAtti = true;
+                publicMethod = function(){};
+            };
+        }
+        var uniqueInstance;
+        return {
+            getInstance:function(){
+                if(!uniqueInstance){
+                    uniqueInstance = constructor();
+                }
+                return uniqueInstance;
+            }
+        }
+    })();
+# 方法的链式调用
