@@ -1,6 +1,6 @@
-title: "javascript设计模式"
+title: "JavaScript设计模式"
 date: 2017-02-25 16:05:40
-tags: [javascript,设计模式]
+tags: [JavaScript,设计模式]
 
 ---
 # 第一章 富有表现力的javascript
@@ -254,7 +254,7 @@ tags: [javascript,设计模式]
     customArgument(Programmer,Mixin);
     var hd. = new Programmer('hollton',['javascript_code']);
     hd.fnName();  //使用参元类方法
-# 单体模式
+# 第五章 单体模式
 单体是一个用来划分命名空间并将一批相关方法和属性组织在一起的对象，如果可被实例化，则只能被实例化一次。
 ## 基本结构
 
@@ -301,4 +301,8 @@ tags: [javascript,设计模式]
             }
         }
     })();
-# 方法的链式调用
+# 第六章 方法的链式调用
+类的每个方法都return this实现支持方法链式调用的类。
+# 第七章 工厂模式
+## 简单工厂
+简单工厂就像一个单例，它有一个或多个方法来创建或者返回对象。
