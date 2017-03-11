@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="javascript,设计模式," />
+  <meta name="keywords" content="JavaScript,设计模式," />
 
 
 
@@ -93,7 +93,7 @@ function stopRun(){ ... };
 定义类，并把方法赋给该类的prototype属性var Run = function(){ ... };
 Run.protot">
 <meta property="og:type" content="article">
-<meta property="og:title" content="javascript设计模式">
+<meta property="og:title" content="JavaScript设计模式">
 <meta property="og:url" content="http://hollton.github.io/2017/02/25/javascript设计模式/index.html">
 <meta property="og:site_name" content="HOLLTON">
 <meta property="og:description" content="第一章 富有表现力的javascriptjavascript的灵活性过程式程序设计模式function startRun(){ ... };
@@ -101,9 +101,9 @@ function stopRun(){ ... };
 特点：简单，但无法创建可以保存状态且具有仅对其内部状态进行操作的方法的对象。
 定义类，并把方法赋给该类的prototype属性var Run = function(){ ... };
 Run.protot">
-<meta property="og:updated_time" content="2017-03-01T14:00:35.497Z">
+<meta property="og:updated_time" content="2017-03-11T10:32:14.333Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="javascript设计模式">
+<meta name="twitter:title" content="JavaScript设计模式">
 <meta name="twitter:description" content="第一章 富有表现力的javascriptjavascript的灵活性过程式程序设计模式function startRun(){ ... };
 function stopRun(){ ... };
 特点：简单，但无法创建可以保存状态且具有仅对其内部状态进行操作的方法的对象。
@@ -142,7 +142,7 @@ Run.protot">
 
 
 
-  <title> javascript设计模式 | HOLLTON </title>
+  <title> JavaScript设计模式 | HOLLTON </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -282,7 +282,7 @@ Run.protot">
             
             
               
-                javascript设计模式
+                JavaScript设计模式
               
             
           </h1>
@@ -523,7 +523,156 @@ CompoundObject.childObject = CompoundObject.createChildObject();
 var compoundObjectClone = customClone(CompoundObject);
 compoundObjectClone.childObject = CompoundObject.createChildObject();
 compoundObjectClone.childObject.num = 5;  //修改不会影响CompoundObject
-</code></pre><h2 id="类式继承与原型式继承对比"><a href="#类式继承与原型式继承对比" class="headerlink" title="类式继承与原型式继承对比"></a>类式继承与原型式继承对比</h2>
+</code></pre><h2 id="参元类"><a href="#参元类" class="headerlink" title="参元类"></a>参元类</h2><p>包含通用方法的类，用来扩充其他类，称这个通用类为参元类(mixin class)。它们通常不会被实例或直接调用，只是向其他类提供自己的方法。</p>
+<pre><code>/* Mixin class */
+var Mixin = function(){};
+Mixin.prototype = {
+    fnName:function(){ ... }
+}
+</code></pre><p>这个方法在不同类中用到时，没必要都去继承它，我们可以自定义个customArgument函数将它添加到需要用到它的类中。</p>
+<pre><code>function customArgument(receiveClass, giveClass){
+    for(methodName in giveClass.prototype){
+        if(!receiveClass.prototype[methodName]){
+            receiveClass.prototype[methodName] = giveClass.prototype[methodName];
+        }
+    }
+}
+
+customArgument(Programmer,Mixin);
+var hd. = new Programmer(&apos;hollton&apos;,[&apos;javascript_code&apos;]);
+hd.fnName();  //使用参元类方法
+</code></pre><h1 id="第五章-单体模式"><a href="#第五章-单体模式" class="headerlink" title="第五章 单体模式"></a>第五章 单体模式</h1><p>单体是一个用来划分命名空间并将一批相关方法和属性组织在一起的对象，如果可被实例化，则只能被实例化一次。</p>
+<h2 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h2><pre><code>/* 简单单体（对象字面量） */
+var Singleton = {
+    attribute:10,
+    method:function(){}
+};
+</code></pre><h2 id="拥有私有成员的单体"><a href="#拥有私有成员的单体" class="headerlink" title="拥有私有成员的单体"></a>拥有私有成员的单体</h2><p>创建类的私有成员的做法缺点在于较耗内存，因为每个实例都具有方法的一份新副本。由于单体对象只会被实例化一次，因此为其定义私用方法是不必考虑内存方面的问题。</p>
+<h3 id="下划线标识"><a href="#下划线标识" class="headerlink" title="下划线标识"></a>下划线标识</h3><h3 id="使用闭包"><a href="#使用闭包" class="headerlink" title="使用闭包"></a>使用闭包</h3><pre><code>MyNamespace.Singleton = (function(){
+    //私有
+    var privateAtti = false;
+    function privateMethod = function(){};
+    //公有
+    return {
+        publicAtti = true;
+        publicMethod = function(){};
+    };
+})();
+</code></pre><p>这种单体模式又称模块模式，它可以把一批相关的方法和属性组织为模块并起到划分命名空间的作用。</p>
+<h2 id="惰性实例化"><a href="#惰性实例化" class="headerlink" title="惰性实例化"></a>惰性实例化</h2><p>将单体对象实例化推迟到需要使用的时候，称为惰性加载。特别之处是需借助静态方法调用MyNamespace.Singleton.publicMethod -&gt; MyNamespace.Singleton.getInstace().publicMethod。getInstace方法会检查并返回该单体的实例化对象。</p>
+<pre><code>MyNamespace.Singleton = (function(){
+    function constructor(){
+        var privateAtti = false;
+        function privateMethod = function(){};
+        return {
+            publicAtti = true;
+            publicMethod = function(){};
+        };
+    }
+    var uniqueInstance;
+    return {
+        getInstance:function(){
+            if(!uniqueInstance){
+                uniqueInstance = constructor();
+            }
+            return uniqueInstance;
+        }
+    }
+})();
+</code></pre><h1 id="第六章-方法的链式调用"><a href="#第六章-方法的链式调用" class="headerlink" title="第六章 方法的链式调用"></a>第六章 方法的链式调用</h1><p>类的每个方法都return this实现支持方法链式调用的类。</p>
+<h1 id="第七章-工厂模式"><a href="#第七章-工厂模式" class="headerlink" title="第七章 工厂模式"></a>第七章 工厂模式</h1><p>简单工厂使用一个类（通常是一个单体）来生成实例，标准工厂使用子类来决定一个成员变量应该是哪个具体类的实例。</p>
+<h2 id="简单工厂"><a href="#简单工厂" class="headerlink" title="简单工厂"></a>简单工厂</h2><p>简单工厂就像一个单例，它有一个或多个方法来创建或者返回对象。</p>
+<pre><code>/* BicycleShop Class */
+var BicycleShop = function(){};
+BicycleShop.prototype = {
+    sellBicycle:function(model){
+        var bicycle;
+        switch (model){
+            case &apos;speedster&apos;:
+                bicycle = new Speedster();
+                break;
+            case &apos;lowrider&apos;:
+                bicycle = new Lowrider();
+                break;
+            default:
+                bicycle = new Common();
+        }
+        return bicycle;
+    }
+}
+
+/* Speedster Class */
+var Speedster = function(){};
+Speedster.prototype = {
+    assemble:function(){},
+    ride:function(){}
+}
+var newBicycleShop = new BicycleShop();
+var newBike = newBicycleShop.sellBicycle(&apos;speedster&apos;);
+</code></pre><p>当添加一种车型时，不得不BicycleShop代码，更好的方式是在子类中创建车型。</p>
+<h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><p>工厂是一个将其成员对象的实例化推迟到子类中进行的类。把BicycleShop设计成抽象类，只实现通用方法，让子类各自实现个性如createBicycle方法。</p>
+<pre><code>/* BicycleShop Class (abstract) */
+var BicycleShop = function(){};
+BicycleShop.prototype = {
+    sellBicycle:function(model){
+        var bicycle = this.createBicycle(model);
+        switch (model){
+            case &apos;speedster&apos;:
+                bicycle = new Speedster();
+                break;
+            case &apos;lowrider&apos;:
+                bicycle = new Lowrider();
+                break;
+            default:
+                bicycle = new Common();
+        }
+        return bicycle;
+    },
+    createBicycle:function(model){
+        throw new Error(&apos;createBicycle须由子类实现&apos;);
+    };
+}
+
+/* SubBicycleShop Class */
+var SubBicycleShop = function(){};
+SubBicycleShop.prototype = new BicycleShop();
+SubBicycleShop.prototype.createBicycle = function(model){
+        var bicycle;
+        switch (model){
+            case &apos;speedster&apos;:
+                bicycle = new SubSpeedster();
+                break;
+            case &apos;lowrider&apos;:
+                bicycle = new SubLowrider();
+                break;
+            default:
+                bicycle = new SubCommon();
+        }
+        return bicycle;
+    };
+}
+</code></pre><h2 id="memoizing技术"><a href="#memoizing技术" class="headerlink" title="memoizing技术"></a>memoizing技术</h2><p>memoizing把函数的每次执行结果都存入键值对(数组)，下次直接在键值对中查找值，有则返回该值，没有则执行函数体并再次缓存。</p>
+<h1 id="第八章-桥接模式"><a href="#第八章-桥接模式" class="headerlink" title="第八章 桥接模式"></a>第八章 桥接模式</h1><p>桥接模式最常见和实际的应用场合之一是事件监听器回调函数。</p>
+<h2 id="示例：事件监听器"><a href="#示例：事件监听器" class="headerlink" title="示例：事件监听器"></a>示例：事件监听器</h2><pre><code>addEvent(ele,&apos;click&apos;,getBeerById);
+function getBeerById (e){
+    asyncRequest(&apos;GET&apos;,&apos;/getBeer?id=&apos;+this.id,function(resp){
+        console.log(resp);
+    });
+}
+</code></pre><p>作为一个API函数，不应与特定实现混在一起。用桥接模式修改，把抽象隔离开来。</p>
+<pre><code>function getBeerById (id,callBack){
+    asyncRequest(&apos;GET&apos;,&apos;/getBeer?id=&apos;+id,function(resp){
+        callBack(resp);
+    });
+}
+addEvent(ele,&apos;click&apos;,getBeerByIdBridge);
+function getBeerByIdBridge (e){
+    getBeerById(this.id,function(beer){
+        console.log(beer);
+    });
+}
+</code></pre><p>如果一个桥接函数被用于连接两个函数，而其中某个函数根本不会在桥接函数外被调用，那么这个桥接函数就是不必要的。</p>
+<h1 id="第九章-组合模式"><a href="#第九章-组合模式" class="headerlink" title="第九章 组合模式"></a>第九章 组合模式</h1>
       
     </div>
 
@@ -546,7 +695,7 @@ compoundObjectClone.childObject.num = 5;  //修改不会影响CompoundObject
       
         <div class="post-tags">
           
-            <a href="/tags/javascript/" rel="tag"># javascript</a>
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
           
             <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
           
@@ -570,6 +719,10 @@ compoundObjectClone.childObject.num = 5;  //修改不会影响CompoundObject
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/05/滴答，滴答/" rel="prev" title="滴答，滴答">
+                滴答，滴答 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -596,7 +749,7 @@ compoundObjectClone.childObject.num = 5;  //修改不会影响CompoundObject
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2017/02/25/javascript设计模式/"
-           data-title="javascript设计模式" data-url="http://hollton.github.io/2017/02/25/javascript设计模式/">
+           data-title="JavaScript设计模式" data-url="http://hollton.github.io/2017/02/25/javascript设计模式/">
       </div>
     
   </div>
@@ -645,7 +798,7 @@ compoundObjectClone.childObject.num = 5;  //修改不会影响CompoundObject
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -691,7 +844,7 @@ compoundObjectClone.childObject.num = 5;  //修改不会影响CompoundObject
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第一章-富有表现力的javascript"><span class="nav-number">1.</span> <span class="nav-text">第一章 富有表现力的javascript</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#javascript的灵活性"><span class="nav-number">1.1.</span> <span class="nav-text">javascript的灵活性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#过程式程序设计模式"><span class="nav-number">1.1.1.</span> <span class="nav-text">过程式程序设计模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义类，并把方法赋给该类的prototype属性"><span class="nav-number">1.1.2.</span> <span class="nav-text">定义类，并把方法赋给该类的prototype属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义为类添加新方法"><span class="nav-number">1.1.3.</span> <span class="nav-text">自定义为类添加新方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#弱类型语言"><span class="nav-number">1.2.</span> <span class="nav-text">弱类型语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原始数据类型"><span class="nav-number">1.2.1.</span> <span class="nav-text">原始数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复合数据类型"><span class="nav-number">1.2.2.</span> <span class="nav-text">复合数据类型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第二章-接口"><span class="nav-number">2.</span> <span class="nav-text">第二章 接口</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#js模仿接口"><span class="nav-number">2.2.</span> <span class="nav-text">js模仿接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注释描述"><span class="nav-number">2.2.1.</span> <span class="nav-text">注释描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性检查"><span class="nav-number">2.2.2.</span> <span class="nav-text">属性检查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#鸭式辨型"><span class="nav-number">2.2.3.</span> <span class="nav-text">鸭式辨型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#interface类"><span class="nav-number">2.3.</span> <span class="nav-text">interface类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第三章-封装和信息隐藏"><span class="nav-number">3.</span> <span class="nav-text">第三章 封装和信息隐藏</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#封装是面向对象设计的基石"><span class="nav-number">3.1.</span> <span class="nav-text">封装是面向对象设计的基石</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建对象的基本模式"><span class="nav-number">3.2.</span> <span class="nav-text">创建对象的基本模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#门户大开型"><span class="nav-number">3.2.1.</span> <span class="nav-text">门户大开型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命名规范（-）"><span class="nav-number">3.2.2.</span> <span class="nav-text">命名规范（_）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作用域、嵌套函数、闭包"><span class="nav-number">3.2.3.</span> <span class="nav-text">作用域、嵌套函数、闭包</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第四章-继承"><span class="nav-number">4.</span> <span class="nav-text">第四章 继承</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#类式继承"><span class="nav-number">4.1.</span> <span class="nav-text">类式继承</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简单类声明"><span class="nav-number">4.1.1.</span> <span class="nav-text">简单类声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原型链"><span class="nav-number">4.1.2.</span> <span class="nav-text">原型链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义extend函数"><span class="nav-number">4.1.3.</span> <span class="nav-text">自定义extend函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型式继承"><span class="nav-number">4.2.</span> <span class="nav-text">原型式继承</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现机制"><span class="nav-number">4.2.1.</span> <span class="nav-text">实现机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继承成员的读写不对等性"><span class="nav-number">4.2.2.</span> <span class="nav-text">继承成员的读写不对等性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工厂方式实现"><span class="nav-number">4.2.3.</span> <span class="nav-text">工厂方式实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类式继承与原型式继承对比"><span class="nav-number">4.3.</span> <span class="nav-text">类式继承与原型式继承对比</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第一章-富有表现力的javascript"><span class="nav-number">1.</span> <span class="nav-text">第一章 富有表现力的javascript</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#javascript的灵活性"><span class="nav-number">1.1.</span> <span class="nav-text">javascript的灵活性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#过程式程序设计模式"><span class="nav-number">1.1.1.</span> <span class="nav-text">过程式程序设计模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义类，并把方法赋给该类的prototype属性"><span class="nav-number">1.1.2.</span> <span class="nav-text">定义类，并把方法赋给该类的prototype属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义为类添加新方法"><span class="nav-number">1.1.3.</span> <span class="nav-text">自定义为类添加新方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#弱类型语言"><span class="nav-number">1.2.</span> <span class="nav-text">弱类型语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原始数据类型"><span class="nav-number">1.2.1.</span> <span class="nav-text">原始数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复合数据类型"><span class="nav-number">1.2.2.</span> <span class="nav-text">复合数据类型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第二章-接口"><span class="nav-number">2.</span> <span class="nav-text">第二章 接口</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#js模仿接口"><span class="nav-number">2.2.</span> <span class="nav-text">js模仿接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注释描述"><span class="nav-number">2.2.1.</span> <span class="nav-text">注释描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性检查"><span class="nav-number">2.2.2.</span> <span class="nav-text">属性检查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#鸭式辨型"><span class="nav-number">2.2.3.</span> <span class="nav-text">鸭式辨型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#interface类"><span class="nav-number">2.3.</span> <span class="nav-text">interface类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第三章-封装和信息隐藏"><span class="nav-number">3.</span> <span class="nav-text">第三章 封装和信息隐藏</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#封装是面向对象设计的基石"><span class="nav-number">3.1.</span> <span class="nav-text">封装是面向对象设计的基石</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建对象的基本模式"><span class="nav-number">3.2.</span> <span class="nav-text">创建对象的基本模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#门户大开型"><span class="nav-number">3.2.1.</span> <span class="nav-text">门户大开型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命名规范（-）"><span class="nav-number">3.2.2.</span> <span class="nav-text">命名规范（_）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作用域、嵌套函数、闭包"><span class="nav-number">3.2.3.</span> <span class="nav-text">作用域、嵌套函数、闭包</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第四章-继承"><span class="nav-number">4.</span> <span class="nav-text">第四章 继承</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#类式继承"><span class="nav-number">4.1.</span> <span class="nav-text">类式继承</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简单类声明"><span class="nav-number">4.1.1.</span> <span class="nav-text">简单类声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原型链"><span class="nav-number">4.1.2.</span> <span class="nav-text">原型链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义extend函数"><span class="nav-number">4.1.3.</span> <span class="nav-text">自定义extend函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型式继承"><span class="nav-number">4.2.</span> <span class="nav-text">原型式继承</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现机制"><span class="nav-number">4.2.1.</span> <span class="nav-text">实现机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继承成员的读写不对等性"><span class="nav-number">4.2.2.</span> <span class="nav-text">继承成员的读写不对等性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工厂方式实现"><span class="nav-number">4.2.3.</span> <span class="nav-text">工厂方式实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参元类"><span class="nav-number">4.3.</span> <span class="nav-text">参元类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第五章-单体模式"><span class="nav-number">5.</span> <span class="nav-text">第五章 单体模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本结构"><span class="nav-number">5.1.</span> <span class="nav-text">基本结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拥有私有成员的单体"><span class="nav-number">5.2.</span> <span class="nav-text">拥有私有成员的单体</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下划线标识"><span class="nav-number">5.2.1.</span> <span class="nav-text">下划线标识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用闭包"><span class="nav-number">5.2.2.</span> <span class="nav-text">使用闭包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#惰性实例化"><span class="nav-number">5.3.</span> <span class="nav-text">惰性实例化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第六章-方法的链式调用"><span class="nav-number">6.</span> <span class="nav-text">第六章 方法的链式调用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第七章-工厂模式"><span class="nav-number">7.</span> <span class="nav-text">第七章 工厂模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单工厂"><span class="nav-number">7.1.</span> <span class="nav-text">简单工厂</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂模式"><span class="nav-number">7.2.</span> <span class="nav-text">工厂模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#memoizing技术"><span class="nav-number">7.3.</span> <span class="nav-text">memoizing技术</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第八章-桥接模式"><span class="nav-number">8.</span> <span class="nav-text">第八章 桥接模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#示例：事件监听器"><span class="nav-number">8.1.</span> <span class="nav-text">示例：事件监听器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第九章-组合模式"><span class="nav-number">9.</span> <span class="nav-text">第九章 组合模式</span></a></li></ol></div>
             
 
           </div>

@@ -250,6 +250,141 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2017/03/05/滴答，滴答/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hollton">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/css/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HOLLTON">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/05/滴答，滴答/" itemprop="url">
+                  滴答，滴答
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-05T21:28:30+08:00">
+                2017-03-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/05/滴答，滴答/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/05/滴答，滴答/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>夜晚，正俯身在电脑前写着设计模式笔记，窗前忽然哗啦啦下起了小雨，莫名就吟出两句小学课本的内容：“下吧下吧，我要种瓜”，回想往事一切仿佛历历在目，却再也回不去。</p>
+<blockquote>
+<p>滴答，滴答<br>滴答，滴答，下雨啦，下雨啦。<br>麦苗说：“下吧，下吧，我要长大。”<br>桃树说：“下吧，下吧，我要开花。”<br>葵花子说：“下吧，下吧，我要发芽。”<br>小弟弟说：“下吧，下吧，我要种瓜。”<br>滴答，滴答，下雨啦，下雨啦。 </p>
+</blockquote>
+<p>　</p>
+<blockquote>
+<p>春天来了<br>春天对冰雪说了什么，<br>冰雪那么听话，都化了。<br>春天对小草说了什么，<br>小草那么听话，都绿了。<br>春天对花儿说了什么，<br>花儿那么听话，都开了。</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2017/02/25/javascript设计模式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -273,7 +408,7 @@
               
                 
                 <a class="post-title-link" href="/2017/02/25/javascript设计模式/" itemprop="url">
-                  javascript设计模式
+                  JavaScript设计模式
                 </a>
               
             
@@ -517,7 +652,156 @@ CompoundObject.childObject = CompoundObject.createChildObject();
 var compoundObjectClone = customClone(CompoundObject);
 compoundObjectClone.childObject = CompoundObject.createChildObject();
 compoundObjectClone.childObject.num = 5;  //修改不会影响CompoundObject
-</code></pre><h2 id="类式继承与原型式继承对比"><a href="#类式继承与原型式继承对比" class="headerlink" title="类式继承与原型式继承对比"></a>类式继承与原型式继承对比</h2>
+</code></pre><h2 id="参元类"><a href="#参元类" class="headerlink" title="参元类"></a>参元类</h2><p>包含通用方法的类，用来扩充其他类，称这个通用类为参元类(mixin class)。它们通常不会被实例或直接调用，只是向其他类提供自己的方法。</p>
+<pre><code>/* Mixin class */
+var Mixin = function(){};
+Mixin.prototype = {
+    fnName:function(){ ... }
+}
+</code></pre><p>这个方法在不同类中用到时，没必要都去继承它，我们可以自定义个customArgument函数将它添加到需要用到它的类中。</p>
+<pre><code>function customArgument(receiveClass, giveClass){
+    for(methodName in giveClass.prototype){
+        if(!receiveClass.prototype[methodName]){
+            receiveClass.prototype[methodName] = giveClass.prototype[methodName];
+        }
+    }
+}
+
+customArgument(Programmer,Mixin);
+var hd. = new Programmer(&apos;hollton&apos;,[&apos;javascript_code&apos;]);
+hd.fnName();  //使用参元类方法
+</code></pre><h1 id="第五章-单体模式"><a href="#第五章-单体模式" class="headerlink" title="第五章 单体模式"></a>第五章 单体模式</h1><p>单体是一个用来划分命名空间并将一批相关方法和属性组织在一起的对象，如果可被实例化，则只能被实例化一次。</p>
+<h2 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h2><pre><code>/* 简单单体（对象字面量） */
+var Singleton = {
+    attribute:10,
+    method:function(){}
+};
+</code></pre><h2 id="拥有私有成员的单体"><a href="#拥有私有成员的单体" class="headerlink" title="拥有私有成员的单体"></a>拥有私有成员的单体</h2><p>创建类的私有成员的做法缺点在于较耗内存，因为每个实例都具有方法的一份新副本。由于单体对象只会被实例化一次，因此为其定义私用方法是不必考虑内存方面的问题。</p>
+<h3 id="下划线标识"><a href="#下划线标识" class="headerlink" title="下划线标识"></a>下划线标识</h3><h3 id="使用闭包"><a href="#使用闭包" class="headerlink" title="使用闭包"></a>使用闭包</h3><pre><code>MyNamespace.Singleton = (function(){
+    //私有
+    var privateAtti = false;
+    function privateMethod = function(){};
+    //公有
+    return {
+        publicAtti = true;
+        publicMethod = function(){};
+    };
+})();
+</code></pre><p>这种单体模式又称模块模式，它可以把一批相关的方法和属性组织为模块并起到划分命名空间的作用。</p>
+<h2 id="惰性实例化"><a href="#惰性实例化" class="headerlink" title="惰性实例化"></a>惰性实例化</h2><p>将单体对象实例化推迟到需要使用的时候，称为惰性加载。特别之处是需借助静态方法调用MyNamespace.Singleton.publicMethod -&gt; MyNamespace.Singleton.getInstace().publicMethod。getInstace方法会检查并返回该单体的实例化对象。</p>
+<pre><code>MyNamespace.Singleton = (function(){
+    function constructor(){
+        var privateAtti = false;
+        function privateMethod = function(){};
+        return {
+            publicAtti = true;
+            publicMethod = function(){};
+        };
+    }
+    var uniqueInstance;
+    return {
+        getInstance:function(){
+            if(!uniqueInstance){
+                uniqueInstance = constructor();
+            }
+            return uniqueInstance;
+        }
+    }
+})();
+</code></pre><h1 id="第六章-方法的链式调用"><a href="#第六章-方法的链式调用" class="headerlink" title="第六章 方法的链式调用"></a>第六章 方法的链式调用</h1><p>类的每个方法都return this实现支持方法链式调用的类。</p>
+<h1 id="第七章-工厂模式"><a href="#第七章-工厂模式" class="headerlink" title="第七章 工厂模式"></a>第七章 工厂模式</h1><p>简单工厂使用一个类（通常是一个单体）来生成实例，标准工厂使用子类来决定一个成员变量应该是哪个具体类的实例。</p>
+<h2 id="简单工厂"><a href="#简单工厂" class="headerlink" title="简单工厂"></a>简单工厂</h2><p>简单工厂就像一个单例，它有一个或多个方法来创建或者返回对象。</p>
+<pre><code>/* BicycleShop Class */
+var BicycleShop = function(){};
+BicycleShop.prototype = {
+    sellBicycle:function(model){
+        var bicycle;
+        switch (model){
+            case &apos;speedster&apos;:
+                bicycle = new Speedster();
+                break;
+            case &apos;lowrider&apos;:
+                bicycle = new Lowrider();
+                break;
+            default:
+                bicycle = new Common();
+        }
+        return bicycle;
+    }
+}
+
+/* Speedster Class */
+var Speedster = function(){};
+Speedster.prototype = {
+    assemble:function(){},
+    ride:function(){}
+}
+var newBicycleShop = new BicycleShop();
+var newBike = newBicycleShop.sellBicycle(&apos;speedster&apos;);
+</code></pre><p>当添加一种车型时，不得不BicycleShop代码，更好的方式是在子类中创建车型。</p>
+<h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><p>工厂是一个将其成员对象的实例化推迟到子类中进行的类。把BicycleShop设计成抽象类，只实现通用方法，让子类各自实现个性如createBicycle方法。</p>
+<pre><code>/* BicycleShop Class (abstract) */
+var BicycleShop = function(){};
+BicycleShop.prototype = {
+    sellBicycle:function(model){
+        var bicycle = this.createBicycle(model);
+        switch (model){
+            case &apos;speedster&apos;:
+                bicycle = new Speedster();
+                break;
+            case &apos;lowrider&apos;:
+                bicycle = new Lowrider();
+                break;
+            default:
+                bicycle = new Common();
+        }
+        return bicycle;
+    },
+    createBicycle:function(model){
+        throw new Error(&apos;createBicycle须由子类实现&apos;);
+    };
+}
+
+/* SubBicycleShop Class */
+var SubBicycleShop = function(){};
+SubBicycleShop.prototype = new BicycleShop();
+SubBicycleShop.prototype.createBicycle = function(model){
+        var bicycle;
+        switch (model){
+            case &apos;speedster&apos;:
+                bicycle = new SubSpeedster();
+                break;
+            case &apos;lowrider&apos;:
+                bicycle = new SubLowrider();
+                break;
+            default:
+                bicycle = new SubCommon();
+        }
+        return bicycle;
+    };
+}
+</code></pre><h2 id="memoizing技术"><a href="#memoizing技术" class="headerlink" title="memoizing技术"></a>memoizing技术</h2><p>memoizing把函数的每次执行结果都存入键值对(数组)，下次直接在键值对中查找值，有则返回该值，没有则执行函数体并再次缓存。</p>
+<h1 id="第八章-桥接模式"><a href="#第八章-桥接模式" class="headerlink" title="第八章 桥接模式"></a>第八章 桥接模式</h1><p>桥接模式最常见和实际的应用场合之一是事件监听器回调函数。</p>
+<h2 id="示例：事件监听器"><a href="#示例：事件监听器" class="headerlink" title="示例：事件监听器"></a>示例：事件监听器</h2><pre><code>addEvent(ele,&apos;click&apos;,getBeerById);
+function getBeerById (e){
+    asyncRequest(&apos;GET&apos;,&apos;/getBeer?id=&apos;+this.id,function(resp){
+        console.log(resp);
+    });
+}
+</code></pre><p>作为一个API函数，不应与特定实现混在一起。用桥接模式修改，把抽象隔离开来。</p>
+<pre><code>function getBeerById (id,callBack){
+    asyncRequest(&apos;GET&apos;,&apos;/getBeer?id=&apos;+id,function(resp){
+        callBack(resp);
+    });
+}
+addEvent(ele,&apos;click&apos;,getBeerByIdBridge);
+function getBeerByIdBridge (e){
+    getBeerById(this.id,function(beer){
+        console.log(beer);
+    });
+}
+</code></pre><p>如果一个桥接函数被用于连接两个函数，而其中某个函数根本不会在桥接函数外被调用，那么这个桥接函数就是不必要的。</p>
+<h1 id="第九章-组合模式"><a href="#第九章-组合模式" class="headerlink" title="第九章 组合模式"></a>第九章 组合模式</h1>
           
         
       
@@ -1171,7 +1455,7 @@ $(&quot;img&quot;).unveil(100, function() {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
