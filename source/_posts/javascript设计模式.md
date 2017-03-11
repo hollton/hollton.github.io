@@ -304,5 +304,105 @@ tags: [JavaScript,设计模式]
 # 第六章 方法的链式调用
 类的每个方法都return this实现支持方法链式调用的类。
 # 第七章 工厂模式
+简单工厂使用一个类（通常是一个单体）来生成实例，标准工厂使用子类来决定一个成员变量应该是哪个具体类的实例。
 ## 简单工厂
 简单工厂就像一个单例，它有一个或多个方法来创建或者返回对象。
+
+    /* BicycleShop Class */
+    var BicycleShop = function(){};
+    BicycleShop.prototype = {
+        sellBicycle:function(model){
+            var bicycle;
+            switch (model){
+                case 'speedster':
+                    bicycle = new Speedster();
+                    break;
+                case 'lowrider':
+                    bicycle = new Lowrider();
+                    break;
+                default:
+                    bicycle = new Common();
+            }
+            return bicycle;
+        }
+    }
+
+    /* Speedster Class */
+    var Speedster = function(){};
+    Speedster.prototype = {
+        assemble:function(){},
+        ride:function(){}
+    }
+    var newBicycleShop = new BicycleShop();
+    var newBike = newBicycleShop.sellBicycle('speedster');
+当添加一种车型时，不得不BicycleShop代码，更好的方式是在子类中创建车型。
+## 工厂模式
+工厂是一个将其成员对象的实例化推迟到子类中进行的类。把BicycleShop设计成抽象类，只实现通用方法，让子类各自实现个性如createBicycle方法。
+
+    /* BicycleShop Class (abstract) */
+    var BicycleShop = function(){};
+    BicycleShop.prototype = {
+        sellBicycle:function(model){
+            var bicycle = this.createBicycle(model);
+            switch (model){
+                case 'speedster':
+                    bicycle = new Speedster();
+                    break;
+                case 'lowrider':
+                    bicycle = new Lowrider();
+                    break;
+                default:
+                    bicycle = new Common();
+            }
+            return bicycle;
+        },
+        createBicycle:function(model){
+            throw new Error('createBicycle须由子类实现');
+        };
+    }
+
+    /* SubBicycleShop Class */
+    var SubBicycleShop = function(){};
+    SubBicycleShop.prototype = new BicycleShop();
+    SubBicycleShop.prototype.createBicycle = function(model){
+            var bicycle;
+            switch (model){
+                case 'speedster':
+                    bicycle = new SubSpeedster();
+                    break;
+                case 'lowrider':
+                    bicycle = new SubLowrider();
+                    break;
+                default:
+                    bicycle = new SubCommon();
+            }
+            return bicycle;
+        };
+    }
+## memoizing技术
+memoizing把函数的每次执行结果都存入键值对(数组)，下次直接在键值对中查找值，有则返回该值，没有则执行函数体并再次缓存。
+# 第八章 桥接模式
+桥接模式最常见和实际的应用场合之一是事件监听器回调函数。
+## 示例：事件监听器
+
+    addEvent(ele,'click',getBeerById);
+    function getBeerById (e){
+        asyncRequest('GET','/getBeer?id='+this.id,function(resp){
+            console.log(resp);
+        });
+    }
+作为一个API函数，不应与特定实现混在一起。用桥接模式修改，把抽象隔离开来。
+
+    function getBeerById (id,callBack){
+        asyncRequest('GET','/getBeer?id='+id,function(resp){
+            callBack(resp);
+        });
+    }
+    addEvent(ele,'click',getBeerByIdBridge);
+    function getBeerByIdBridge (e){
+        getBeerById(this.id,function(beer){
+            console.log(beer);
+        });
+    }
+如果一个桥接函数被用于连接两个函数，而其中某个函数根本不会在桥接函数外被调用，那么这个桥接函数就是不必要的。
+# 第九章 组合模式
