@@ -739,22 +739,12 @@ Speedster.prototype = {
 var newBicycleShop = new BicycleShop();
 var newBike = newBicycleShop.sellBicycle(&apos;speedster&apos;);
 </code></pre><p>当添加一种车型时，不得不BicycleShop代码，更好的方式是在子类中创建车型。</p>
-<h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><p>工厂是一个将其成员对象的实例化推迟到子类中进行的类。把BicycleShop设计成抽象类，只实现通用方法，让子类各自实现个性如createBicycle方法。</p>
+<h2 id="标准工厂"><a href="#标准工厂" class="headerlink" title="标准工厂"></a>标准工厂</h2><p>工厂是一个将其成员对象的实例化推迟到子类中进行的类。把BicycleShop设计成抽象类，只实现通用方法，让子类各自实现个性如createBicycle方法。</p>
 <pre><code>/* BicycleShop Class (abstract) */
 var BicycleShop = function(){};
 BicycleShop.prototype = {
     sellBicycle:function(model){
         var bicycle = this.createBicycle(model);
-        switch (model){
-            case &apos;speedster&apos;:
-                bicycle = new Speedster();
-                break;
-            case &apos;lowrider&apos;:
-                bicycle = new Lowrider();
-                break;
-            default:
-                bicycle = new Common();
-        }
         return bicycle;
     },
     createBicycle:function(model){
