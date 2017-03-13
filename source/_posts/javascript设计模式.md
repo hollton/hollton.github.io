@@ -336,7 +336,7 @@ tags: [JavaScript,设计模式]
     var newBicycleShop = new BicycleShop();
     var newBike = newBicycleShop.sellBicycle('speedster');
 当添加一种车型时，不得不BicycleShop代码，更好的方式是在子类中创建车型。
-## 工厂模式
+## 标准工厂
 工厂是一个将其成员对象的实例化推迟到子类中进行的类。把BicycleShop设计成抽象类，只实现通用方法，让子类各自实现个性如createBicycle方法。
 
     /* BicycleShop Class (abstract) */
@@ -344,16 +344,6 @@ tags: [JavaScript,设计模式]
     BicycleShop.prototype = {
         sellBicycle:function(model){
             var bicycle = this.createBicycle(model);
-            switch (model){
-                case 'speedster':
-                    bicycle = new Speedster();
-                    break;
-                case 'lowrider':
-                    bicycle = new Lowrider();
-                    break;
-                default:
-                    bicycle = new Common();
-            }
             return bicycle;
         },
         createBicycle:function(model){
