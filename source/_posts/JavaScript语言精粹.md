@@ -64,3 +64,37 @@ Fn.apply(obj,args)方法接收两个参数：
     <li>args是要传递给调用函数的参数数组，即args-->arguments</li>
 </ol>
 call同apply，只有参数列表不一样 ：Fn.call(obj,arg1,arg2,...)
+## 参数
+函数被调用时，可以通过arguments访问传递的参数列表，包括多余形参。arguments是类似数组的对象，拥有length属性，但没有任何数组方法。
+## 返回
+函数总会返回值，若没指定则返回undefined。若通过new调用函数且返回值不是对象，则会返回this，即该新对象。
+## 闭包
+函数作用域使得内部函数可访问其外部函数的参数和变量（除this和arguments）。
+
+    //创建hollton构造函数，构造出带有getName方法和name私有属性的对象
+    var hollton = function(name){
+        return {
+            getName:function(){
+                return name;
+            };
+        }
+    }
+    var hd = hollton('holl');
+    console.log(hd.getName());
+当调用hollton时，它返回包含getName方法的新对象，即使hollton已经返回了但getName仍有特权访问hollton对象的name属性，称为闭包。
+## 模块
+可使用函数和闭包构造函数，模块是一个提供接口而隐藏状态及实现的函数或对象。
+模块的一般形式：定义了私有变量和特权函数的函数。利用闭包创建可以访问私有变量和函数的特权函数，并返回这个特权函数。
+## 柯里化
+柯里化允许把函数与传递来的参数相结合，并产生一个新的函数。
+
+    function curry(fn){
+        var args = Array.prototype.slice.call(arguments, 1);
+        return function(){
+            var innerArgs = Array.prototype.slice.call(arguments);
+            var finalArgs = args.concat(innerArgs);
+            return fn.apply(null, finalArgs);
+        };
+    }
+## 记忆
+函数可以将先前的结果记录在某个对象里，从而避免无谓的重复计算。
