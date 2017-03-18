@@ -98,3 +98,36 @@ call同apply，只有参数列表不一样 ：Fn.call(obj,arg1,arg2,...)
     }
 ## 记忆
 函数可以将先前的结果记录在某个对象里，从而避免无谓的重复计算。
+# 第五章 继承
+基于类的语言中，对象是类的实例，且类可以从另一个类继承。JavaScript是基于原型的语言，这意味着对象直接从其他对象继承。
+# 第六章 数组
+# 第七章 正则表达式
+# 第八章 方法
+## Array
+### array.concat(item...)
+concat产生新数组，包含原数组的浅复制并附加一个或多个item参数，若参数item是数组则会分别添加参数数组的元素。
+### array.join(separator)
+join把数组转为字符串并用separator分隔符连接（默认','）。~~join方法通常比+运算符更快。~~（IE7+及现代浏览器对+运算符优化，因此连接字符串优先使用+运算）。
+### array.push(item...)
+push会修改原数组并在尾部附加一个或多个item，并返回数组的新长度。若参数item是数组则会把参数数组当作元素项添加。
+### array.pop()
+pop移出数组最后一个元素并返回该元素，若数组为[]，则返回undefined。
+### array.unshift(item...)
+unshift方法同push，但是向首部添加元素。
+### array.shift()
+shift方法同pop，但是移出数组第一个元素。
+### array.reverse()
+reverse反转数组元素的顺序，并返回该数组。
+### array.sort(compareFn)
+sort方法默认是将数组元素转换为string再进行比较排序，但可通过compareFn提供比较方法。
+### array.slice(start,end)
+slice对数组做浅复制并返回新数组，从array[start]，复制到array[end]止（不包括array[end]项）。
+end可选，默认是array.length。
+若start或end为负数，则会先和array.length相加计算，再进行复制
+若start大于（end或array.length），则会返回[]。
+### array.splice(start,deleteCount,item...)
+splice从array[start]处移出deleteCount个元素，并用item替换。返回被移除元素的数组。
+# 第九章 代码风格
+# 第十章 优美的特性
+
+
