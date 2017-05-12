@@ -250,6 +250,174 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2015/04/23/Unveil-js图片延时加载/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hollton">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/css/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HOLLTON">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/04/23/Unveil-js图片延时加载/" itemprop="url">
+                  Unveil.js图片延时加载
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-04-23T11:37:34+08:00">
+                2015-04-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/04/23/Unveil-js图片延时加载/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/23/Unveil-js图片延时加载/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Unveil-js是一个jQuery图片延时加载插件且极轻量。支持IE7。"><a href="#Unveil-js是一个jQuery图片延时加载插件且极轻量。支持IE7。" class="headerlink" title="Unveil.js是一个jQuery图片延时加载插件且极轻量。支持IE7。"></a>Unveil.js是一个jQuery图片延时加载插件且极轻量。支持IE7。</h2><h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><pre><code>&lt;img src=&quot;bg.png&quot; data-src=&quot;original-img.jpg&quot; data-src-retina=&quot;img-retina.jpg&quot; /&gt;
+
+&lt;script src=&quot;http://libs.baidu.com/jquery/2.0.0/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;jquery.unveil.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    $(document).ready(function() {
+        $(&quot;img&quot;).unveil();
+    });
+&lt;/script&gt;
+</code></pre><p>首先src属性里需要一个占位图片。<br>data-src为要加载的原始图片，当页面滑动到其可视窗口时再显示。<br>如果想支持视网膜设备加载高分辨率图片，则需要使用data-src-retina，但这不是必需的。</p>
+<h3 id="如果担心用户没有启用javascript，则使用下面降级。"><a href="#如果担心用户没有启用javascript，则使用下面降级。" class="headerlink" title="如果担心用户没有启用javascript，则使用下面降级。"></a>如果担心用户没有启用javascript，则使用下面降级。</h3><pre><code>&lt;noscript&gt;
+    &lt;img src=&quot;original-img.jpg.jpg&quot; /&gt;
+&lt;/noscript&gt;
+</code></pre><h3 id="使用参数可使图片距离视口100px就开始加载。"><a href="#使用参数可使图片距离视口100px就开始加载。" class="headerlink" title="使用参数可使图片距离视口100px就开始加载。"></a>使用参数可使图片距离视口100px就开始加载。</h3><pre><code>$(&quot;img&quot;).unveil(100);
+</code></pre><h3 id="更好的是它支持回调函数，如："><a href="#更好的是它支持回调函数，如：" class="headerlink" title="更好的是它支持回调函数，如："></a>更好的是它支持回调函数，如：</h3><pre><code>$(&quot;img&quot;).unveil(100,callback);
+</code></pre><h3 id="图片淡出加载例子"><a href="#图片淡出加载例子" class="headerlink" title="图片淡出加载例子"></a>图片淡出加载例子</h3><pre><code>img {
+    opacity: 0;
+    transition: opacity .3s ease-in;
+}
+
+$(&quot;img&quot;).unveil(100, function() {
+    $(this).load(function() {
+    this.style.opacity = 1;
+    });
+});
+</code></pre><h3 id="手动触发"><a href="#手动触发" class="headerlink" title="手动触发"></a>手动触发</h3><pre><code>$(&quot;img#tri&quot;).trigger(&quot;unveil&quot;);
+</code></pre><p>手动触发加载特定图片而不使用此方法。</p>
+<h3 id="Layzr-js"><a href="#Layzr-js" class="headerlink" title="Layzr.js"></a>Layzr.js</h3><p>顺便再说一个刚发布的轻巧、不依赖jQuery的延时加载，同样支持视网膜设备。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code>&lt;img src=&quot;bg.png&quot; data-src=&quot;original-img.jpg&quot; data-src-retina=&quot;img-retina.jpg&quot; /&gt;
+&lt;script src=&quot;layzr.min..js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var layzr = new Layzr({
+        selector: &apos;[data-layzr]&apos;, 
+        attr: &apos;data-layzr&apos;, 
+        retinaAttr: &apos;data-layzr-retina&apos;, 
+        bgAttr: &apos;data-layzr-bg&apos;, 
+        threshold: 0, 
+        callback: null 
+    });
+&lt;/script&gt;
+</code></pre><h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>支持IE10+。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2015/01/04/hexo/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -423,7 +591,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
