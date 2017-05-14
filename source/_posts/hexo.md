@@ -3,7 +3,7 @@ date: 2015-01-04 22:09:43
 tags: [hexo]
 ---
 ## hexo 搭建github博客
-有用github写博文的想法已经已久了，但时至今日才理出个时间把它搞定。其中要多谢[zippera](http://zipperary.com)的博文的极大帮助，原文出处：[hexo系列教程](http://zipperary.com/categories/hexo/)。你也可以参考[hexo.io](http://hexo.io/)以及其[中文站点](http://hexo.io/zh-cn/)。本文主要是对自己今天的搭建过程做一个回顾与总结，还请大神指教，若有新手也想尝试github博客，看看下面的介绍也是个不错的选择呢。
+有用github写博文的想法已经已久了，但时至今日才理出个时间把它搞定。你也可以参考[hexo.io](http://hexo.io/)以及其[中文站点](http://hexo.io/zh-cn/)。本文主要是对自己今天的搭建过程做一个回顾与总结，还请大神指教，若有新手也想尝试github博客，看看下面的介绍也是个不错的选择。
 ### hexo是什么
 hexo是一个基于Node.js的静态博客程序，可以方便的生成静态网页托管在github以及Heroku上。而且平时的使用过程中仅需要`hexo new` `hexo generate` `hexo server` `hexo deploy`四个命令即可完成操作。
 <!--more-->
