@@ -62,3 +62,14 @@ UML（Unified Modeling Language）:统一建模语言。
 ![](/img/class_diagram_triangle.png)
 
 # 活动图（流程分析）
+## 基础语法
+初始状态、结束状态、活动、判断、合并、监护、泳道
+![](/img/activity_diagram_case.png)
+<ul>
+    <li>一个开始状态●，一个或多个结束状态⊙</li>
+    <li>箭头表示流程的走向</li>
+    <li>圆角矩形表示活动，可理解为流程中的一个步骤</li>
+    <li>菱形且带有[XXX]表示判断分支条件，[]中称为监护</li>
+    <li>分支汇合到另一个菱形，为合并</li>
+    <li>泳道/分区：对参与者进行区分，表示动作的发起者</li>
+</ul>
