@@ -15,3 +15,14 @@ tags: [vue]
 
 ## data、computed、props优先级
 data > computed > props
+
+## 图片资源引用
+方案1：把资源放在static文件夹下再引用；
+
+方案2：使用require引入；
+
+	<img :src="logo">
+
+	data:{
+		logo: require('../asset/logo.png')
+	}
