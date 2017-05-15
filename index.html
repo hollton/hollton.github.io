@@ -612,7 +612,14 @@ this.$options.filters.indexToLetterFilter(index);
 &lt;!-- html中传参+串联 --&gt;
 {{index | indexToLetterFilter('arg1', arg2) | anotherFilter}}
 </code></pre><h2 id="data、computed、props优先级"><a href="#data、computed、props优先级" class="headerlink" title="data、computed、props优先级"></a>data、computed、props优先级</h2><p>data &gt; computed &gt; props</p>
+<h2 id="图片资源引用"><a href="#图片资源引用" class="headerlink" title="图片资源引用"></a>图片资源引用</h2><p>方案1：把资源放在static文件夹下再引用；</p>
+<p>方案2：使用require引入；</p>
+<pre><code>&lt;img :src=&quot;logo&quot;&gt;
 
+data:{
+    logo: require(&apos;../asset/logo.png&apos;)
+}
+</code></pre>
           
         
       
