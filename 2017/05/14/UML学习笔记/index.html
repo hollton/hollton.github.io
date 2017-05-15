@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="vue," />
+  <meta name="keywords" content="UML," />
 
 
 
@@ -87,28 +87,26 @@
 
 
 
-<meta name="description" content="准备安装node.js、git
-shell 命令$ npm install -g cnpm --registry=https://registry.npm.taobao.org(使用taobao NPM镜像，可用cnpm代替npm)
-cd E:/WWW
-npm install -g vue-cli(全局安装vue-cli)
-vue init webpack#1.0 vue-project(可选安装">
+<meta name="description" content="基础知识定义UML（Unified Modeling Language）:统一建模语言。
+分类结构型（Structrue Diagram）：
+    类图(Class)    对象图(Object)    构件/组件图(Component)    部署图(Deployment)    包图(Package)行为型（Behavior Diagram）：    活动图(Activity)    状态机">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vue-cli构建工具">
-<meta property="og:url" content="http://hollton.github.io/2016/12/19/vue-cli/index.html">
+<meta property="og:title" content="UML学习笔记">
+<meta property="og:url" content="http://hollton.github.io/2017/05/14/UML学习笔记/index.html">
 <meta property="og:site_name" content="HOLLTON">
-<meta property="og:description" content="准备安装node.js、git
-shell 命令$ npm install -g cnpm --registry=https://registry.npm.taobao.org(使用taobao NPM镜像，可用cnpm代替npm)
-cd E:/WWW
-npm install -g vue-cli(全局安装vue-cli)
-vue init webpack#1.0 vue-project(可选安装">
-<meta property="og:updated_time" content="2017-02-27T01:54:53.489Z">
+<meta property="og:description" content="基础知识定义UML（Unified Modeling Language）:统一建模语言。
+分类结构型（Structrue Diagram）：
+    类图(Class)    对象图(Object)    构件/组件图(Component)    部署图(Deployment)    包图(Package)行为型（Behavior Diagram）：    活动图(Activity)    状态机">
+<meta property="og:image" content="http://hollton.github.io/img/class_diagram.png">
+<meta property="og:image" content="http://hollton.github.io/img/class_diagram_include.png">
+<meta property="og:image" content="http://hollton.github.io/img/class_diagram_triangle.png">
+<meta property="og:updated_time" content="2017-05-15T02:00:33.993Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="vue-cli构建工具">
-<meta name="twitter:description" content="准备安装node.js、git
-shell 命令$ npm install -g cnpm --registry=https://registry.npm.taobao.org(使用taobao NPM镜像，可用cnpm代替npm)
-cd E:/WWW
-npm install -g vue-cli(全局安装vue-cli)
-vue init webpack#1.0 vue-project(可选安装">
+<meta name="twitter:title" content="UML学习笔记">
+<meta name="twitter:description" content="基础知识定义UML（Unified Modeling Language）:统一建模语言。
+分类结构型（Structrue Diagram）：
+    类图(Class)    对象图(Object)    构件/组件图(Component)    部署图(Deployment)    包图(Package)行为型（Behavior Diagram）：    活动图(Activity)    状态机">
+<meta name="twitter:image" content="http://hollton.github.io/img/class_diagram.png">
 
 
 
@@ -136,13 +134,13 @@ vue init webpack#1.0 vue-project(可选安装">
 
 
 
-  <link rel="canonical" href="http://hollton.github.io/2016/12/19/vue-cli/"/>
+  <link rel="canonical" href="http://hollton.github.io/2017/05/14/UML学习笔记/"/>
 
 
 
 
 
-  <title> vue-cli构建工具 | HOLLTON </title>
+  <title> UML学习笔记 | HOLLTON </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -261,7 +259,7 @@ vue init webpack#1.0 vue-project(可选安装">
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2016/12/19/vue-cli/">
+    <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2017/05/14/UML学习笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hollton">
@@ -282,7 +280,7 @@ vue init webpack#1.0 vue-project(可选安装">
             
             
               
-                vue-cli构建工具
+                UML学习笔记
               
             
           </h1>
@@ -297,8 +295,8 @@ vue init webpack#1.0 vue-project(可选安装">
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-19T10:41:40+08:00">
-                2016-12-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-14T16:28:37+08:00">
+                2017-05-14
               </time>
             
 
@@ -316,8 +314,8 @@ vue init webpack#1.0 vue-project(可选安装">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/12/19/vue-cli/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/19/vue-cli/" itemprop="commentCount"></span>
+                <a href="/2017/05/14/UML学习笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/14/UML学习笔记/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -343,20 +341,19 @@ vue init webpack#1.0 vue-project(可选安装">
       
 
       
-        <h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>安装node.js、git</p>
-<h2 id="shell-命令"><a href="#shell-命令" class="headerlink" title="shell 命令"></a>shell 命令</h2><p><code>$ npm install -g cnpm --registry=https://registry.npm.taobao.org</code>(使用taobao NPM镜像，可用cnpm代替npm)</p>
-<p><code>cd E:/WWW</code></p>
-<p><code>npm install -g vue-cli</code>(全局安装vue-cli)</p>
-<p><code>vue init webpack#1.0 vue-project</code>(可选安装1.0)</p>
-<p><code>cd vue-project</code></p>
-<p><code>npm install</code>(安装依赖)</p>
-<p><code>npm run dev</code>(启动)</p>
-<h2 id="官方模版"><a href="#官方模版" class="headerlink" title="官方模版"></a>官方模版</h2><p><code>vue init template-name project-name</code></p>
-<p><a href="https://github.com/vuejs-templates/browserify" target="_blank" rel="external">browserify</a>–全功能的Browserify + vueify，包括热加载，静态检测，单元测试</p>
-<p><a href="https://github.com/vuejs-templates/browserify-simple" target="_blank" rel="external">browserify-simple</a>–一个简易的Browserify + vueify，以便于快速开始</p>
-<p><a href="https://github.com/vuejs-templates/webpack" target="_blank" rel="external">webpack</a>–全功能的Webpack + vueify，包括热加载，静态检测，单元测试</p>
-<p><a href="https://github.com/vuejs-templates/webpack-simple" target="_blank" rel="external">webpack-simple</a>–一个简易的Webpack + vueify，以便于快速开始</p>
+        <h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>UML（Unified Modeling Language）:统一建模语言。</p>
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><p>结构型（Structrue Diagram）：</p>
+<ul><br>    <li>类图(Class)</li><br>    <li>对象图(Object)</li><br>    <li>构件/组件图(Component)</li><br>    <li>部署图(Deployment)</li><br>    <li>包图(Package)</li><br></ul><br>行为型（Behavior Diagram）：<br><ul><br>    <li>活动图(Activity)</li><br>    <li>状态机图(State Machine)</li><br>    <li>顺序图(Sequence)</li><br>    <li>通信图(Communication)</li><br>    <li>用例图(use Case)</li><br>    <li>时序图(Timing)</li><br></ul>
 
+<h1 id="类图（业务模型分析）"><a href="#类图（业务模型分析）" class="headerlink" title="类图（业务模型分析）"></a>类图（业务模型分析）</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>一个类用矩形方框表示，最上面是类的名字，中间是属性，最下面是操作。<br><img src="/img/class_diagram.png" alt=""><br>上图 +属性1:int ,+表示为public类型，int表数据类型。操作同。</p>
+<h2 id="设计类步骤"><a href="#设计类步骤" class="headerlink" title="设计类步骤"></a>设计类步骤</h2><p><ul><br>    <li>识别出类</li><br>    <li>识别出类的主要属性</li><br>    <li>描绘出类之间的关系</li><br>    <li>对各类进行分析、抽象、整理</li><br></ul></p>
+<h2 id="类间关系"><a href="#类间关系" class="headerlink" title="类间关系"></a>类间关系</h2><h3 id="关联关系（“直线”关系）"><a href="#关联关系（“直线”关系）" class="headerlink" title="关联关系（“直线”关系）"></a>关联关系（“直线”关系）</h3><p>暂不确定两个类的关系时，可先用直线连接标明有某种关系（类用矩形框画出，下面用[]示意）<br>[A]1—1[B]：A、B类之间为一对一关系；<br>[A]1—*[B]：一对多关系，*表示0到多个；<br>[A]1—x..y[B]：一对（x到y）关系；<br>[A]—&gt;[B]：由类A可找到类B，可记为“导航”关系。</p>
+<h3 id="包含关系"><a href="#包含关系" class="headerlink" title="包含关系"></a>包含关系</h3><p>可用下类图表示一个部门有多个员工，父元素用菱形标记。<br><img src="/img/class_diagram_include.png" alt=""><br>聚合（弱包含）：空心菱形◇，子元素可以有多个父元素，当父元素不存在时，子元素仍可继续存在；<br>组合（强包含）：实心菱形◆，子元素只能有一个父元素，当父元素不存在时，子元素也不再存在。</p>
+<h3 id="泛化关系（继承关系）"><a href="#泛化关系（继承关系）" class="headerlink" title="泛化关系（继承关系）"></a>泛化关系（继承关系）</h3><p>[学生]—▷[人]：用三角形表示，由继承者指向被继承者，即类学生继承了类人，正式称谓应为类学生泛化为类人（即有学生类可提炼抽象出人）。</p>
+<h3 id="依赖关系（虚线-箭头）"><a href="#依赖关系（虚线-箭头）" class="headerlink" title="依赖关系（虚线+箭头）"></a>依赖关系（虚线+箭头）</h3><p>[酒鬼]——&gt;[酒]：依赖者用虚线及箭头指向依赖对象。</p>
+<h3 id="递归关系（自包含关系）"><a href="#递归关系（自包含关系）" class="headerlink" title="递归关系（自包含关系）"></a>递归关系（自包含关系）</h3><p>如在表示文件夹与文件的关系时，可用文件夹类包含自己表示文件夹也可包含文件夹<br>这种递归结构展开时就为树形结构，因此树形结构可用自包含、自关联来表示</p>
+<h3 id="三角关系"><a href="#三角关系" class="headerlink" title="三角关系"></a>三角关系</h3><p>公司与雇员之间还有一个劳动合同类的关联类，对这两个类的关系近一步约束<br><img src="/img/class_diagram_triangle.png" alt=""></p>
+<h1 id="活动图（流程分析）"><a href="#活动图（流程分析）" class="headerlink" title="活动图（流程分析）"></a>活动图（流程分析）</h1>
       
     </div>
 
@@ -379,7 +376,7 @@ vue init webpack#1.0 vue-project(可选安装">
       
         <div class="post-tags">
           
-            <a href="/tags/vue/" rel="tag"># vue</a>
+            <a href="/tags/UML/" rel="tag"># UML</a>
           
         </div>
       
@@ -392,8 +389,8 @@ vue init webpack#1.0 vue-project(可选安装">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/05/11/github如何更新自己Fork的代码/" rel="next" title="github如何更新自己Fork的代码">
-                <i class="fa fa-chevron-left"></i> github如何更新自己Fork的代码
+              <a href="/2017/05/12/Vue实践总结/" rel="next" title="Vue实践总结">
+                <i class="fa fa-chevron-left"></i> Vue实践总结
               </a>
             
           </div>
@@ -402,8 +399,8 @@ vue init webpack#1.0 vue-project(可选安装">
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/02/25/javascript设计模式/" rel="prev" title="JavaScript设计模式">
-                JavaScript设计模式 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/05/14/个人工作项目总结/" rel="prev" title="个人工作项目总结">
+                个人工作项目总结 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -430,8 +427,8 @@ vue init webpack#1.0 vue-project(可选安装">
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/12/19/vue-cli/"
-           data-title="vue-cli构建工具" data-url="http://hollton.github.io/2016/12/19/vue-cli/">
+      <div class="ds-thread" data-thread-key="2017/05/14/UML学习笔记/"
+           data-title="UML学习笔记" data-url="http://hollton.github.io/2017/05/14/UML学习笔记/">
       </div>
     
   </div>
@@ -526,7 +523,7 @@ vue init webpack#1.0 vue-project(可选安装">
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备"><span class="nav-number">1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shell-命令"><span class="nav-number">2.</span> <span class="nav-text">shell 命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#官方模版"><span class="nav-number">3.</span> <span class="nav-text">官方模版</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基础知识"><span class="nav-number">1.</span> <span class="nav-text">基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分类"><span class="nav-number">1.2.</span> <span class="nav-text">分类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类图（业务模型分析）"><span class="nav-number">2.</span> <span class="nav-text">类图（业务模型分析）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">2.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计类步骤"><span class="nav-number">2.2.</span> <span class="nav-text">设计类步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类间关系"><span class="nav-number">2.3.</span> <span class="nav-text">类间关系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关联关系（“直线”关系）"><span class="nav-number">2.3.1.</span> <span class="nav-text">关联关系（“直线”关系）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#包含关系"><span class="nav-number">2.3.2.</span> <span class="nav-text">包含关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#泛化关系（继承关系）"><span class="nav-number">2.3.3.</span> <span class="nav-text">泛化关系（继承关系）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#依赖关系（虚线-箭头）"><span class="nav-number">2.3.4.</span> <span class="nav-text">依赖关系（虚线+箭头）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#递归关系（自包含关系）"><span class="nav-number">2.3.5.</span> <span class="nav-text">递归关系（自包含关系）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三角关系"><span class="nav-number">2.3.6.</span> <span class="nav-text">三角关系</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#活动图（流程分析）"><span class="nav-number">3.</span> <span class="nav-text">活动图（流程分析）</span></a></li></ol></div>
             
 
           </div>
