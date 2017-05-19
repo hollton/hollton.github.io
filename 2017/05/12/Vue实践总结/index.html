@@ -101,7 +101,7 @@ Vue.filter(&amp;apos;indexToLetterFilter&amp;apos;, index =&amp;gt; {
     return String.fromCharCode(65+index);
 });
 this.$options.filters.indexToLette">
-<meta property="og:updated_time" content="2017-05-15T11:16:00.990Z">
+<meta property="og:updated_time" content="2017-05-18T09:14:20.341Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue实践总结">
 <meta name="twitter:description" content="JS中使用filters参考：https://github.com/vuejs/Discussion/issues/405
@@ -343,7 +343,7 @@ this.$options.filters.indexToLette">
       
 
       
-        <h2 id="JS中使用filters"><a href="#JS中使用filters" class="headerlink" title="JS中使用filters"></a>JS中使用filters</h2><pre><code>参考：https://github.com/vuejs/Discussion/issues/405
+        <h1 id="JS中使用filters"><a href="#JS中使用filters" class="headerlink" title="JS中使用filters"></a>JS中使用filters</h1><pre><code>参考：https://github.com/vuejs/Discussion/issues/405
 Vue.filter(&apos;indexToLetterFilter&apos;, index =&gt; {
     return String.fromCharCode(65+index);
 });
@@ -351,13 +351,23 @@ this.$options.filters.indexToLetterFilter(index);
 
 &lt;!-- html中传参+串联 --&gt;
 {{index | indexToLetterFilter('arg1', arg2) | anotherFilter}}
-</code></pre><h2 id="data、computed、props优先级"><a href="#data、computed、props优先级" class="headerlink" title="data、computed、props优先级"></a>data、computed、props优先级</h2><p>data &gt; computed &gt; props</p>
-<h2 id="图片资源引用"><a href="#图片资源引用" class="headerlink" title="图片资源引用"></a>图片资源引用</h2><p>方案1：把资源放在static文件夹下再引用；</p>
+</code></pre><h1 id="data、computed、props优先级"><a href="#data、computed、props优先级" class="headerlink" title="data、computed、props优先级"></a>data、computed、props优先级</h1><p>data &gt; computed &gt; props</p>
+<h1 id="图片资源引用"><a href="#图片资源引用" class="headerlink" title="图片资源引用"></a>图片资源引用</h1><p>方案1：把资源放在static文件夹下再引用；</p>
 <p>方案2：使用require引入；</p>
 <pre><code>&lt;img :src=&quot;logo&quot;&gt;
 
 data:{
     logo: require(&apos;../asset/logo.png&apos;)
+}
+</code></pre><h1 id="动态模版添加方法"><a href="#动态模版添加方法" class="headerlink" title="动态模版添加方法"></a>动态模版添加方法</h1><p>需求：服务端返回 <code>&#39;&lt;p&gt;&lt;img src=&quot;..&quot; /&gt;&lt;/p&gt;&#39;</code>html串，需要实现页面点击图片时弹出预览框。</p>
+<p>尝试：最初的想法是通过对html串拼接click方法，即可通过点击事件调用弹窗组件并获取其src预览。结果做不到对拼接的html再编译以使点击事件生效。</p>
+<p>解决：通过事件代理实现。对动态模版的父元素绑定方法<code>@click=&quot;imageProxy($event)&quot;</code></p>
+<pre><code>imageProxyy(evt){
+    if (evt.target.nodeName === &apos;IMG&apos;) {
+        evt.stopPropagation();
+        this.showPicView = true;
+        //evt.target.currentSrc 后续处理
+    }
 }
 </code></pre>
       
@@ -529,7 +539,7 @@ data:{
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JS中使用filters"><span class="nav-number">1.</span> <span class="nav-text">JS中使用filters</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#data、computed、props优先级"><span class="nav-number">2.</span> <span class="nav-text">data、computed、props优先级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图片资源引用"><span class="nav-number">3.</span> <span class="nav-text">图片资源引用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JS中使用filters"><span class="nav-number">1.</span> <span class="nav-text">JS中使用filters</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#data、computed、props优先级"><span class="nav-number">2.</span> <span class="nav-text">data、computed、props优先级</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图片资源引用"><span class="nav-number">3.</span> <span class="nav-text">图片资源引用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动态模版添加方法"><span class="nav-number">4.</span> <span class="nav-text">动态模版添加方法</span></a></li></ol></div>
             
 
           </div>

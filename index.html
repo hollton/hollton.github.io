@@ -337,7 +337,17 @@
       
         
           
-            <h1 id="备课系统"><a href="#备课系统" class="headerlink" title="备课系统"></a>备课系统</h1><h2 id="项目概述"><a href="#项目概述" class="headerlink" title="项目概述"></a>项目概述</h2><h2 id="工作内容"><a href="#工作内容" class="headerlink" title="工作内容"></a>工作内容</h2><h2 id="工作总结"><a href="#工作总结" class="headerlink" title="工作总结"></a>工作总结</h2><h1 id="北京高精尖"><a href="#北京高精尖" class="headerlink" title="北京高精尖"></a>北京高精尖</h1><h2 id="项目概述-1"><a href="#项目概述-1" class="headerlink" title="项目概述"></a>项目概述</h2><h2 id="工作内容-1"><a href="#工作内容-1" class="headerlink" title="工作内容"></a>工作内容</h2><h2 id="工作总结-1"><a href="#工作总结-1" class="headerlink" title="工作总结"></a>工作总结</h2>
+            <h1 id="备课系统（2015-07-20-2016-02-17）"><a href="#备课系统（2015-07-20-2016-02-17）" class="headerlink" title="备课系统（2015/07/20 - 2016/02/17）"></a>备课系统（2015/07/20 - 2016/02/17）</h1><h2 id="项目概述"><a href="#项目概述" class="headerlink" title="项目概述"></a>项目概述</h2><h2 id="工作内容"><a href="#工作内容" class="headerlink" title="工作内容"></a>工作内容</h2><h2 id="工作总结"><a href="#工作总结" class="headerlink" title="工作总结"></a>工作总结</h2><h1 id="北京高精尖（2016-02-02-至今）"><a href="#北京高精尖（2016-02-02-至今）" class="headerlink" title="北京高精尖（2016/02/02 - 至今）"></a>北京高精尖（2016/02/02 - 至今）</h1><h2 id="项目概述-1"><a href="#项目概述-1" class="headerlink" title="项目概述"></a>项目概述</h2><h2 id="工作内容-1"><a href="#工作内容-1" class="headerlink" title="工作内容"></a>工作内容</h2><h2 id="工作总结-1"><a href="#工作总结-1" class="headerlink" title="工作总结"></a>工作总结</h2><h3 id="Hash定位"><a href="#Hash定位" class="headerlink" title="Hash定位"></a>Hash定位</h3><p>需求：业务中移动端使用web html5页面，左上角返回按钮调用<code>history.back()</code>关闭当前页回退。</p>
+<p>最初实现：设置hash值再定位到此，即：</p>
+<pre><code>$location.hash(idName);
+$anchorScroll();
+</code></pre><p>问题：每次定位会记录到历史记录，使用<code>history.back()</code>回退时会回到每次hash定位位置，导致移动端多次点击回退按钮才会关闭页面。</p>
+<p>改进：关键使用<code>$location.replace();</code>不记录历史信息：先获取当前url地址，并去除hash信息，再添加上hash锚点，使用<code>replace()</code>替换当前url地址且不会存入历史记录，最后滚动定位到hash位置。</p>
+<pre><code>var url = $location.url();
+url = url.substr(0,url.indexOf(&apos;#&apos;));
+$location.url(url+&apos;#&apos;+idName).replace();
+$anchorScroll();
+</code></pre>
           
         
       
@@ -469,14 +479,8 @@
 <ul><br>    <li>类图(Class)</li><br>    <li>对象图(Object)</li><br>    <li>构件/组件图(Component)</li><br>    <li>部署图(Deployment)</li><br>    <li>包图(Package)</li><br></ul><br>行为型（Behavior Diagram）：<br><ul><br>    <li>活动图(Activity)</li><br>    <li>状态机图(State Machine)</li><br>    <li>顺序图(Sequence)</li><br>    <li>通信图(Communication)</li><br>    <li>用例图(use Case)</li><br>    <li>时序图(Timing)</li><br></ul>
 
 <h1 id="类图（业务模型分析）"><a href="#类图（业务模型分析）" class="headerlink" title="类图（业务模型分析）"></a>类图（业务模型分析）</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>一个类用矩形方框表示，最上面是类的名字，中间是属性，最下面是操作。<br><img src="/img/class_diagram.png" alt=""><br>上图 +属性1:int ,+表示为public类型，int表数据类型。操作同。</p>
-<h2 id="设计类步骤"><a href="#设计类步骤" class="headerlink" title="设计类步骤"></a>设计类步骤</h2><p><ul><br>    <li>识别出类</li><br>    <li>识别出类的主要属性</li><br>    <li>描绘出类之间的关系</li><br>    <li>对各类进行分析、抽象、整理</li><br></ul></p>
-<h2 id="类间关系"><a href="#类间关系" class="headerlink" title="类间关系"></a>类间关系</h2><h3 id="关联关系（“直线”关系）"><a href="#关联关系（“直线”关系）" class="headerlink" title="关联关系（“直线”关系）"></a>关联关系（“直线”关系）</h3><p>暂不确定两个类的关系时，可先用直线连接标明有某种关系（类用矩形框画出，下面用[]示意）<br>[A]1—1[B]：A、B类之间为一对一关系；<br>[A]1—*[B]：一对多关系，*表示0到多个；<br>[A]1—x..y[B]：一对（x到y）关系；<br>[A]—&gt;[B]：由类A可找到类B，可记为“导航”关系。</p>
-<h3 id="包含关系"><a href="#包含关系" class="headerlink" title="包含关系"></a>包含关系</h3><p>可用下类图表示一个部门有多个员工，父元素用菱形标记。<br><img src="/img/class_diagram_include.png" alt=""><br>聚合（弱包含）：空心菱形◇，子元素可以有多个父元素，当父元素不存在时，子元素仍可继续存在；<br>组合（强包含）：实心菱形◆，子元素只能有一个父元素，当父元素不存在时，子元素也不再存在。</p>
-<h3 id="泛化关系（继承关系）"><a href="#泛化关系（继承关系）" class="headerlink" title="泛化关系（继承关系）"></a>泛化关系（继承关系）</h3><p>[学生]—▷[人]：用三角形表示，由继承者指向被继承者，即类学生继承了类人，正式称谓应为类学生泛化为类人（即有学生类可提炼抽象出人）。</p>
-<h3 id="依赖关系（虚线-箭头）"><a href="#依赖关系（虚线-箭头）" class="headerlink" title="依赖关系（虚线+箭头）"></a>依赖关系（虚线+箭头）</h3><p>[酒鬼]——&gt;[酒]：依赖者用虚线及箭头指向依赖对象。</p>
-<h3 id="递归关系（自包含关系）"><a href="#递归关系（自包含关系）" class="headerlink" title="递归关系（自包含关系）"></a>递归关系（自包含关系）</h3><p>如在表示文件夹与文件的关系时，可用文件夹类包含自己表示文件夹也可包含文件夹<br>这种递归结构展开时就为树形结构，因此树形结构可用自包含、自关联来表示</p>
-<h3 id="三角关系"><a href="#三角关系" class="headerlink" title="三角关系"></a>三角关系</h3><p>公司与雇员之间还有一个劳动合同类的关联类，对这两个类的关系近一步约束<br><img src="/img/class_diagram_triangle.png" alt=""></p>
-<h1 id="活动图（流程分析）"><a href="#活动图（流程分析）" class="headerlink" title="活动图（流程分析）"></a>活动图（流程分析）</h1>
+<h2 id="设计类步骤"><a href="#设计类步骤" class="headerlink" title="设计类步骤"></a>设计类步骤</h2><ul><br>    <li>识别出类</li><br>    <li>识别出类的主要属性</li><br>    <li>描绘出类之间的关系</li><br>    <li>对各类进行分析、抽象、整理</li><br></ul><br>## 类间关系<br>### 关联关系（“直线”关系）<br>暂不确定两个类的关系时，可先用直线连接标明有某种关系（类用矩形框画出，下面用[]示意）<br>[A]1—1[B]：A、B类之间为一对一关系；<br>[A]1—*[B]：一对多关系，*表示0到多个；<br>[A]1—x..y[B]：一对（x到y）关系；<br>[A]—&gt;[B]：由类A可找到类B，可记为“导航”关系。<br>### 包含关系<br>可用下类图表示一个部门有多个员工，父元素用菱形标记。<br><img src="/img/class_diagram_include.png" alt=""><br>聚合（弱包含）：空心菱形◇，子元素可以有多个父元素，当父元素不存在时，子元素仍可继续存在；<br>组合（强包含）：实心菱形◆，子元素只能有一个父元素，当父元素不存在时，子元素也不再存在。<br>### 泛化关系（继承关系）<br>[学生]—▷[人]：用三角形表示，由继承者指向被继承者，即类学生继承了类人，正式称谓应为类学生泛化为类人（即有学生类可提炼抽象出人）。<br>### 依赖关系（虚线+箭头）<br>[酒鬼]——&gt;[酒]：依赖者用虚线及箭头指向依赖对象。<br>### 递归关系（自包含关系）<br>如在表示文件夹与文件的关系时，可用文件夹类包含自己表示文件夹也可包含文件夹<br>这种递归结构展开时就为树形结构，因此树形结构可用自包含、自关联来表示<br>### 三角关系<br>公司与雇员之间还有一个劳动合同类的关联类，对这两个类的关系近一步约束<br><img src="/img/class_diagram_triangle.png" alt=""><br><br># 活动图（流程分析）<br>## 基础语法<br>初始状态、结束状态、活动、判断、合并、监护、泳道<br><img src="/img/activity_diagram_case.png" alt=""><br><ul><br>    <li>一个开始状态●，一个或多个结束状态⊙</li><br>    <li>箭头表示流程的走向</li><br>    <li>圆角矩形表示活动，可理解为流程中的一个步骤</li><br>    <li>菱形且带有[XXX]表示判断分支条件，[]中称为监护</li><br>    <li>分支汇合到另一个菱形，为合并</li><br>    <li>泳道/分区：对参与者进行区分，表示动作的发起者</li><br></ul>
+
           
         
       
@@ -603,7 +607,7 @@
       
         
           
-            <h2 id="JS中使用filters"><a href="#JS中使用filters" class="headerlink" title="JS中使用filters"></a>JS中使用filters</h2><pre><code>参考：https://github.com/vuejs/Discussion/issues/405
+            <h1 id="JS中使用filters"><a href="#JS中使用filters" class="headerlink" title="JS中使用filters"></a>JS中使用filters</h1><pre><code>参考：https://github.com/vuejs/Discussion/issues/405
 Vue.filter(&apos;indexToLetterFilter&apos;, index =&gt; {
     return String.fromCharCode(65+index);
 });
@@ -611,13 +615,23 @@ this.$options.filters.indexToLetterFilter(index);
 
 &lt;!-- html中传参+串联 --&gt;
 {{index | indexToLetterFilter('arg1', arg2) | anotherFilter}}
-</code></pre><h2 id="data、computed、props优先级"><a href="#data、computed、props优先级" class="headerlink" title="data、computed、props优先级"></a>data、computed、props优先级</h2><p>data &gt; computed &gt; props</p>
-<h2 id="图片资源引用"><a href="#图片资源引用" class="headerlink" title="图片资源引用"></a>图片资源引用</h2><p>方案1：把资源放在static文件夹下再引用；</p>
+</code></pre><h1 id="data、computed、props优先级"><a href="#data、computed、props优先级" class="headerlink" title="data、computed、props优先级"></a>data、computed、props优先级</h1><p>data &gt; computed &gt; props</p>
+<h1 id="图片资源引用"><a href="#图片资源引用" class="headerlink" title="图片资源引用"></a>图片资源引用</h1><p>方案1：把资源放在static文件夹下再引用；</p>
 <p>方案2：使用require引入；</p>
 <pre><code>&lt;img :src=&quot;logo&quot;&gt;
 
 data:{
     logo: require(&apos;../asset/logo.png&apos;)
+}
+</code></pre><h1 id="动态模版添加方法"><a href="#动态模版添加方法" class="headerlink" title="动态模版添加方法"></a>动态模版添加方法</h1><p>需求：服务端返回 <code>&#39;&lt;p&gt;&lt;img src=&quot;..&quot; /&gt;&lt;/p&gt;&#39;</code>html串，需要实现页面点击图片时弹出预览框。</p>
+<p>尝试：最初的想法是通过对html串拼接click方法，即可通过点击事件调用弹窗组件并获取其src预览。结果做不到对拼接的html再编译以使点击事件生效。</p>
+<p>解决：通过事件代理实现。对动态模版的父元素绑定方法<code>@click=&quot;imageProxy($event)&quot;</code></p>
+<pre><code>imageProxyy(evt){
+    if (evt.target.nodeName === &apos;IMG&apos;) {
+        evt.stopPropagation();
+        this.showPicView = true;
+        //evt.target.currentSrc 后续处理
+    }
 }
 </code></pre>
           
