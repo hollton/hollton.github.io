@@ -1,6 +1,7 @@
 title: "JavaScript设计模式"
 date: 2017-02-25 16:05:40
 tags: [JavaScript,设计模式]
+categories: [前端]
 
 ---
 # 第一章 富有表现力的javascript

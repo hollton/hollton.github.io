@@ -1,6 +1,7 @@
 title: "vue-cli构建工具"
 date: 2016-12-19 10:41:40
-tags: [vue]
+tags: [vue-cli]
+categories: [前端]
 
 ---
 ## 准备

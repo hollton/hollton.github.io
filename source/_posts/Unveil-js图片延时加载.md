@@ -1,6 +1,7 @@
 title: "Unveil.js图片延时加载"
 date: 2015-04-23 11:37:34
 tags: [Unveil.js,Layzr.js]
+categories: [前端]
 ---
 ## Unveil.js是一个jQuery图片延时加载插件且极轻量。支持IE7。
 ### 使用方法

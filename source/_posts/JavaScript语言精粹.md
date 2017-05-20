@@ -1,5 +1,7 @@
 title: JavaScript语言精粹
 date: 2017-03-14 12:12:23
+tags: [JavaScript]
+categories: [前端]
 
 ---
 # 第一章 精华
