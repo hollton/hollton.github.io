@@ -1,6 +1,7 @@
 title: Vue实践总结
 date: 2017-05-12 19:53:27
 tags: [vue]
+categories: [前端]
 
 ---
 # JS中使用filters

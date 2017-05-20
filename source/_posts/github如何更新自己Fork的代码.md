@@ -1,7 +1,7 @@
 title: "github如何更新自己Fork的代码"
 date: 2015-05-11 15:27:36
-tags: [github,fork,同步]
-categories:
+tags: [github,fork]
+categories: [前端]
 ---
 github有fork功能，可以将别人的项目复制到自己账号下，但其有一个缺点就是当别人的源项目更新后，你fork的分支并不会一起更新，需要我们手动去更新。
 下面就以我的帐号：hollton，以及fork的项目：[zoom.js](https://github.com/fat/zoom.js.git)为例为大家讲述如何同步更新自己的代码。
