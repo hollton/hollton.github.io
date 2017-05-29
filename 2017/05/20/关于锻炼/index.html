@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="vue," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -87,28 +87,16 @@
 
 
 
-<meta name="description" content="JS中使用filters参考：https://github.com/vuejs/Discussion/issues/405
-Vue.filter(&amp;apos;indexToLetterFilter&amp;apos;, index =&amp;gt; {
-    return String.fromCharCode(65+index);
-});
-this.$options.filters.indexToLette">
+<meta name="description" content="一些想法规划记录参见 Day One 记录">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vue实践总结">
-<meta property="og:url" content="http://hollton.github.io/2017/05/12/Vue实践总结/index.html">
+<meta property="og:title" content="关于锻炼">
+<meta property="og:url" content="http://hollton.github.io/2017/05/20/关于锻炼/index.html">
 <meta property="og:site_name" content="HOLLTON">
-<meta property="og:description" content="JS中使用filters参考：https://github.com/vuejs/Discussion/issues/405
-Vue.filter(&amp;apos;indexToLetterFilter&amp;apos;, index =&amp;gt; {
-    return String.fromCharCode(65+index);
-});
-this.$options.filters.indexToLette">
-<meta property="og:updated_time" content="2017-05-29T10:02:12.872Z">
+<meta property="og:description" content="一些想法规划记录参见 Day One 记录">
+<meta property="og:updated_time" content="2017-05-29T08:40:02.096Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Vue实践总结">
-<meta name="twitter:description" content="JS中使用filters参考：https://github.com/vuejs/Discussion/issues/405
-Vue.filter(&amp;apos;indexToLetterFilter&amp;apos;, index =&amp;gt; {
-    return String.fromCharCode(65+index);
-});
-this.$options.filters.indexToLette">
+<meta name="twitter:title" content="关于锻炼">
+<meta name="twitter:description" content="一些想法规划记录参见 Day One 记录">
 
 
 
@@ -136,13 +124,13 @@ this.$options.filters.indexToLette">
 
 
 
-  <link rel="canonical" href="http://hollton.github.io/2017/05/12/Vue实践总结/"/>
+  <link rel="canonical" href="http://hollton.github.io/2017/05/20/关于锻炼/"/>
 
 
 
 
 
-  <title> Vue实践总结 | HOLLTON </title>
+  <title> 关于锻炼 | HOLLTON </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -261,7 +249,7 @@ this.$options.filters.indexToLette">
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2017/05/12/Vue实践总结/">
+    <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2017/05/20/关于锻炼/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hollton">
@@ -282,7 +270,7 @@ this.$options.filters.indexToLette">
             
             
               
-                Vue实践总结
+                关于锻炼
               
             
           </h1>
@@ -297,8 +285,8 @@ this.$options.filters.indexToLette">
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-12T19:53:27+08:00">
-                2017-05-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-20T22:34:46+08:00">
+                2017-05-20
               </time>
             
 
@@ -320,8 +308,8 @@ this.$options.filters.indexToLette">
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
+                  <a href="/categories/生活/" itemprop="url" rel="index">
+                    <span itemprop="name">生活</span>
                   </a>
                 </span>
 
@@ -338,8 +326,8 @@ this.$options.filters.indexToLette">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/05/12/Vue实践总结/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/12/Vue实践总结/" itemprop="commentCount"></span>
+                <a href="/2017/05/20/关于锻炼/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/20/关于锻炼/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -365,32 +353,7 @@ this.$options.filters.indexToLette">
       
 
       
-        <h1 id="JS中使用filters"><a href="#JS中使用filters" class="headerlink" title="JS中使用filters"></a>JS中使用filters</h1><p>参考：<a href="https://github.com/vuejs/Discussion/issues/405" target="_blank" rel="external">https://github.com/vuejs/Discussion/issues/405</a></p>
-<pre><code>Vue.filter(&apos;indexToLetterFilter&apos;, index =&gt; {
-    return String.fromCharCode(65+index);
-});
-this.$options.filters.indexToLetterFilter(index);
-
-&lt;!-- html中传参+串联 --&gt;
-{{index | indexToLetterFilter('arg1', arg2) | anotherFilter}}
-</code></pre><h1 id="data、computed、props优先级"><a href="#data、computed、props优先级" class="headerlink" title="data、computed、props优先级"></a>data、computed、props优先级</h1><p>data &gt; computed &gt; props</p>
-<h1 id="图片资源引用"><a href="#图片资源引用" class="headerlink" title="图片资源引用"></a>图片资源引用</h1><p>方案1：把资源放在static文件夹下再引用；</p>
-<p>方案2：使用require引入；</p>
-<pre><code>&lt;img :src=&quot;logo&quot;&gt;
-
-data:{
-    logo: require(&apos;../asset/logo.png&apos;)
-}
-</code></pre><h1 id="动态模版添加方法"><a href="#动态模版添加方法" class="headerlink" title="动态模版添加方法"></a>动态模版添加方法</h1><p>需求：服务端返回 <code>&#39;&lt;p&gt;&lt;img src=&quot;..&quot; /&gt;&lt;/p&gt;&#39;</code>html串，需要实现页面点击图片时弹出预览框。<br>尝试：最初的想法是通过对html串拼接click方法，即可通过点击事件调用弹窗组件并获取其src预览。结果做不到对拼接的html再编译以使点击事件生效。<br>解决：通过事件代理实现。对动态模版的父元素绑定方法<code>@click=&quot;imageProxy($event)&quot;</code></p>
-<pre><code>imageProxyy(evt){
-    if (evt.target.nodeName === &apos;IMG&apos;) {
-        evt.stopPropagation();
-        this.showPicView = true;
-        //evt.target.currentSrc 后续处理
-    }
-}
-</code></pre><h1 id="动态创建slot（未果）"><a href="#动态创建slot（未果）" class="headerlink" title="动态创建slot（未果）"></a>动态创建slot（未果）</h1><p>尝试：模版是动态返回的，尝试在模版中插入具名slot，调用相应的组件，但无法实现。<br>总结：slot需在模版中预先定义</p>
-<h1 id="隔代使用slot（未果）"><a href="#隔代使用slot（未果）" class="headerlink" title="隔代使用slot（未果）"></a>隔代使用slot（未果）</h1><p>需求：最初父组件调用组件并使用具名slot，子组件插入slot，但发现多个子组件中写了一些重复类似的代码（其中包含slot部分），因此想把这部分代码抽出来。<br>尝试：尝试在父组件使用具名slot组件，子组件中调用孙子组件，孙子组件中插入具名slot，但无法实现渲染。</p>
+        <h1 id="一些想法"><a href="#一些想法" class="headerlink" title="一些想法"></a>一些想法</h1><h1 id="规划"><a href="#规划" class="headerlink" title="规划"></a>规划</h1><h1 id="记录"><a href="#记录" class="headerlink" title="记录"></a>记录</h1><p>参见 Day One 记录</p>
 
       
     </div>
@@ -412,12 +375,6 @@ data:{
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/vue/" rel="tag"># vue</a>
-          
-        </div>
-      
 
       
         
@@ -427,8 +384,8 @@ data:{
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/14/JavaScript语言精粹/" rel="next" title="JavaScript语言精粹">
-                <i class="fa fa-chevron-left"></i> JavaScript语言精粹
+              <a href="/2017/05/14/个人工作项目总结/" rel="next" title="个人工作项目总结">
+                <i class="fa fa-chevron-left"></i> 个人工作项目总结
               </a>
             
           </div>
@@ -436,10 +393,6 @@ data:{
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/05/14/UML学习笔记/" rel="prev" title="UML学习笔记">
-                UML学习笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -465,8 +418,8 @@ data:{
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/05/12/Vue实践总结/"
-           data-title="Vue实践总结" data-url="http://hollton.github.io/2017/05/12/Vue实践总结/">
+      <div class="ds-thread" data-thread-key="2017/05/20/关于锻炼/"
+           data-title="关于锻炼" data-url="http://hollton.github.io/2017/05/20/关于锻炼/">
       </div>
     
   </div>
@@ -568,7 +521,7 @@ data:{
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JS中使用filters"><span class="nav-number">1.</span> <span class="nav-text">JS中使用filters</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#data、computed、props优先级"><span class="nav-number">2.</span> <span class="nav-text">data、computed、props优先级</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图片资源引用"><span class="nav-number">3.</span> <span class="nav-text">图片资源引用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动态模版添加方法"><span class="nav-number">4.</span> <span class="nav-text">动态模版添加方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动态创建slot（未果）"><span class="nav-number">5.</span> <span class="nav-text">动态创建slot（未果）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#隔代使用slot（未果）"><span class="nav-number">6.</span> <span class="nav-text">隔代使用slot（未果）</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一些想法"><span class="nav-number">1.</span> <span class="nav-text">一些想法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#规划"><span class="nav-number">2.</span> <span class="nav-text">规划</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#记录"><span class="nav-number">3.</span> <span class="nav-text">记录</span></a></li></ol></div>
             
 
           </div>
