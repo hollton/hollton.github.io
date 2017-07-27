@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -80,7 +80,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0" />
 
 
 
@@ -101,7 +101,7 @@ Vue.filter(&amp;apos;indexToLetterFilter&amp;apos;, index =&amp;gt; {
     return String.fromCharCode(65+index);
 });
 this.$options.filters.indexToLette">
-<meta property="og:updated_time" content="2017-05-29T10:02:12.872Z">
+<meta property="og:updated_time" content="2017-06-19T11:06:33.833Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue实践总结">
 <meta name="twitter:description" content="JS中使用filters参考：https://github.com/vuejs/Discussion/issues/405
@@ -116,7 +116,7 @@ this.$options.filters.indexToLette">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: true,
@@ -152,6 +152,16 @@ this.$options.filters.indexToLette">
 
 
 
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5cb002190f487bd635c567d87b3f7765";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
 
 
 
@@ -223,12 +233,12 @@ this.$options.filters.indexToLette">
         </li>
       
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
-            标签
+            分类
           </a>
         </li>
       
@@ -266,7 +276,7 @@ this.$options.filters.indexToLette">
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hollton">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/css/images/avatar.png">
+      <meta itemprop="image" content="/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -391,6 +401,8 @@ data:{
 }
 </code></pre><h1 id="动态创建slot（未果）"><a href="#动态创建slot（未果）" class="headerlink" title="动态创建slot（未果）"></a>动态创建slot（未果）</h1><p>尝试：模版是动态返回的，尝试在模版中插入具名slot，调用相应的组件，但无法实现。<br>总结：slot需在模版中预先定义</p>
 <h1 id="隔代使用slot（未果）"><a href="#隔代使用slot（未果）" class="headerlink" title="隔代使用slot（未果）"></a>隔代使用slot（未果）</h1><p>需求：最初父组件调用组件并使用具名slot，子组件插入slot，但发现多个子组件中写了一些重复类似的代码（其中包含slot部分），因此想把这部分代码抽出来。<br>尝试：尝试在父组件使用具名slot组件，子组件中调用孙子组件，孙子组件中插入具名slot，但无法实现渲染。</p>
+<h1 id="nextTick"><a href="#nextTick" class="headerlink" title="nextTick"></a>nextTick</h1><p>需求：服务端返回音视频数据更新dom后再用插件渲染<br>尝试：mounted之后执行渲染，最初是可行的，但后面测试数据量增多时发现有时部分渲染失败<br>总结：有对dom操作的需求时，应在mounted之后调用nextTick，确保dom更新后再执行操作</p>
+<h1 id="对数组元素新增属性-set"><a href="#对数组元素新增属性-set" class="headerlink" title="对数组元素新增属性 $set"></a>对数组元素新增属性 $set</h1><p>需求：遍历数组并对每个元素新增hidden属性<br>尝试：常规使用array.forEach，直接写item = true/false，在渲染dom时无效<br>解决：官网也有提到，由于Vue不能检测属性被添加，如果想要确保添加的元素是响应式的，需要通过Vue.set(object,key,value)设置，会触发视图更新。</p>
 
       
     </div>
@@ -503,7 +515,7 @@ data:{
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/css/images/avatar.png"
+               src="/images/avatar.png"
                alt="hollton" />
           <p class="site-author-name" itemprop="name">hollton</p>
            
@@ -515,7 +527,7 @@ data:{
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -523,19 +535,19 @@ data:{
 
           
             <div class="site-state-item site-state-categories">
-              
-                <span class="site-state-item-count">3</span>
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
-              
+              </a>
             </div>
           
 
           
             <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">11</span>
+              
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">标签</span>
-              </a>
+              
             </div>
           
 
@@ -544,6 +556,26 @@ data:{
         
 
         <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/hollton" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/hollton" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
           
         </div>
 
@@ -568,7 +600,7 @@ data:{
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JS中使用filters"><span class="nav-number">1.</span> <span class="nav-text">JS中使用filters</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#data、computed、props优先级"><span class="nav-number">2.</span> <span class="nav-text">data、computed、props优先级</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图片资源引用"><span class="nav-number">3.</span> <span class="nav-text">图片资源引用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动态模版添加方法"><span class="nav-number">4.</span> <span class="nav-text">动态模版添加方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动态创建slot（未果）"><span class="nav-number">5.</span> <span class="nav-text">动态创建slot（未果）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#隔代使用slot（未果）"><span class="nav-number">6.</span> <span class="nav-text">隔代使用slot（未果）</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JS中使用filters"><span class="nav-number">1.</span> <span class="nav-text">JS中使用filters</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#data、computed、props优先级"><span class="nav-number">2.</span> <span class="nav-text">data、computed、props优先级</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图片资源引用"><span class="nav-number">3.</span> <span class="nav-text">图片资源引用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动态模版添加方法"><span class="nav-number">4.</span> <span class="nav-text">动态模版添加方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动态创建slot（未果）"><span class="nav-number">5.</span> <span class="nav-text">动态创建slot（未果）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#隔代使用slot（未果）"><span class="nav-number">6.</span> <span class="nav-text">隔代使用slot（未果）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#nextTick"><span class="nav-number">7.</span> <span class="nav-text">nextTick</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对数组元素新增属性-set"><span class="nav-number">8.</span> <span class="nav-text">对数组元素新增属性 $set</span></a></li></ol></div>
             
 
           </div>
@@ -596,18 +628,13 @@ data:{
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">hollton</span>
-</div>
-
-
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
-  </a>
+  <span class="view-count with-love">
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  </span>
 </div>
 
 

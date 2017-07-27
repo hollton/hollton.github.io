@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Hollton, F2E" />
 
 
 
@@ -80,7 +80,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0" />
 
 
 
@@ -103,7 +103,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: true,
@@ -139,6 +139,16 @@
 
 
 
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5cb002190f487bd635c567d87b3f7765";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
 
 
 
@@ -212,12 +222,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
-            标签
+            分类
           </a>
         </li>
       
@@ -250,12 +260,12 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2017/05/20/关于锻炼/">
+    <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2017/07/15/素质测评管理后台特性问题记录/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hollton">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/css/images/avatar.png">
+      <meta itemprop="image" content="/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -272,8 +282,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/05/20/关于锻炼/" itemprop="url">
-                  关于锻炼
+                <a class="post-title-link" href="/2017/07/15/素质测评管理后台特性问题记录/" itemprop="url">
+                  素质测评管理后台特性问题记录
                 </a>
               
             
@@ -289,8 +299,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-20T22:34:46+08:00">
-                2017-05-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-15T17:09:42+08:00">
+                2017-07-15
               </time>
             
 
@@ -312,8 +322,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/生活/" itemprop="url" rel="index">
-                    <span itemprop="name">生活</span>
+                  <a href="/categories/工作/" itemprop="url" rel="index">
+                    <span itemprop="name">工作</span>
                   </a>
                 </span>
 
@@ -330,8 +340,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/05/20/关于锻炼/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/20/关于锻炼/" itemprop="commentCount"></span>
+                <a href="/2017/07/15/素质测评管理后台特性问题记录/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/07/15/素质测评管理后台特性问题记录/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -359,7 +369,14 @@
       
         
           
-            <h1 id="一些想法"><a href="#一些想法" class="headerlink" title="一些想法"></a>一些想法</h1><h1 id="规划"><a href="#规划" class="headerlink" title="规划"></a>规划</h1><h1 id="记录"><a href="#记录" class="headerlink" title="记录"></a>记录</h1><p>参见 Day One 记录</p>
+            <h1 id="引发BUG诱因"><a href="#引发BUG诱因" class="headerlink" title="引发BUG诱因"></a>引发BUG诱因</h1><h2 id="原型粗略"><a href="#原型粗略" class="headerlink" title="原型粗略"></a>原型粗略</h2><p>原型只涉及到通用量表的操作控制，而未考虑到某些量表的特殊性，卓国铨零零散散的与策划澄清原型时间长一个月，就能说明原型本身很有问题了。</p>
+<h2 id="涉及范围之广"><a href="#涉及范围之广" class="headerlink" title="涉及范围之广"></a>涉及范围之广</h2><p>涉及到六大量表的题型编辑、量表配置及由此相关的考试、报告。</p>
+<h2 id="开放操作控制"><a href="#开放操作控制" class="headerlink" title="开放操作控制"></a>开放操作控制</h2><p>面对用户不可预知的操作，对以上所提到的各量表的题型及标注都需要添加控制操作，尤其标注的操作控制，在后端的代码中后面发现针对特殊量表如汉语阅读、亲子关系存在着前端所不知道的隐含逻辑。</p>
+<h2 id="特性开发工作过渡"><a href="#特性开发工作过渡" class="headerlink" title="特性开发工作过渡"></a>特性开发工作过渡</h2><p>新接触这部分代码并进行二次开发，前期做了不少熟悉业务及代码逻辑的工作。</p>
+<h2 id="测试时间少"><a href="#测试时间少" class="headerlink" title="测试时间少"></a>测试时间少</h2><p>一是开发的量表维度多，留给测试的时间少；<br>二是需要测试的量表类型多，没那么多精力时间一一测过去。</p>
+<h2 id="用例覆盖范围"><a href="#用例覆盖范围" class="headerlink" title="用例覆盖范围"></a><del>用例覆盖范围</del></h2><p><del>用例覆盖到本版本特性的试卷编辑管理，没涉及到对考试、报告的影响。</del></p>
+<h1 id="BUG量统计"><a href="#BUG量统计" class="headerlink" title="BUG量统计"></a>BUG量统计</h1><h2 id="共计解决BUG-19-个"><a href="#共计解决BUG-19-个" class="headerlink" title="共计解决BUG 19 个"></a>共计解决BUG 19 个</h2><h3 id="建议及重复BUG-9-个-（4-5）"><a href="#建议及重复BUG-9-个-（4-5）" class="headerlink" title="建议及重复BUG 9 个 （4+5）"></a>建议及重复BUG 9 个 （4+5）</h3><h3 id="需求问题BUG-3-个"><a href="#需求问题BUG-3-个" class="headerlink" title="需求问题BUG 3 个"></a>需求问题BUG 3 个</h3><h3 id="有效BUG-7-个"><a href="#有效BUG-7-个" class="headerlink" title="有效BUG　7　个"></a>有效BUG　7　个</h3><h4 id="非本版本特性开发产生而是由于开放配置，其他模块不兼容产生的BUG-4-个"><a href="#非本版本特性开发产生而是由于开放配置，其他模块不兼容产生的BUG-4-个" class="headerlink" title="非本版本特性开发产生而是由于开放配置，其他模块不兼容产生的BUG 4 个"></a>非本版本特性开发产生而是由于开放配置，其他模块不兼容产生的BUG 4 个</h4><h4 id="本版本特性开发BUG-3-个"><a href="#本版本特性开发BUG-3-个" class="headerlink" title="本版本特性开发BUG 3 个"></a>本版本特性开发BUG 3 个</h4><h5 id="由于后端历史遗留问题产生BUG-1-个"><a href="#由于后端历史遗留问题产生BUG-1-个" class="headerlink" title="由于后端历史遗留问题产生BUG 1 个"></a>由于后端历史遗留问题产生BUG 1 个</h5><p>如后端做校验控制抛异常码，并未列在WIKI上，前端未捕获提示，导致页面报错。之前陈广文也处理过类似问题BUG，这种问题在责任划分上应该归于哪端问题？</p>
+<h5 id="版本开发代码逻辑不严谨产生BUG-2-个"><a href="#版本开发代码逻辑不严谨产生BUG-2-个" class="headerlink" title="版本开发代码逻辑不严谨产生BUG 2 个"></a>版本开发代码逻辑不严谨产生BUG 2 个</h5><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>本版本的开发内容及成果。。。</p>
 
           
         
@@ -400,12 +417,12 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2017/05/14/个人工作项目总结/">
+    <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2017/06/18/读书列表/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hollton">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/css/images/avatar.png">
+      <meta itemprop="image" content="/images/avatar.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -422,8 +439,652 @@
             
               
                 
-                <a class="post-title-link" href="/2017/05/14/个人工作项目总结/" itemprop="url">
-                  个人工作项目总结
+                <a class="post-title-link" href="/2017/06/18/读书列表/" itemprop="url">
+                  读书列表
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-18T18:04:08+08:00">
+                2017-06-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书/" itemprop="url" rel="index">
+                    <span itemprop="name">读书</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/18/读书列表/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/06/18/读书列表/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>以下是一些我读过的书。</p>
+<ol><br>    <li>文化苦旅，by 余秋雨，2010年7月</li><br>    <li>杜月笙传，by 章君谷，2014年8月</li><br>    <li>挪威的森林，by （日）村上春树，2014年11月</li><br>    <li>三重门，by 韩寒，2015年2月</li><br>    <li>禅与摩托车维修艺术，by （美）波西格，2015年3月（未完）</li><br>    <li>偷影子的人，by （法）马克·李维，2015年8月</li><br>    <li>追风筝的人，by （阿富汗）卡勒德·胡赛尼，2015年10月</li><br>    <li>1988：我想和这个世界谈谈，by 韩寒，2015年12月</li><br>    <li>解忧杂货店，by （日）东野圭吾，2016年1月</li><br>    <li>看见，by 柴静，2016年4月</li><br>    <li>JavaScript高级程序设计（第三版），by （美）Nicholas C.Zakas，2016年5月</li><br>    <li>玛格丽特小镇，by （美）加·泽文，2016年7月</li><br>    <li>AngularJS权威教程，by （美）Ari Lerner ，2016年8月</li><br>    <li>白夜行，by （日）东野圭吾，2016年10月</li><br>    <li>围城，by 钱钟书，2017年2月</li><br>    <li>苏菲的世界，by （挪）乔斯坦·贾德，2017年5月</li><br></ol>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2017/06/18/2017年中小目标/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hollton">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HOLLTON">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/18/2017年中小目标/" itemprop="url">
+                  2017年中小目标
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-18T17:25:57+08:00">
+                2017-06-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/感想/" itemprop="url" rel="index">
+                    <span itemprop="name">感想</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/18/2017年中小目标/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/06/18/2017年中小目标/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>不知不觉2017年过了一半，今天还是各大电商搞所谓的年中大促的日子。福州的周末依旧是下雨的周末，台风天的暴风雨又将近了。而我的这前半年，人生没有大变化，与大多数人一样，游走于工作学习、休闲娱乐之间。</p>
+<p>回顾2017前半年，主要完成了：</p>
+<ol><li>准备工程院任职资格，还需努力</li><br>    <li>使用vuejs框架合作完成作答批阅组件</li><br>    <li>读了两本书：<a href="/2017/06/18/%E8%AF%BB%E4%B9%A6%E5%88%97%E8%A1%A8/">围城和苏菲的世界（未完）</a></li><br>    <li>锻炼，Day One记录</li><br></ol><br>下半年准备给自己定几个小目标：<br><ol><li>通过工程院任职资格</li><br>    <li>读完苏菲的世界，再读2本书</li><br>    <li>继续坚持锻炼，把肚腩练成腹肌[认真脸]</li><br>    <li>周末假期旅行，走一走大福建</li><br></ol>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2017/06/18/vue项目组件化实践思考/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hollton">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HOLLTON">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/18/vue项目组件化实践思考/" itemprop="url">
+                  vue项目组件化实践思考
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-18T17:17:12+08:00">
+                2017-06-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/18/vue项目组件化实践思考/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/06/18/vue项目组件化实践思考/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p style="display:none"><br>    大致目录：<br>需求选型<br>es6<br>组件化<br><a href="http://www.cnblogs.com/rock-roll/p/5692891.html" target="_blank" rel="external">http://www.cnblogs.com/rock-roll/p/5692891.html</a><br></p>
+
+<h1 id="需求选型"><a href="#需求选型" class="headerlink" title="需求选型"></a>需求选型</h1><p>项目中原有的作答批阅组件是用Knockout构建的，由于新的交互设计优化及一些新功能，就有了造轮子的需求，而技术栈则采用：vue + vuex + es6 + webpack。下面则是我对项目开发中用到的、遇到的一些特性问题总结思考。</p>
+<h1 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h1><p>虽然es6早已在2015年下半年定稿，但在此之前我对它的了解也仅限于网上教程以及小打小闹的demo实践，并没有应用到项目中。而这次则亲身体验了把es6的一些优秀特性，对于还不熟悉的特性则参考着阮一峰的<a href="http://es6.ruanyifeng.com" target="_blank" rel="external">ECMAScript 6 入门</a>。</p>
+<h2 id="import、export"><a href="#import、export" class="headerlink" title="import、export"></a>import、export</h2><p>es6中实现了模块体系，完全可以取代 CommonJS 及 AMD 规范，从而实现模块化开发。</p>
+<h3 id="export"><a href="#export" class="headerlink" title="export"></a>export</h3><p>输出模块对外接口，其主要写法有：</p>
+<pre><code>export let fn1 = (){};
+
+let fn2 = (){};
+let fn3 = (){};
+export{fn2,fn3};
+</code></pre><h3 id="import"><a href="#import" class="headerlink" title="import"></a>import</h3><p>加载指定模块，其主要写法有：</p>
+<pre><code>import {fn2,fn3} from &apos;./file&apos;;
+
+//新命名
+import {fn1 as selfFn1} from &apos;./file&apos;;
+
+//整体加载
+import {* as selfFn} from &apos;./file&apos;;
+selfFn.fn1();
+selfFn.fn2();
+</code></pre><h3 id="export-default"><a href="#export-default" class="headerlink" title="export default"></a>export default</h3><p>使用export、import时需要知道具体名称，export default则指定默认输出。</p>
+<pre><code>export default function(){};
+
+//对于的import不使用{}，因为default是默认输出，只能输出一个接口
+import myFn from &apos;./file&apos;;
+
+//整体加载
+import {* as selfFn} from &apos;./file&apos;;
+selfFn.fn1();
+selfFn.fn2();
+</code></pre><h2 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h2><p>箭头函数在撸代码时可谓非常爽，首先它省去了<code>function</code>关键字，简化了函数定义；其次，之前function中的<code>this</code>指向调用者，而很多时候我们并不希望这样，而在箭头函数中，<code>this</code>责是词法作用域，由上下文确定。如在vue中定义的方法，<code>this</code>始终指向vue实例，而不用担心是谁调用的。</p>
+<h2 id="模板字符串"><a href="#模板字符串" class="headerlink" title="模板字符串``"></a>模板字符串``</h2><p>字符串中包含变量时通常使用<code>+</code>拼接，十分繁琐，而使用模板字符串则可一次性书写，只需要用<code>${变量}</code>包裹变量即可。</p>
+<h2 id="扩展运算符…"><a href="#扩展运算符…" class="headerlink" title="扩展运算符…"></a>扩展运算符…</h2><p>扩展运算符在vue的组件引用及mapState中尤其有用，可将对象中的元素逐一展开调用，而非引入时包裹在对象中。</p>
+<h2 id="forEach、map"><a href="#forEach、map" class="headerlink" title="forEach、map"></a>forEach、map</h2><p>之前项目中引用lodash，十分便于处理数据，而在这次新组件开发中并没引入，因此开发过程中遇到数据处理时总想到lodash方法。其实js原生已支持很多诸如forEach、map便捷的方法，及使用for in 遍历对象，lodash只是封装的语法糖，对于lodash中较常用好用的方法如_.find()等也用原生实现了个util。因此推荐使用原生操作，尽量避免三方库的引用，也能最大化加深基础知识。</p>
+<h1 id="组件化"><a href="#组件化" class="headerlink" title="组件化"></a>组件化</h1><p>在开发过程中，我对组件化的实践应用主要暴露出两点问题。其一是组件结构划分不精致。如最初处理题目层组件与具体各题型组件放在同一个文件夹下，而从逻辑结构上来说，题型组件理应放在下级文件夹下，而且混在一起查看文件时也有些混眼。其一是组件的功能拆分不够细。题目中用到音视频渲染功能，最初也有部分是因为时间关系，把这部分逻辑直接码在题目组件中，而在二期的优化中，我将这部分逻辑拆出来，并根据业务的需求将视频模块细化为多个自定义操作并以plugin的形式调用。较好的分离了业务与交互，又便于复用及扩展，完美。</p>
+<p>待续…</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2017/06/11/设计模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hollton">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HOLLTON">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/11/设计模式/" itemprop="url">
+                  设计模式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-11T15:28:34+08:00">
+                2017-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/11/设计模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/06/11/设计模式/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>之前有学习整理过针对JavaScript语言的设计模式，但局限于特定语言且不太深入，现在不如我们从头开始，学习设计模式相关的内容。</p>
+<h1 id="面向对象设计（Object-Oriented-Design，OOD）"><a href="#面向对象设计（Object-Oriented-Design，OOD）" class="headerlink" title="面向对象设计（Object-Oriented Design，OOD）"></a>面向对象设计（Object-Oriented Design，OOD）</h1><h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><p><ol><br>    <li>面向对象</li><br>    <li>复用</li><br>    <li>变化的代价极小</li><br>    <li>无需改代码即可扩展</li><br></ol></p>
+<h2 id="基本原则（SOLID五项原则）"><a href="#基本原则（SOLID五项原则）" class="headerlink" title="基本原则（SOLID五项原则）"></a>基本原则（SOLID五项原则）</h2><p><ol><br>    <li>S = 单一责任原则</li><br>    <li>O = 开闭原则</li><br>    <li>L = Liscov替换原则</li><br>    <li>I = 接口隔离原则</li><br>    <li>D = 依赖倒置原则</li><br></ol></p>
+<h3 id="单一责任原则"><a href="#单一责任原则" class="headerlink" title="单一责任原则"></a>单一责任原则</h3><p>“导致类变化的因素永远不要多于一个”，即一个类有且只有一个职责。如果一个类的职责多于一个，就需要根据职责拆分为多个类，但这并不意味着一个类中不能有多个方法，但要求多个方法是为了同一个目的。</p>
+<h3 id="开闭原则"><a href="#开闭原则" class="headerlink" title="开闭原则"></a>开闭原则</h3><p>“软件实体（类，模块，函数等）应该对扩展开放，对修改关闭”</p>
+<h3 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h3><p>“子类型必须能够替换它们的基类”即子类可以扩展父类的功能，但不能改变父类原有的功能</p>
+<h3 id="接口隔离原则"><a href="#接口隔离原则" class="headerlink" title="接口隔离原则"></a>接口隔离原则</h3><p>“用户不应该被迫依赖他们不使用的接口”，一个类对另一个类的依赖应该建立在最小的接口上</p>
+<h3 id="依赖倒置原则"><a href="#依赖倒置原则" class="headerlink" title="依赖倒置原则"></a>依赖倒置原则</h3><p>“高层次的模块不应该依赖于低层次的模块，而都应依赖于抽象；抽象不应该依赖细节，细节应该依赖抽象”</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2017/05/14/ND北京高精尖项目总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hollton">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HOLLTON">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/14/ND北京高精尖项目总结/" itemprop="url">
+                  ND北京高精尖项目总结
                 </a>
               
             
@@ -480,8 +1141,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/05/14/个人工作项目总结/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/14/个人工作项目总结/" itemprop="commentCount"></span>
+                <a href="/2017/05/14/ND北京高精尖项目总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/14/ND北京高精尖项目总结/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -509,7 +1170,8 @@
       
         
           
-            <h1 id="一、备课系统（2015-07-20-2016-02-17）"><a href="#一、备课系统（2015-07-20-2016-02-17）" class="headerlink" title="一、备课系统（2015/07/20 - 2016/02/17）"></a>一、备课系统（2015/07/20 - 2016/02/17）</h1><h2 id="项目概述"><a href="#项目概述" class="headerlink" title="项目概述"></a>项目概述</h2><h2 id="工作内容"><a href="#工作内容" class="headerlink" title="工作内容"></a>工作内容</h2><h2 id="工作总结"><a href="#工作总结" class="headerlink" title="工作总结"></a>工作总结</h2><h1 id="二、北京高精尖（2016-02-02-至今）"><a href="#二、北京高精尖（2016-02-02-至今）" class="headerlink" title="二、北京高精尖（2016/02/02 - 至今）"></a>二、北京高精尖（2016/02/02 - 至今）</h1><h2 id="项目概述-1"><a href="#项目概述-1" class="headerlink" title="项目概述"></a>项目概述</h2><h2 id="工作内容-1"><a href="#工作内容-1" class="headerlink" title="工作内容"></a>工作内容</h2><h2 id="工作总结-1"><a href="#工作总结-1" class="headerlink" title="工作总结"></a>工作总结</h2><h3 id="Hash定位"><a href="#Hash定位" class="headerlink" title="Hash定位"></a>Hash定位</h3><p>需求：业务中移动端使用web html5页面，左上角返回按钮调用<code>history.back()</code>关闭当前页回退。</p>
+            <h1 id="工作时间"><a href="#工作时间" class="headerlink" title="工作时间"></a>工作时间</h1><p>2016/02/02 - 至今</p>
+<h2 id="项目概述"><a href="#项目概述" class="headerlink" title="项目概述"></a>项目概述</h2><h2 id="工作内容"><a href="#工作内容" class="headerlink" title="工作内容"></a>工作内容</h2><h2 id="工作总结"><a href="#工作总结" class="headerlink" title="工作总结"></a>工作总结</h2><h3 id="Hash定位"><a href="#Hash定位" class="headerlink" title="Hash定位"></a>Hash定位</h3><p>需求：业务中移动端使用web html5页面，左上角返回按钮调用<code>history.back()</code>关闭当前页回退。</p>
 <p>最初实现：设置hash值再定位到此，即：</p>
 <pre><code>$location.hash(idName);
 $anchorScroll();
@@ -519,747 +1181,7 @@ $anchorScroll();
 url = url.substr(0,url.indexOf(&apos;#&apos;));
 $location.url(url+&apos;#&apos;+idName).replace();
 $anchorScroll();
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2017/05/14/UML学习笔记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hollton">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/css/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HOLLTON">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/05/14/UML学习笔记/" itemprop="url">
-                  UML学习笔记
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-14T16:28:37+08:00">
-                2017-05-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/05/14/UML学习笔记/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/14/UML学习笔记/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>UML（Unified Modeling Language）:统一建模语言。</p>
-<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><p>结构型（Structrue Diagram）：</p>
-<ul><br>    <li>类图(Class)</li><br>    <li>对象图(Object)</li><br>    <li>构件/组件图(Component)</li><br>    <li>部署图(Deployment)</li><br>    <li>包图(Package)</li><br></ul><br>行为型（Behavior Diagram）：<br><ul><br>    <li>活动图(Activity)</li><br>    <li>状态机图(State Machine)</li><br>    <li>顺序图(Sequence)</li><br>    <li>通信图(Communication)</li><br>    <li>用例图(use Case)</li><br>    <li>时序图(Timing)</li><br></ul>
-
-<h1 id="类图（业务模型分析）"><a href="#类图（业务模型分析）" class="headerlink" title="类图（业务模型分析）"></a>类图（业务模型分析）</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>一个类用矩形方框表示，最上面是类的名字，中间是属性，最下面是操作。<br><img src="/img/class_diagram.png" alt=""><br>上图 +属性1:int ,+表示为public类型，int表数据类型。操作同。</p>
-<h2 id="设计类步骤"><a href="#设计类步骤" class="headerlink" title="设计类步骤"></a>设计类步骤</h2><ul><br>    <li>识别出类</li><br>    <li>识别出类的主要属性</li><br>    <li>描绘出类之间的关系</li><br>    <li>对各类进行分析、抽象、整理</li><br></ul>
-
-<h2 id="类间关系"><a href="#类间关系" class="headerlink" title="类间关系"></a>类间关系</h2><h3 id="关联关系（“直线”关系）"><a href="#关联关系（“直线”关系）" class="headerlink" title="关联关系（“直线”关系）"></a>关联关系（“直线”关系）</h3><p>暂不确定两个类的关系时，可先用直线连接标明有某种关系（类用矩形框画出，下面用[]示意）<br>[A]1—1[B]：A、B类之间为一对一关系；<br>[A]1—*[B]：一对多关系，*表示0到多个；<br>[A]1—x..y[B]：一对（x到y）关系；<br>[A]—&gt;[B]：由类A可找到类B，可记为“导航”关系。</p>
-<h3 id="包含关系"><a href="#包含关系" class="headerlink" title="包含关系"></a>包含关系</h3><p>可用下类图表示一个部门有多个员工，父元素用菱形标记。<br><img src="/img/class_diagram_include.png" alt=""><br>聚合（弱包含）：空心菱形◇，子元素可以有多个父元素，当父元素不存在时，子元素仍可继续存在；<br>组合（强包含）：实心菱形◆，子元素只能有一个父元素，当父元素不存在时，子元素也不再存在。</p>
-<h3 id="泛化关系（继承关系）"><a href="#泛化关系（继承关系）" class="headerlink" title="泛化关系（继承关系）"></a>泛化关系（继承关系）</h3><p>[学生]—▷[人]：用三角形表示，由继承者指向被继承者，即类学生继承了类人，正式称谓应为类学生泛化为类人（即有学生类可提炼抽象出人）。</p>
-<h3 id="依赖关系（虚线-箭头）"><a href="#依赖关系（虚线-箭头）" class="headerlink" title="依赖关系（虚线+箭头）"></a>依赖关系（虚线+箭头）</h3><p>[酒鬼]——&gt;[酒]：依赖者用虚线及箭头指向依赖对象。</p>
-<h3 id="递归关系（自包含关系）"><a href="#递归关系（自包含关系）" class="headerlink" title="递归关系（自包含关系）"></a>递归关系（自包含关系）</h3><p>如在表示文件夹与文件的关系时，可用文件夹类包含自己表示文件夹也可包含文件夹<br>这种递归结构展开时就为树形结构，因此树形结构可用自包含、自关联来表示</p>
-<h3 id="三角关系"><a href="#三角关系" class="headerlink" title="三角关系"></a>三角关系</h3><p>公司与雇员之间还有一个劳动合同类的关联类，对这两个类的关系近一步约束<br><img src="/img/class_diagram_triangle.png" alt=""></p>
-<h1 id="活动图（流程分析）"><a href="#活动图（流程分析）" class="headerlink" title="活动图（流程分析）"></a>活动图（流程分析）</h1><h2 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h2><p>初始状态、结束状态、活动、判断、合并、监护、泳道<br><img src="/img/activity_diagram_case.png" alt=""></p>
-<ul><br>    <li>一个开始状态●，一个或多个结束状态⊙</li><br>    <li>箭头表示流程的走向</li><br>    <li>圆角矩形表示活动，可理解为流程中的一个步骤</li><br>    <li>菱形且带有[XXX]表示判断分支条件，[]中称为监护</li><br>    <li>分支汇合到另一个菱形，为合并</li><br>    <li>泳道/分区：对参与者进行区分，表示动作的发起者</li><br></ul>
-
-<h1 id="状态（机）图（流程分析）"><a href="#状态（机）图（流程分析）" class="headerlink" title="状态（机）图（流程分析）"></a>状态（机）图（流程分析）</h1><h2 id="与活动图的区别"><a href="#与活动图的区别" class="headerlink" title="与活动图的区别"></a>与活动图的区别</h2><p>活动图是流程分析的万能图，什么流程都可以用活动图表达，但是如果 流程是围绕某一事物的状态展开时，应首选状态图。</p>
-<h2 id="基础语法-1"><a href="#基础语法-1" class="headerlink" title="基础语法"></a>基础语法</h2><p>初始状态、结束状态、状态、转换、监护（标在转换文字上，说明状态分支的转换条件）<br><img src="/img/state_diagram.png" alt=""></p>
-<ul><br>    <li>一个开始状态●，一个或多个结束状态⊙</li><br>    <li>圆角矩形表示状态</li><br>    <li>状态之间的箭头称为转换，箭头上的说明文字说明发生的事情导致状态发生变化。如果流程涉及多种角色，应说明什么角色做了什么事情从而导致状态发生变化。</li><br></ul>
-
-<h1 id="顺序图（流程分析）"><a href="#顺序图（流程分析）" class="headerlink" title="顺序图（流程分析）"></a>顺序图（流程分析）</h1><h2 id="基础语法-2"><a href="#基础语法-2" class="headerlink" title="基础语法"></a>基础语法</h2><p><img src="/img/sequence_diagram.png" alt=""></p>
-<ul><br>    <li>角色：公仔形象及名字</li><br>    <li>生命线：虚线表示</li><br>    <li>激活框（会话）：长矩形，每一段长矩形表示一次会话，每次会话表示一次交互</li><br>    <li消息：实线箭头，可指向其他角色，也可指向自己，标明对谁做了什么事< li=""><br>    <li返回值：对消息的响应反馈< li=""><br></li返回值：对消息的响应反馈<></li消息：实线箭头，可指向其他角色，也可指向自己，标明对谁做了什么事<></ul>
-
-<h2 id="实践建议"><a href="#实践建议" class="headerlink" title="实践建议"></a>实践建议</h2><ul><br>    <li>任何复杂交互都可分解为：自己与自己、自己与他人、他人与他人</li><br>    <li>从复杂业务中整理出一条一条流程，对流程逐个分析</li><br>    <li>分析出什么角色参与到这个流程</li><br>    <li>将流程分解为角色与角色之间的交互</li><br>    <li>用顺序图按照时间顺序将这些交互组织起来</li><br>    <li>读图顺序：由上至下，从左到右</li><br></ul>
-
-<h2 id="循环及分支结构"><a href="#循环及分支结构" class="headerlink" title="循环及分支结构"></a>循环及分支结构</h2><p><img src="/img/sequence_loop_alt_diagram.png" alt=""><br>这三种流程要放在一个框（frame）中，frame是可以嵌套的，且嵌套的层次没有限制：</p>
-<ul><br>    <li>loop(循环)：[循环条件]，中括号内容是循环条件，如果满足循环条件，则不断重复执行本框中的内容</li><br>    <li>alt(alternative条件分支)：[执行条件]，根据不同条件选择不同分支</li><br>    <li>opt(optional可选分支):[执行条件]，如果满足该条件则执行该分支，否则跳过</li><br></ul>
-
-<h2 id="流程分析总结"><a href="#流程分析总结" class="headerlink" title="流程分析总结"></a>流程分析总结</h2><h3 id="活动图、状态图、顺序图"><a href="#活动图、状态图、顺序图" class="headerlink" title="活动图、状态图、顺序图"></a>活动图、状态图、顺序图</h3><p>活动图的特点：</p>
-<ol><br>    <li>强调每个角色做了什么事情，及这些事情的先后关系</li><br>    <li>适合表达各种特殊流程，如分支、并发等</li><br></ol>
-
-<p>状态图的特点：</p>
-<ol><br>    <li>事情围绕某件东西开展</li><br>    <li>其有着不同的状态，状态会因发生了一些事情而变化</li><br></ol>
-
-<p>顺序图的特点：</p>
-<ol><br>    <li>强调各角色间的交互，信息传递很明确</li><br>    <li>强调按时间顺序分别发生了什么事情</li><br>    <li>不太适合表达复杂的特殊流程，如循环、条件分支</li><br></ol>
-
-<h3 id="实践选取"><a href="#实践选取" class="headerlink" title="实践选取"></a>实践选取</h3><ul><br>    <li>如果事情是围绕某个东西开展的，可以考虑用状态图，否则可用顺序图或活动图</li><br>    <li>如果没有复杂的特殊流程，可考虑顺序图，否则可考虑活动图</li><br>    <li>可同时使用多种图，从多个角度分析问题，也会加深对各种图的理解</li><br></ul>
-
-<h1 id="用例图（系统行为）"><a href="#用例图（系统行为）" class="headerlink" title="用例图（系统行为）"></a>用例图（系统行为）</h1><h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><p>描述什么角色通过某种系统能做什么事情。其关注的是系统的外在表现、系统与人的交互及系统与其他系统的交互。<br><img src="/img/case_diagram.png" alt=""></p>
-<h2 id="基础知识-1"><a href="#基础知识-1" class="headerlink" title="基础知识"></a>基础知识</h2><p>执行者：小人表示，不同角色的工作责任不一样，用到的系统功能也不一样。<br>用例：圆圈及文字表示，表明系统能做的事情。<br>系统边界：大方框表示，只框住用例，不框住执行者。<br>关联：用直线或箭头表示角色与用例之间的关系，表某执行者能执行什么用例。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2017/05/12/Vue实践总结/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hollton">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/css/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HOLLTON">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/05/12/Vue实践总结/" itemprop="url">
-                  Vue实践总结
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-12T19:53:27+08:00">
-                2017-05-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/05/12/Vue实践总结/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/12/Vue实践总结/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="JS中使用filters"><a href="#JS中使用filters" class="headerlink" title="JS中使用filters"></a>JS中使用filters</h1><p>参考：<a href="https://github.com/vuejs/Discussion/issues/405" target="_blank" rel="external">https://github.com/vuejs/Discussion/issues/405</a></p>
-<pre><code>Vue.filter(&apos;indexToLetterFilter&apos;, index =&gt; {
-    return String.fromCharCode(65+index);
-});
-this.$options.filters.indexToLetterFilter(index);
-
-&lt;!-- html中传参+串联 --&gt;
-{{index | indexToLetterFilter('arg1', arg2) | anotherFilter}}
-</code></pre><h1 id="data、computed、props优先级"><a href="#data、computed、props优先级" class="headerlink" title="data、computed、props优先级"></a>data、computed、props优先级</h1><p>data &gt; computed &gt; props</p>
-<h1 id="图片资源引用"><a href="#图片资源引用" class="headerlink" title="图片资源引用"></a>图片资源引用</h1><p>方案1：把资源放在static文件夹下再引用；</p>
-<p>方案2：使用require引入；</p>
-<pre><code>&lt;img :src=&quot;logo&quot;&gt;
-
-data:{
-    logo: require(&apos;../asset/logo.png&apos;)
-}
-</code></pre><h1 id="动态模版添加方法"><a href="#动态模版添加方法" class="headerlink" title="动态模版添加方法"></a>动态模版添加方法</h1><p>需求：服务端返回 <code>&#39;&lt;p&gt;&lt;img src=&quot;..&quot; /&gt;&lt;/p&gt;&#39;</code>html串，需要实现页面点击图片时弹出预览框。<br>尝试：最初的想法是通过对html串拼接click方法，即可通过点击事件调用弹窗组件并获取其src预览。结果做不到对拼接的html再编译以使点击事件生效。<br>解决：通过事件代理实现。对动态模版的父元素绑定方法<code>@click=&quot;imageProxy($event)&quot;</code></p>
-<pre><code>imageProxyy(evt){
-    if (evt.target.nodeName === &apos;IMG&apos;) {
-        evt.stopPropagation();
-        this.showPicView = true;
-        //evt.target.currentSrc 后续处理
-    }
-}
-</code></pre><h1 id="动态创建slot（未果）"><a href="#动态创建slot（未果）" class="headerlink" title="动态创建slot（未果）"></a>动态创建slot（未果）</h1><p>尝试：模版是动态返回的，尝试在模版中插入具名slot，调用相应的组件，但无法实现。<br>总结：slot需在模版中预先定义</p>
-<h1 id="隔代使用slot（未果）"><a href="#隔代使用slot（未果）" class="headerlink" title="隔代使用slot（未果）"></a>隔代使用slot（未果）</h1><p>需求：最初父组件调用组件并使用具名slot，子组件插入slot，但发现多个子组件中写了一些重复类似的代码（其中包含slot部分），因此想把这部分代码抽出来。<br>尝试：尝试在父组件使用具名slot组件，子组件中调用孙子组件，孙子组件中插入具名slot，但无法实现渲染。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2017/03/14/JavaScript语言精粹/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hollton">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/css/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HOLLTON">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/14/JavaScript语言精粹/" itemprop="url">
-                  JavaScript语言精粹
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-14T12:12:23+08:00">
-                2017-03-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/14/JavaScript语言精粹/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/14/JavaScript语言精粹/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="第一章-精华"><a href="#第一章-精华" class="headerlink" title="第一章 精华"></a>第一章 精华</h1><h1 id="第二章-语法"><a href="#第二章-语法" class="headerlink" title="第二章 语法"></a>第二章 语法</h1><h2 id="铁路图"><a href="#铁路图" class="headerlink" title="铁路图"></a>铁路图</h2><p><ul><br>    <li>从左边开始，沿着轨道到右边界</li><br>    <li>圆框中是字面量，方框中是规则或描述</li><br>    <li>任何沿着轨道能走通的序列都是合法的，反之是非法的</li><br>    <li>末端只有一个竖条的铁路图，表示允许在任意一对符号中插入空白。而末端有两个竖条的则不允许。</li><br></ul></p>
-<h2 id="数字"><a href="#数字" class="headerlink" title="数字"></a>数字</h2><p>指数表示法：字面量值等于e之前的数字与10的e之后数字的次方相乘，即 100 等于1e2.<br>NaN：数值，表示不能产生正常结果的运算结果，不等于任何值NaN!=NaN，通过isNaN(number)检测。</p>
-<h2 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h2><p>for in 会枚举对象的所有属性名（或键名），通过hasOwnProperty()检测某属性是该对象的成员，还是来自原型链。</p>
-<pre><code>for (myvar in obj){
-    if(obj.hasOwnProperty(myvar)){
-        ...
-    }
-}
-</code></pre><p>break使程序退出循环或switch语句，如果指定标签则退出带有该标签的程序段（可用于退出嵌套循环，continue同）</p>
-<pre><code>hollton : for(var i=0;i&lt;3;i++){
-    for(var j=0;j&lt;3;j++){
-        if(i===1&amp;&amp;j===1){
-            break hollton;
-        }else{
-            console.log(&quot;i:&quot;+i+&quot;--j:&quot;+j);
-        }
-    }
-}
-</code></pre><p>如果没指定标签，break只退出内部循环，指定标签后，则退出标签指定的代码段，即整个循环。</p>
-<h1 id="第三章-对象"><a href="#第三章-对象" class="headerlink" title="第三章 对象"></a>第三章 对象</h1><h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p>对象通过引用传递，永远不会被复制。</p>
-<pre><code>var x = {};
-var y = x;
-y.name = &apos;hah&apos;;
-console.log(x.name);  //&apos;hah&apos;,因为x,y指向同一个对象的引用
-
-var a = {},b = {};  //a,b引用一个不同的空对象
-var a = b = {};  //a,b引用同一个的空对象
-</code></pre><h2 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h2><p>每个对象都连接到一个原型对象，并可从中继承属性。原型连接只在检索值的时候才被用到，获取某个对象的某属性值时，若该对象没此属性名，则js从原型对象中获取，若原型对象中也没有，再从原型链上获取，直到Object.prototype，仍不存在返回undefined。这个过程称为委托。</p>
-<h1 id="第四章-函数"><a href="#第四章-函数" class="headerlink" title="第四章 函数"></a>第四章 函数</h1><h2 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h2><p>调用一个函数会暂停当前函数的执行，传递控制权和参数给新函数。函数接收两个附加的参数：this和arguments。this的取值取决于调用的模式。<br>JavaScript共有4种调用模式：方法调用模式、函数调用模式、构造器调用模式、apply调用模式。</p>
-<h2 id="方法调用模式"><a href="#方法调用模式" class="headerlink" title="方法调用模式"></a>方法调用模式</h2><p>当函数被保存为对象的属性时，称之为方法。当方法被调用时，this被绑定到该对象，通过this可获取到所属对象的上下文的方法称为公共方法。</p>
-<h2 id="函数调用模式"><a href="#函数调用模式" class="headerlink" title="函数调用模式"></a>函数调用模式</h2><p>当函数不是对象的属性时，则作为函数调用，此时this被绑定到全局对象。导致内部函数不能通过this访问外部函数的属性及方法，但可通过在外部函数定义变量（如_this,that）并赋值为this，可使内部函数访问。</p>
-<h2 id="构造器调用模式"><a href="#构造器调用模式" class="headerlink" title="构造器调用模式"></a>构造器调用模式</h2><p>若函数通过new调用，则会创建一个新对象，该新对象连接到该函数的prototype成员，同时this被绑定到该新对象上，即this指向该构造器实例。</p>
-<h2 id="Apply调用模式"><a href="#Apply调用模式" class="headerlink" title="Apply调用模式"></a>Apply调用模式</h2><p>Fn.apply(obj,args)方法接收两个参数：</p>
-<p><ol><br>    <li>obj是要绑定给this的值，即obj将代替Fn里的this对象</li><br>    <li>args是要传递给调用函数的参数数组，即args–&gt;arguments</li><br></ol><br>call同apply，只有参数列表不一样 ：Fn.call(obj,arg1,arg2,…)</p>
-<h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><p>函数被调用时，可以通过arguments访问传递的参数列表，包括多余形参。arguments是类似数组的对象，拥有length属性，但没有任何数组方法。</p>
-<h2 id="返回"><a href="#返回" class="headerlink" title="返回"></a>返回</h2><p>函数总会返回值，若没指定则返回undefined。若通过new调用函数且返回值不是对象，则会返回this，即该新对象。</p>
-<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p>函数作用域使得内部函数可访问其外部函数的参数和变量（除this和arguments）。</p>
-<pre><code>//创建hollton构造函数，构造出带有getName方法和name私有属性的对象
-var hollton = function(name){
-    return {
-        getName:function(){
-            return name;
-        };
-    }
-}
-var hd = hollton(&apos;holl&apos;);
-console.log(hd.getName());
-</code></pre><p>当调用hollton时，它返回包含getName方法的新对象，即使hollton已经返回了但getName仍有特权访问hollton对象的name属性，称为闭包。</p>
-<h2 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h2><p>可使用函数和闭包构造函数，模块是一个提供接口而隐藏状态及实现的函数或对象。<br>模块的一般形式：定义了私有变量和特权函数的函数。利用闭包创建可以访问私有变量和函数的特权函数，并返回这个特权函数。</p>
-<h2 id="柯里化"><a href="#柯里化" class="headerlink" title="柯里化"></a>柯里化</h2><p>柯里化允许把函数与传递来的参数相结合，并产生一个新的函数。</p>
-<pre><code>function curry(fn){
-    var args = Array.prototype.slice.call(arguments, 1);
-    return function(){
-        var innerArgs = Array.prototype.slice.call(arguments);
-        var finalArgs = args.concat(innerArgs);
-        return fn.apply(null, finalArgs);
-    };
-}
-</code></pre><h2 id="记忆"><a href="#记忆" class="headerlink" title="记忆"></a>记忆</h2><p>函数可以将先前的结果记录在某个对象里，从而避免无谓的重复计算。</p>
-<h1 id="第五章-继承"><a href="#第五章-继承" class="headerlink" title="第五章 继承"></a>第五章 继承</h1><p>基于类的语言中，对象是类的实例，且类可以从另一个类继承。JavaScript是基于原型的语言，这意味着对象直接从其他对象继承。</p>
-<h1 id="第六章-数组"><a href="#第六章-数组" class="headerlink" title="第六章 数组"></a>第六章 数组</h1><h1 id="第七章-正则表达式"><a href="#第七章-正则表达式" class="headerlink" title="第七章 正则表达式"></a>第七章 正则表达式</h1><h1 id="第八章-方法"><a href="#第八章-方法" class="headerlink" title="第八章 方法"></a>第八章 方法</h1><h2 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h2><h3 id="array-concat-item…"><a href="#array-concat-item…" class="headerlink" title="array.concat(item…)"></a>array.concat(item…)</h3><p>concat产生新数组，包含原数组的浅复制并附加一个或多个item参数，若参数item是数组则会分别添加参数数组的元素。</p>
-<h3 id="array-join-separator"><a href="#array-join-separator" class="headerlink" title="array.join(separator)"></a>array.join(separator)</h3><p>join把数组转为字符串并用separator分隔符连接（默认’,’）。<del>join方法通常比+运算符更快。</del>（IE7+及现代浏览器对+运算符优化，因此连接字符串优先使用+运算）。</p>
-<h3 id="array-push-item…"><a href="#array-push-item…" class="headerlink" title="array.push(item…)"></a>array.push(item…)</h3><p>push会修改原数组并在尾部附加一个或多个item，并返回数组的新长度。若参数item是数组则会把参数数组当作元素项添加。</p>
-<h3 id="array-pop"><a href="#array-pop" class="headerlink" title="array.pop()"></a>array.pop()</h3><p>pop移出数组最后一个元素并返回该元素，若数组为[]，则返回undefined。</p>
-<h3 id="array-unshift-item…"><a href="#array-unshift-item…" class="headerlink" title="array.unshift(item…)"></a>array.unshift(item…)</h3><p>unshift方法同push，但是向首部添加元素。</p>
-<h3 id="array-shift"><a href="#array-shift" class="headerlink" title="array.shift()"></a>array.shift()</h3><p>shift方法同pop，但是移出数组第一个元素。</p>
-<h3 id="array-reverse"><a href="#array-reverse" class="headerlink" title="array.reverse()"></a>array.reverse()</h3><p>reverse反转数组元素的顺序，并返回该数组。</p>
-<h3 id="array-sort-compareFn"><a href="#array-sort-compareFn" class="headerlink" title="array.sort(compareFn)"></a>array.sort(compareFn)</h3><p>sort方法默认是将数组元素转换为string再进行比较排序，但可通过compareFn提供比较方法。</p>
-<h3 id="array-slice-start-end"><a href="#array-slice-start-end" class="headerlink" title="array.slice(start,end)"></a>array.slice(start,end)</h3><p>slice对数组做浅复制并返回新数组，从array[start]，复制到array[end]止（不包括array[end]项）。<br>end可选，默认是array.length。<br>若start或end为负数，则会先和array.length相加计算，再进行复制<br>若start大于（end或array.length），则会返回[]。</p>
-<h3 id="array-splice-start-deleteCount-item…"><a href="#array-splice-start-deleteCount-item…" class="headerlink" title="array.splice(start,deleteCount,item…)"></a>array.splice(start,deleteCount,item…)</h3><p>splice从array[start]处移出deleteCount个元素，并用item替换。返回被移除元素的数组。</p>
-<h1 id="第九章-代码风格"><a href="#第九章-代码风格" class="headerlink" title="第九章 代码风格"></a>第九章 代码风格</h1><h1 id="第十章-优美的特性"><a href="#第十章-优美的特性" class="headerlink" title="第十章 优美的特性"></a>第十章 优美的特性</h1>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2017/03/05/滴答，滴答/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hollton">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/css/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HOLLTON">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/05/滴答，滴答/" itemprop="url">
-                  滴答，滴答
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-05T21:28:30+08:00">
-                2017-03-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/生活/" itemprop="url" rel="index">
-                    <span itemprop="name">生活</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/03/05/滴答，滴答/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/05/滴答，滴答/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>夜晚，正俯身在电脑前写着设计模式笔记，窗前忽然哗啦啦下起了小雨，莫名就吟出两句小学课本的内容：“下吧下吧，我要种瓜”，回想往事一切仿佛历历在目，却再也回不去。</p>
-<blockquote>
-<p>滴答，滴答<br>滴答，滴答，下雨啦，下雨啦。<br>麦苗说：“下吧，下吧，我要长大。”<br>桃树说：“下吧，下吧，我要开花。”<br>葵花子说：“下吧，下吧，我要发芽。”<br>小弟弟说：“下吧，下吧，我要种瓜。”<br>滴答，滴答，下雨啦，下雨啦。 </p>
-</blockquote>
-<p>　</p>
-<blockquote>
-<p>春天来了<br>春天对冰雪说了什么，<br>冰雪那么听话，都化了。<br>春天对小草说了什么，<br>小草那么听话，都绿了。<br>春天对花儿说了什么，<br>花儿那么听话，都开了。</p>
-</blockquote>
+</code></pre><h3 id="异步加载"><a href="#异步加载" class="headerlink" title="异步加载"></a>异步加载</h3><p>问题背景：使用VueJs开发作答组件，对服务端返回的数据进行音视频id解析，并用videojs渲染展示。<br>问题：IE下存在多个视频的情况下，总会出现视频渲染失败的情况，videojs报错提示<code>The element or id is not exist</code>即无法找到要渲染的dom元素。<br>解决尝试：由于渲染的时机我是放在mounted之后，我最初怀疑ie下mounted后挂载有问题？然而我试着延时5s再渲染问题仍旧存在才意识到问题并没有那么简单[允悲]。<br>醍醐灌顶：吃晚饭的时候到了，主程唐总来约着吃饭，和他说了这个问题，看了下ie下渲染的视频id，指出可能是因为这重复的id。原来是给id追加indx的部分不够严谨，ie下异步会计算出重复index，若id也一样，就会导致报错，紧接着其他视频也渲染出错。</p>
 
           
         
@@ -1295,7 +1217,7 @@ console.log(hd.getName());
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1328,7 +1250,7 @@ console.log(hd.getName());
       <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/css/images/avatar.png"
+               src="/images/avatar.png"
                alt="hollton" />
           <p class="site-author-name" itemprop="name">hollton</p>
            
@@ -1340,7 +1262,7 @@ console.log(hd.getName());
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1348,19 +1270,19 @@ console.log(hd.getName());
 
           
             <div class="site-state-item site-state-categories">
-              
-                <span class="site-state-item-count">3</span>
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
-              
+              </a>
             </div>
           
 
           
             <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">11</span>
+              
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">标签</span>
-              </a>
+              
             </div>
           
 
@@ -1369,6 +1291,26 @@ console.log(hd.getName());
         
 
         <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/hollton" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/hollton" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
           
         </div>
 
@@ -1405,18 +1347,13 @@ console.log(hd.getName());
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">hollton</span>
-</div>
-
-
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
-  </a>
+  <span class="view-count with-love">
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  </span>
 </div>
 
 
