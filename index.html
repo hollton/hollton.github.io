@@ -260,6 +260,202 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2017/10/28/highcharts实践/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hollton">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HOLLTON">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/10/28/highcharts实践/" itemprop="url">
+                  highcharts实践
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-28T19:53:27+08:00">
+                2017-10-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/第三方库/" itemprop="url" rel="index">
+                    <span itemprop="name">第三方库</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/第三方库/经验总结/" itemprop="url" rel="index">
+                    <span itemprop="name">经验总结</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/28/highcharts实践/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/10/28/highcharts实践/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="highcharts介绍"><a href="#highcharts介绍" class="headerlink" title="highcharts介绍"></a>highcharts介绍</h2><p>Highcharts是一个用纯JavaScript编写的图表库，基于svg技术。可兼容支持IE6+以及移动端，但低版本浏览器的渲染性能则稍差。Highcharts支持多种图表类型，较为常用的是柱状图、饼状图、雷达图。</p>
+<h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><h3 id="CND服务"><a href="#CND服务" class="headerlink" title="CND服务"></a>CND服务</h3><pre><code>&lt;script src=&quot;http://cdn.hcharts.cn/highcharts/highcharts.js&quot;&gt;&lt;/script&gt;
+</code></pre><h3 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h3><pre><code>npm install highcharts --save
+</code></pre><h3 id="基础与扩展功能模块"><a href="#基础与扩展功能模块" class="headerlink" title="基础与扩展功能模块"></a>基础与扩展功能模块</h3><p>使用特殊图表（如雷达图，箱线图等）或额外功能（如导出，3D图表），则需引入对应的功能模块：</p>
+<ul><br>    <li>更多图表类型扩展模块（highcharts-more.js）</li><br>    <li>3D 图表模块 （highcharts-3d.js）</li><br>    <li>导出功能模块（modules/exporting.js）</li><br></ul>
+
+<p>需要注意的是highcharts.js需在功能模块之前引入</p>
+<pre><code>var Highcharts = require(&apos;highcharts&apos;);
+require(&apos;highcharts/modules/exporting&apos;)(Highcharts);
+</code></pre><h2 id="创建图表"><a href="#创建图表" class="headerlink" title="创建图表"></a>创建图表</h2><h3 id="创建容器"><a href="#创建容器" class="headerlink" title="创建容器"></a>创建容器</h3><p>给定一个图表Dom，可指定宽高，默认为600px * 400px</p>
+<pre><code>&lt;div id=&quot;container&quot;&gt;&lt;/div&gt;
+</code></pre><h3 id="配置代码"><a href="#配置代码" class="headerlink" title="配置代码"></a>配置代码</h3><p>指定基础配置，业务配置项以及数据后，执行highcharts方法即可绘制图表。</p>
+<pre><code>var baseOption = {
+    chart: { type: &apos;line&apos; },  //图表类型，默认
+    xAxis: {
+        categories : axisData.xData,
+        title: { text: $scope.xxTitle }
+    },
+    yAxis: {
+        min: 0,
+        max: 100,
+        title: { text: $scope.yTitle }
+    },
+    series: []
+};
+
+//业务配置
+if($scope.customOption){
+    baseOption = _.merge(baseOption,$scope.customOption);
+}
+
+//填充数据...
+
+$(&apos;#container&apos;).highcharts(baseOption);
+</code></pre><h2 id="实践总结"><a href="#实践总结" class="headerlink" title="实践总结"></a>实践总结</h2><h3 id="移动端渲染抖动"><a href="#移动端渲染抖动" class="headerlink" title="移动端渲染抖动"></a>移动端渲染抖动</h3><p>渲染图表时有一个从无到有的过程，通过tab切换数据渲染图表时，在移动端会有较明显的页面跳动，可通过对图表容器设置min-height解决。</p>
+<h3 id="依据数据量调整图表宽高"><a href="#依据数据量调整图表宽高" class="headerlink" title="依据数据量调整图表宽高"></a>依据数据量调整图表宽高</h3><p>图表宽高会依据父级宽高自适应，但当数据量较大时，由于宽高已由父级确定，会使得图表的数据项挤在一起。这时需要依据数据量手动计算宽高重置图表的宽高，如例子<a href="https://code.hcharts.cn/hollton/HSKjLw" target="_blank" rel="external">图表自适应高度</a></p>
+<h2 id="Highcharts-VS-ECharts"><a href="#Highcharts-VS-ECharts" class="headerlink" title="Highcharts VS ECharts"></a>Highcharts VS ECharts</h2><ul><br>    <li>ECharts基于Canvas技术，动态渲染功能丰富；Highcharts基于SVG技术，动态增删节点十分灵活</li><br>    <li>Highcharts只供个人及非商业用途使用；ECharts开源使用</li><br>    <li>Highcharts示例及Api文档十分详尽；ECharts Api文档不够清晰</li><br>    <li>Highcharts对低版本Web浏览器及移动端支持较好；ECharts则稍欠缺，低版本Android特定机型出现过渲染失败的状况</li><br></ul>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2017/09/15/高精尖总测、微测报告重构文档/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -283,7 +479,7 @@
               
                 
                 <a class="post-title-link" href="/2017/09/15/高精尖总测、微测报告重构文档/" itemprop="url">
-                  高精尖总测、微测报告重构
+                  北京高精尖项目报告文档
                 </a>
               
             
@@ -369,7 +565,52 @@
       
         
           
-            <h1 id="原型地址"><a href="#原型地址" class="headerlink" title="原型地址"></a>原型地址</h1><p><a href="http://svn.sdp.nd/svn/bj-edu/doc/%E6%9C%AA%E6%9D%A5%E6%95%99%E8%82%B2%E5%B9%B3%E5%8F%B0/03.%E8%AE%BE%E8%AE%A1/%E7%AD%96%E5%88%92%E8%AE%BE%E8%AE%A1/%E5%90%84%E7%89%88%E6%9C%AC%E5%8E%9F%E5%9E%8B%E6%96%87%E4%BB%B6/%E5%AE%A1%E6%A0%B8%E4%B8%AD%E6%88%96%E6%9C%AA%E5%AE%9A%E5%BC%80%E5%8F%91%E7%89%88%E6%9C%AC%E7%9A%84TQD/TQD61086_6%E3%80%90%E5%8C%97%E4%BA%AC%E9%AB%98%E7%B2%BE%E5%B0%96%E3%80%91%E3%80%90%E6%99%BA%E6%85%A7%E5%AD%A6%E4%BC%B4%E3%80%91%E8%AF%8A%E6%96%AD%E6%8A%A5%E5%91%8A_%E6%80%BB%E6%B5%8B%E5%BE%AE%E6%B5%8B%E6%8A%A5%E5%91%8A%E4%BC%98%E5%8C%96/TQD61086_6%E3%80%90%E5%8C%97%E4%BA%AC%E9%AB%98%E7%B2%BE%E5%B0%96%E3%80%91%E3%80%90%E6%99%BA%E6%85%A7%E5%AD%A6%E4%BC%B4%E3%80%91%E8%AF%8A%E6%96%AD%E6%8A%A5%E5%91%8A_%E6%80%BB%E6%B5%8B%E5%BE%AE%E6%B5%8B%E6%8A%A5%E5%91%8A%E4%BC%98%E5%8C%96/index.html" target="_blank" rel="external">诊断报告_总测微测报告优化</a></p>
+            <h1 id="一、介绍"><a href="#一、介绍" class="headerlink" title="一、介绍"></a>一、介绍</h1><ul>
+<li>报告模块为多角色公用，无角色访问限制</li>
+<li>提供移动端适配</li>
+</ul>
+<h1 id="二、起步"><a href="#二、起步" class="headerlink" title="二、起步"></a>二、起步</h1><h2 id="1、入口"><a href="#1、入口" class="headerlink" title="1、入口"></a>1、入口</h2><ul>
+<li>路由：<code>report/common/index</code></li>
+<li>依据用户角色CODE及报告类型report_type获取JSON配置文件。但当url传入指定用户角色code及user_id时，则使用指定的用户信息获取配置。</li>
+<li>用户角色code：参见<a href="http://wiki.sdp.nd/index.php?title=%E5%8C%97%E4%BA%AC%E9%AB%98%E7%B2%BE%E5%B0%96-%E7%B3%BB%E7%BB%9F%E8%A7%92%E8%89%B2%E5%AE%9A%E4%B9%89" target="_blank" rel="external">北京高精尖-系统角色定义</a></li>
+<li>report_type：报告分类[main:总|微|日常|素质测评，general:综合报告，compositive:能力素养，double:s双师绩效统计，progess:素质测评进度，advance:优势分析，index:首页，psychology:心理建模]</li>
+<li>依据当前配置编译报告模版：<code>&lt;esp-report-container report-option=&quot;reportConfigNow&quot; load-data=&quot;loadData&quot;&gt;&lt;/esp-report-container&gt;</code></li>
+</ul>
+<h2 id="2、JSON配置"><a href="#2、JSON配置" class="headerlink" title="2、JSON配置"></a>2、JSON配置</h2><ul>
+<li>路由：<code>report/common/index/config-data</code></li>
+<li>命名：{角色CODE}_{report_type}.json</li>
+<li>containerTemplate：报告容器使用的模版类型</li>
+<li><p>search：报告搜索，可指定指令类型(directiveName)、搜索参数(paramData)、额外配置(customOption)等，例如：</p>
+<pre><code>&quot;search&quot;: {
+  &quot;directiveName&quot;: &quot;tabselect&quot;,
+  &quot;customOption&quot;: {
+    &quot;selectData&quot;:[{
+      &quot;code&quot;:&quot;class&quot;
+    }],
+    &quot;paramData&quot;: {
+      &quot;exam_id&quot;: {
+        &quot;variableType&quot;: &quot;$stateParams&quot;,
+        &quot;variableKey&quot;: &quot;exam_id&quot;
+      }
+    }
+  }
+}
+</code></pre></li>
+<li>navigation：侧边栏导航，可指定指令类型(directiveName)</li>
+<li>tab：报告tab切换，可指定指令类型(directiveName)、额外配置(customOption)中使用tabData获取tab数据项</li>
+<li>groupName：当前分组类型，当前角色查看其他角色报告时，需用groupName过滤panel项</li>
+<li><p>reportPanelArrayOther：其他角色JSON配置，当前角色查看其他角色报告时，需先引入其配置，例如市级管理员引入区县管理员的报告配置：</p>
+<pre><code>&quot;reportPanelArrayOther&quot;:[{
+  &quot;groupName&quot;: &quot;county&quot;,
+  &quot;configKey&quot;:&quot;AREA_ADMIN_main&quot;
+}]
+</code></pre></li>
+<li>reportPanelArray：当前角色报告内容项。可指定子分类及tab分类，用于切换tab时过滤展示报告项(subGroupName)、panel指令名称后缀(panelType)、API接口，支持String及Array类型，Array类型可进一步指定个性参数及返回数据key(apiUrl)、额外配置(customOption)</li>
+</ul>
+<h2 id="3、容器report-container"><a href="#3、容器report-container" class="headerlink" title="3、容器report-container"></a>3、容器report-container</h2><ul>
+<li>路由：<code>report/common/index</code></li>
+</ul>
+<h1 id="原型地址"><a href="#原型地址" class="headerlink" title="原型地址"></a>原型地址</h1><p><a href="http://svn.sdp.nd/svn/bj-edu/doc/%E6%9C%AA%E6%9D%A5%E6%95%99%E8%82%B2%E5%B9%B3%E5%8F%B0/03.%E8%AE%BE%E8%AE%A1/%E7%AD%96%E5%88%92%E8%AE%BE%E8%AE%A1/%E5%90%84%E7%89%88%E6%9C%AC%E5%8E%9F%E5%9E%8B%E6%96%87%E4%BB%B6/V0.8.23_2017.09.13/TQD61086_6%E3%80%90%E5%8C%97%E4%BA%AC%E9%AB%98%E7%B2%BE%E5%B0%96%E3%80%91%E3%80%90%E6%99%BA%E6%85%A7%E5%AD%A6%E4%BC%B4%E3%80%91%E8%AF%8A%E6%96%AD%E6%8A%A5%E5%91%8A_%E6%80%BB%E6%B5%8B%E5%BE%AE%E6%B5%8B%E6%8A%A5%E5%91%8A%E4%BC%98%E5%8C%96/TQD61086_6%E3%80%90%E5%8C%97%E4%BA%AC%E9%AB%98%E7%B2%BE%E5%B0%96%E3%80%91%E3%80%90%E6%99%BA%E6%85%A7%E5%AD%A6%E4%BC%B4%E3%80%91%E8%AF%8A%E6%96%AD%E6%8A%A5%E5%91%8A_%E6%80%BB%E6%B5%8B%E5%BE%AE%E6%B5%8B%E6%8A%A5%E5%91%8A%E4%BC%98%E5%8C%96/start.html#g=1&amp;p=版本管理" target="_blank" rel="external">诊断报告_总测微测报告优化</a></p>
 <h1 id="开发时间"><a href="#开发时间" class="headerlink" title="开发时间"></a>开发时间</h1><ul>
 <li>开发：2017.08.23</li>
 <li>提测：2017.09.12</li>
@@ -393,7 +634,6 @@
 <li>1、report-util：报告公用方法，有报告间公用逻辑可写在此</li>
 </ul>
 <h3 id="common-index-config-data"><a href="#common-index-config-data" class="headerlink" title="common/index/config-data"></a>common/index/config-data</h3><ul>
-<li>1、以角色划分，使用不同的json配置文件（COURSE_LEADER:学科，SCHOOL_CLASS_ADMIN:班主任，SCHOOL_COURSE_ADMIN:学校教研员，SCHOOL_GRADE_ADMIN:年级主任）</li>
 <li><p>2、JSON配置：</p>
 <p>  “TERMTEST”：测评类型（“TERMTEST”、“UNITTEST”、“QOMTEST”）</p>
 <p>  “containerTemplate”：container模版</p>
@@ -1166,163 +1406,6 @@ selfFn.fn2();
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2017/06/11/设计模式/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hollton">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HOLLTON">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/11/设计模式/" itemprop="url">
-                  设计模式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-11T15:28:34+08:00">
-                2017-06-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/06/11/设计模式/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/06/11/设计模式/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>之前有学习整理过针对JavaScript语言的设计模式，但局限于特定语言且不太深入，现在不如我们从头开始，学习设计模式相关的内容。</p>
-<h1 id="面向对象设计（Object-Oriented-Design，OOD）"><a href="#面向对象设计（Object-Oriented-Design，OOD）" class="headerlink" title="面向对象设计（Object-Oriented Design，OOD）"></a>面向对象设计（Object-Oriented Design，OOD）</h1><h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><p><ol><br>    <li>面向对象</li><br>    <li>复用</li><br>    <li>变化的代价极小</li><br>    <li>无需改代码即可扩展</li><br></ol></p>
-<h2 id="基本原则（SOLID五项原则）"><a href="#基本原则（SOLID五项原则）" class="headerlink" title="基本原则（SOLID五项原则）"></a>基本原则（SOLID五项原则）</h2><p><ol><br>    <li>S = 单一责任原则</li><br>    <li>O = 开闭原则</li><br>    <li>L = Liscov替换原则</li><br>    <li>I = 接口隔离原则</li><br>    <li>D = 依赖倒置原则</li><br></ol></p>
-<h3 id="单一责任原则"><a href="#单一责任原则" class="headerlink" title="单一责任原则"></a>单一责任原则</h3><p>“导致类变化的因素永远不要多于一个”，即一个类有且只有一个职责。如果一个类的职责多于一个，就需要根据职责拆分为多个类，但这并不意味着一个类中不能有多个方法，但要求多个方法是为了同一个目的。</p>
-<h3 id="开闭原则"><a href="#开闭原则" class="headerlink" title="开闭原则"></a>开闭原则</h3><p>“软件实体（类，模块，函数等）应该对扩展开放，对修改关闭”</p>
-<h3 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h3><p>“子类型必须能够替换它们的基类”即子类可以扩展父类的功能，但不能改变父类原有的功能</p>
-<h3 id="接口隔离原则"><a href="#接口隔离原则" class="headerlink" title="接口隔离原则"></a>接口隔离原则</h3><p>“用户不应该被迫依赖他们不使用的接口”，一个类对另一个类的依赖应该建立在最小的接口上</p>
-<h3 id="依赖倒置原则"><a href="#依赖倒置原则" class="headerlink" title="依赖倒置原则"></a>依赖倒置原则</h3><p>“高层次的模块不应该依赖于低层次的模块，而都应依赖于抽象；抽象不应该依赖细节，细节应该依赖抽象”</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1372,7 +1455,7 @@ selfFn.fn2();
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1381,7 +1464,7 @@ selfFn.fn2();
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1390,7 +1473,7 @@ selfFn.fn2();
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
