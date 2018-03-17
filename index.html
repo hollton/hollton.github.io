@@ -93,6 +93,7 @@
 <meta property="og:url" content="http://hollton.github.io/index.html">
 <meta property="og:site_name" content="HOLLTON">
 <meta property="og:description" content="前端开发一枚，F2E">
+<meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HOLLTON">
 <meta name="twitter:description" content="前端开发一枚，F2E">
@@ -415,7 +416,7 @@ if($scope.customOption){
 
 $(&apos;#container&apos;).highcharts(baseOption);
 </code></pre><h2 id="实践总结"><a href="#实践总结" class="headerlink" title="实践总结"></a>实践总结</h2><h3 id="移动端渲染抖动"><a href="#移动端渲染抖动" class="headerlink" title="移动端渲染抖动"></a>移动端渲染抖动</h3><p>渲染图表时有一个从无到有的过程，通过tab切换数据渲染图表时，在移动端会有较明显的页面跳动，可通过对图表容器设置min-height解决。</p>
-<h3 id="依据数据量调整图表宽高"><a href="#依据数据量调整图表宽高" class="headerlink" title="依据数据量调整图表宽高"></a>依据数据量调整图表宽高</h3><p>图表宽高会依据父级宽高自适应，但当数据量较大时，由于宽高已由父级确定，会使得图表的数据项挤在一起。这时需要依据数据量手动计算宽高重置图表的宽高，如例子<a href="https://code.hcharts.cn/hollton/HSKjLw" target="_blank" rel="external">图表自适应高度</a></p>
+<h3 id="依据数据量调整图表宽高"><a href="#依据数据量调整图表宽高" class="headerlink" title="依据数据量调整图表宽高"></a>依据数据量调整图表宽高</h3><p>图表宽高会依据父级宽高自适应，但当数据量较大时，由于宽高已由父级确定，会使得图表的数据项挤在一起。这时需要依据数据量手动计算宽高重置图表的宽高，如例子<a href="https://code.hcharts.cn/hollton/HSKjLw" target="_blank" rel="noopener">图表自适应高度</a></p>
 <h2 id="Highcharts-VS-ECharts"><a href="#Highcharts-VS-ECharts" class="headerlink" title="Highcharts VS ECharts"></a>Highcharts VS ECharts</h2><ul><br>    <li>ECharts基于Canvas技术，动态渲染功能丰富；Highcharts基于SVG技术，动态增删节点十分灵活</li><br>    <li>Highcharts只供个人及非商业用途使用；ECharts开源使用</li><br>    <li>Highcharts示例及Api文档十分详尽；ECharts Api文档不够清晰</li><br>    <li>Highcharts对低版本Web浏览器及移动端支持较好；ECharts则稍欠缺，低版本Android特定机型出现过渲染失败的状况</li><br></ul>
           
         
@@ -572,7 +573,7 @@ $(&apos;#container&apos;).highcharts(baseOption);
 <h1 id="二、起步"><a href="#二、起步" class="headerlink" title="二、起步"></a>二、起步</h1><h2 id="1、入口"><a href="#1、入口" class="headerlink" title="1、入口"></a>1、入口</h2><ul>
 <li>路由：<code>report/common/index</code></li>
 <li>依据用户角色CODE及报告类型report_type获取JSON配置文件。但当url传入指定用户角色code及user_id时，则使用指定的用户信息获取配置。</li>
-<li>用户角色code：参见<a href="http://wiki.sdp.nd/index.php?title=%E5%8C%97%E4%BA%AC%E9%AB%98%E7%B2%BE%E5%B0%96-%E7%B3%BB%E7%BB%9F%E8%A7%92%E8%89%B2%E5%AE%9A%E4%B9%89" target="_blank" rel="external">北京高精尖-系统角色定义</a></li>
+<li>用户角色code：参见<a href="http://wiki.sdp.nd/index.php?title=%E5%8C%97%E4%BA%AC%E9%AB%98%E7%B2%BE%E5%B0%96-%E7%B3%BB%E7%BB%9F%E8%A7%92%E8%89%B2%E5%AE%9A%E4%B9%89" target="_blank" rel="noopener">北京高精尖-系统角色定义</a></li>
 <li>report_type：报告分类[main:总|微|日常|素质测评，general:综合报告，compositive:能力素养，double:s双师绩效统计，progess:素质测评进度，advance:优势分析，index:首页，psychology:心理建模]</li>
 <li>依据当前配置编译报告模版：<code>&lt;esp-report-container report-option=&quot;reportConfigNow&quot; load-data=&quot;loadData&quot;&gt;&lt;/esp-report-container&gt;</code></li>
 </ul>
@@ -610,7 +611,7 @@ $(&apos;#container&apos;).highcharts(baseOption);
 <h2 id="3、容器report-container"><a href="#3、容器report-container" class="headerlink" title="3、容器report-container"></a>3、容器report-container</h2><ul>
 <li>路由：<code>report/common/index</code></li>
 </ul>
-<h1 id="原型地址"><a href="#原型地址" class="headerlink" title="原型地址"></a>原型地址</h1><p><a href="http://svn.sdp.nd/svn/bj-edu/doc/%E6%9C%AA%E6%9D%A5%E6%95%99%E8%82%B2%E5%B9%B3%E5%8F%B0/03.%E8%AE%BE%E8%AE%A1/%E7%AD%96%E5%88%92%E8%AE%BE%E8%AE%A1/%E5%90%84%E7%89%88%E6%9C%AC%E5%8E%9F%E5%9E%8B%E6%96%87%E4%BB%B6/V0.8.23_2017.09.13/TQD61086_6%E3%80%90%E5%8C%97%E4%BA%AC%E9%AB%98%E7%B2%BE%E5%B0%96%E3%80%91%E3%80%90%E6%99%BA%E6%85%A7%E5%AD%A6%E4%BC%B4%E3%80%91%E8%AF%8A%E6%96%AD%E6%8A%A5%E5%91%8A_%E6%80%BB%E6%B5%8B%E5%BE%AE%E6%B5%8B%E6%8A%A5%E5%91%8A%E4%BC%98%E5%8C%96/TQD61086_6%E3%80%90%E5%8C%97%E4%BA%AC%E9%AB%98%E7%B2%BE%E5%B0%96%E3%80%91%E3%80%90%E6%99%BA%E6%85%A7%E5%AD%A6%E4%BC%B4%E3%80%91%E8%AF%8A%E6%96%AD%E6%8A%A5%E5%91%8A_%E6%80%BB%E6%B5%8B%E5%BE%AE%E6%B5%8B%E6%8A%A5%E5%91%8A%E4%BC%98%E5%8C%96/start.html#g=1&amp;p=版本管理" target="_blank" rel="external">诊断报告_总测微测报告优化</a></p>
+<h1 id="原型地址"><a href="#原型地址" class="headerlink" title="原型地址"></a>原型地址</h1><p><a href="http://svn.sdp.nd/svn/bj-edu/doc/%E6%9C%AA%E6%9D%A5%E6%95%99%E8%82%B2%E5%B9%B3%E5%8F%B0/03.%E8%AE%BE%E8%AE%A1/%E7%AD%96%E5%88%92%E8%AE%BE%E8%AE%A1/%E5%90%84%E7%89%88%E6%9C%AC%E5%8E%9F%E5%9E%8B%E6%96%87%E4%BB%B6/V0.8.23_2017.09.13/TQD61086_6%E3%80%90%E5%8C%97%E4%BA%AC%E9%AB%98%E7%B2%BE%E5%B0%96%E3%80%91%E3%80%90%E6%99%BA%E6%85%A7%E5%AD%A6%E4%BC%B4%E3%80%91%E8%AF%8A%E6%96%AD%E6%8A%A5%E5%91%8A_%E6%80%BB%E6%B5%8B%E5%BE%AE%E6%B5%8B%E6%8A%A5%E5%91%8A%E4%BC%98%E5%8C%96/TQD61086_6%E3%80%90%E5%8C%97%E4%BA%AC%E9%AB%98%E7%B2%BE%E5%B0%96%E3%80%91%E3%80%90%E6%99%BA%E6%85%A7%E5%AD%A6%E4%BC%B4%E3%80%91%E8%AF%8A%E6%96%AD%E6%8A%A5%E5%91%8A_%E6%80%BB%E6%B5%8B%E5%BE%AE%E6%B5%8B%E6%8A%A5%E5%91%8A%E4%BC%98%E5%8C%96/start.html#g=1&amp;p=版本管理" target="_blank" rel="noopener">诊断报告_总测微测报告优化</a></p>
 <h1 id="开发时间"><a href="#开发时间" class="headerlink" title="开发时间"></a>开发时间</h1><ul>
 <li>开发：2017.08.23</li>
 <li>提测：2017.09.12</li>
@@ -724,7 +725,7 @@ $(&apos;#container&apos;).highcharts(baseOption);
 </li>
 <li><p>[x] 27、综合报告-能力分析-学科能力表现：班主任+年级主任+学校+学区+区县+市级 new !! 2 浩东<br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/37D10F18E3D343718819836019B709F4/7667" alt="image"></p>
 </li>
-<li><p>[x] 28、综合报告-能力分析-学科关联性：年级主任+学校+学区+区县+市级 new !! 1 高伟  参考<a href="https://www.hcharts.cn/demo/highcharts/heatmap" target="_blank" rel="external">highcharts dome</a><br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/AD45C53F34554A988EB68B9FD5C8571C/7684" alt="image"></p>
+<li><p>[x] 28、综合报告-能力分析-学科关联性：年级主任+学校+学区+区县+市级 new !! 1 高伟  参考<a href="https://www.hcharts.cn/demo/highcharts/heatmap" target="_blank" rel="noopener">highcharts dome</a><br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/AD45C53F34554A988EB68B9FD5C8571C/7684" alt="image"></p>
 </li>
 <li><p>29、测评情况-班级成绩分析（班级成绩分布+班级成绩详情-可复用学生成绩详情部分）：年级主任+教研员+学校+学区+区县+市级+学科 new !! 2 浩东<br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/B159D31D0C364D79BDAF7DB0AC0EACF5/7665" alt="image"></p>
 </li>
@@ -1338,10 +1339,10 @@ $(&apos;#container&apos;).highcharts(baseOption);
       
         
           
-            <p style="display:none"><br>    大致目录：<br>需求选型<br>es6<br>组件化<br><a href="http://www.cnblogs.com/rock-roll/p/5692891.html" target="_blank" rel="external">http://www.cnblogs.com/rock-roll/p/5692891.html</a><br></p>
+            <p style="display:none"><br>    大致目录：<br>需求选型<br>es6<br>组件化<br><a href="http://www.cnblogs.com/rock-roll/p/5692891.html" target="_blank" rel="noopener">http://www.cnblogs.com/rock-roll/p/5692891.html</a><br></p>
 
 <h1 id="需求选型"><a href="#需求选型" class="headerlink" title="需求选型"></a>需求选型</h1><p>项目中原有的作答批阅组件是用Knockout构建的，由于新的交互设计优化及一些新功能，就有了造轮子的需求，而技术栈则采用：vue + vuex + es6 + webpack。下面则是我对项目开发中用到的、遇到的一些特性问题总结思考。</p>
-<h1 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h1><p>虽然es6早已在2015年下半年定稿，但在此之前我对它的了解也仅限于网上教程以及小打小闹的demo实践，并没有应用到项目中。而这次则亲身体验了把es6的一些优秀特性，对于还不熟悉的特性则参考着阮一峰的<a href="http://es6.ruanyifeng.com" target="_blank" rel="external">ECMAScript 6 入门</a>。</p>
+<h1 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h1><p>虽然es6早已在2015年下半年定稿，但在此之前我对它的了解也仅限于网上教程以及小打小闹的demo实践，并没有应用到项目中。而这次则亲身体验了把es6的一些优秀特性，对于还不熟悉的特性则参考着阮一峰的<a href="http://es6.ruanyifeng.com" target="_blank" rel="noopener">ECMAScript 6 入门</a>。</p>
 <h2 id="import、export"><a href="#import、export" class="headerlink" title="import、export"></a>import、export</h2><p>es6中实现了模块体系，完全可以取代 CommonJS 及 AMD 规范，从而实现模块化开发。</p>
 <h3 id="export"><a href="#export" class="headerlink" title="export"></a>export</h3><p>输出模块对外接口，其主要写法有：</p>
 <pre><code>export let fn1 = (){};
@@ -1535,7 +1536,7 @@ selfFn.fn2();
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

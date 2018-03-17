@@ -87,31 +87,19 @@
 
 
 
-<meta name="description" content="工作时间2016/02/02 - 至今
-项目概述工作内容工作总结Hash定位需求：业务中移动端使用web html5页面，左上角返回按钮调用history.back()关闭当前页回退。
-最初实现：设置hash值再定位到此，即：
-$location.hash(idName);
-$anchorScroll();
-问题：每次定位会记录到历史记录，使用history.back()回退时会回到每次hash定">
+<meta name="description" content="工作时间2016/02/02 - 至今 项目概述工作内容工作总结Hash定位需求：业务中移动端使用web html5页面，左上角返回按钮调用history.back()关闭当前页回退。 最初实现：设置hash值再定位到此，即： $location.hash(idName); $anchorScroll(); 问题：每次定位会记录到历史记录，使用history.back()回退时会回到每次hash定">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ND北京高精尖项目总结">
 <meta property="og:url" content="http://hollton.github.io/2017/05/14/ND北京高精尖项目总结/index.html">
 <meta property="og:site_name" content="HOLLTON">
-<meta property="og:description" content="工作时间2016/02/02 - 至今
-项目概述工作内容工作总结Hash定位需求：业务中移动端使用web html5页面，左上角返回按钮调用history.back()关闭当前页回退。
-最初实现：设置hash值再定位到此，即：
-$location.hash(idName);
-$anchorScroll();
-问题：每次定位会记录到历史记录，使用history.back()回退时会回到每次hash定">
-<meta property="og:updated_time" content="2017-10-14T09:56:31.220Z">
+<meta property="og:description" content="工作时间2016/02/02 - 至今 项目概述工作内容工作总结Hash定位需求：业务中移动端使用web html5页面，左上角返回按钮调用history.back()关闭当前页回退。 最初实现：设置hash值再定位到此，即： $location.hash(idName); $anchorScroll(); 问题：每次定位会记录到历史记录，使用history.back()回退时会回到每次hash定">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://hollton.github.io/img/work_report_mobile.png">
+<meta property="og:updated_time" content="2018-03-07T07:50:05.831Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ND北京高精尖项目总结">
-<meta name="twitter:description" content="工作时间2016/02/02 - 至今
-项目概述工作内容工作总结Hash定位需求：业务中移动端使用web html5页面，左上角返回按钮调用history.back()关闭当前页回退。
-最初实现：设置hash值再定位到此，即：
-$location.hash(idName);
-$anchorScroll();
-问题：每次定位会记录到历史记录，使用history.back()回退时会回到每次hash定">
+<meta name="twitter:description" content="工作时间2016/02/02 - 至今 项目概述工作内容工作总结Hash定位需求：业务中移动端使用web html5页面，左上角返回按钮调用history.back()关闭当前页回退。 最初实现：设置hash值再定位到此，即： $location.hash(idName); $anchorScroll(); 问题：每次定位会记录到历史记录，使用history.back()回退时会回到每次hash定">
+<meta name="twitter:image" content="http://hollton.github.io/img/work_report_mobile.png">
 
 
 
@@ -401,6 +389,8 @@ newScope.item = item;
 var chtml = $compile(html)(newScope);
 $(&apos;p&apos;).append(chtml);
 </code></pre><h3 id="v-model数据更新"><a href="#v-model数据更新" class="headerlink" title="v-model数据更新"></a>v-model数据更新</h3><p>问题背景：获取当前题的批阅分值，添加到题目对象上并使用v-model绑定在input。切换题目时若下一题的批阅分值为空且没有为题目对象初始化分值属性，使得v-model数据未更新，仍显示上一题的数据。<br>解决：每次切换均初始化分值属性，无则设置为null，保证切换时v-model更新。同时注意vue中为数组对象设置false类型值（如false，’’，null）时，直接使用<code>item.score = null</code>无效，需使用<code>this.$set(item,&#39;score&#39;,null)</code></p>
+<h3 id="android端报告横向滑动"><a href="#android端报告横向滑动" class="headerlink" title="android端报告横向滑动"></a>android端报告横向滑动</h3><p>问题：发现小米、华为机型下，报告panel横向滑动内容4无法滑动<br><img src="/img/work_report_mobile.png" alt=""><br>排查：点击5菜单展开遮罩再收起后，4即可滑动。查看遮罩样式发现有设置height:100%，手动为3内滚动框设置height:100%即可正常滚动（不可思议有什么关联）。但出现其它问题，滚动到底部会使1头部消失。为3设置计算高度height:calc(100% - xx);4panel横向滚动失效(┬＿┬)。设置3height:100%，同时设置1position:fixed解决滚动底部1消失问题，但存在点击5菜单6panel-title无法准确定位问题，排查后发现是因为触发了2外框的滚动，即双滚动条的定位。切图排查也无解后最终采用唐总的思路：点击菜单定位同时控制外框滚动。<br>解决：针对android端做处理，减少影响范围。设置3内滚动框height:100%+设置1头部fixed定位+点击菜单跳转最后一个目录控制2外滚动框滚动到底部，否则就滚动到顶部。<br>新问题：三星等特定机型向下滚动时，内滚动条滚动到底部后，不会触发外滚动条。导致不能完全显示全部内容，各种尝试无果后，只能还原样式更改，使用draggable.js拖拽解决横向滑动问题。这里还出现一个小问题：拖拽绑定后，table内的click失效。通过设置拖拽句柄而不把拖拽设置在table上解决</p>
+<h3 id="未加密URL参数导致前端页面获取400"><a href="#未加密URL参数导致前端页面获取400" class="headerlink" title="未加密URL参数导致前端页面获取400"></a>未加密URL参数导致前端页面获取400</h3><p>问题：测试环境jsp页面url带有&amp;question={…}时，服务器返回400，而本地运行则正常。后了解到服务器tomcat有做升级，未加密的url {}无法正确解析。encodeURIComponent处理解决，提供给url参数数据都应做加密处理，获取再解密。</p>
 
       
     </div>
@@ -431,8 +421,8 @@ $(&apos;p&apos;).append(chtml);
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/14/UML学习笔记/" rel="next" title="UML学习笔记">
-                <i class="fa fa-chevron-left"></i> UML学习笔记
+              <a href="/2017/05/14/ND备课系统项目总结/" rel="next" title="ND备课系统项目总结">
+                <i class="fa fa-chevron-left"></i> ND备课系统项目总结
               </a>
             
           </div>
@@ -441,8 +431,8 @@ $(&apos;p&apos;).append(chtml);
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/05/14/ND备课系统项目总结/" rel="prev" title="ND备课系统项目总结">
-                ND备课系统项目总结 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/06/11/设计模式/" rel="prev" title="设计模式">
+                设计模式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -592,7 +582,7 @@ $(&apos;p&apos;).append(chtml);
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#工作时间"><span class="nav-number">1.</span> <span class="nav-text">工作时间</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#项目概述"><span class="nav-number">1.1.</span> <span class="nav-text">项目概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工作内容"><span class="nav-number">1.2.</span> <span class="nav-text">工作内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工作总结"><span class="nav-number">1.3.</span> <span class="nav-text">工作总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hash定位"><span class="nav-number">1.3.1.</span> <span class="nav-text">Hash定位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异步加载"><span class="nav-number">1.3.2.</span> <span class="nav-text">异步加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ng-repeat内使用编译指令"><span class="nav-number">1.3.3.</span> <span class="nav-text">ng-repeat内使用编译指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-model数据更新"><span class="nav-number">1.3.4.</span> <span class="nav-text">v-model数据更新</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#工作时间"><span class="nav-number">1.</span> <span class="nav-text">工作时间</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#项目概述"><span class="nav-number">1.1.</span> <span class="nav-text">项目概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工作内容"><span class="nav-number">1.2.</span> <span class="nav-text">工作内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工作总结"><span class="nav-number">1.3.</span> <span class="nav-text">工作总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hash定位"><span class="nav-number">1.3.1.</span> <span class="nav-text">Hash定位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异步加载"><span class="nav-number">1.3.2.</span> <span class="nav-text">异步加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ng-repeat内使用编译指令"><span class="nav-number">1.3.3.</span> <span class="nav-text">ng-repeat内使用编译指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-model数据更新"><span class="nav-number">1.3.4.</span> <span class="nav-text">v-model数据更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#android端报告横向滑动"><span class="nav-number">1.3.5.</span> <span class="nav-text">android端报告横向滑动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#未加密URL参数导致前端页面获取400"><span class="nav-number">1.3.6.</span> <span class="nav-text">未加密URL参数导致前端页面获取400</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -615,7 +605,7 @@ $(&apos;p&apos;).append(chtml);
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

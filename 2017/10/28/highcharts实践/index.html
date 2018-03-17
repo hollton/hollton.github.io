@@ -87,19 +87,18 @@
 
 
 
-<meta name="description" content="highcharts介绍Highcharts是一个用纯JavaScript编写的图表库，基于svg技术。可兼容支持IE6+以及移动端，但低版本浏览器的渲染性能则稍差。Highcharts支持多种图表类型，较为常用的是柱状图、饼状图、雷达图。
-引入CND服务&amp;lt;script src=&amp;quot;http://cdn.hcharts.cn/highcharts/highcharts.js&amp;quot">
+<meta name="description" content="highcharts介绍Highcharts是一个用纯JavaScript编写的图表库，基于svg技术。可兼容支持IE6+以及移动端，但低版本浏览器的渲染性能则稍差。Highcharts支持多种图表类型，较为常用的是柱状图、饼状图、雷达图。 引入CND服务&amp;lt;script src=&amp;quot;http://cdn.hcharts.cn/highcharts/highcharts.js&amp;quot">
+<meta name="keywords" content="highcharts">
 <meta property="og:type" content="article">
 <meta property="og:title" content="highcharts实践">
 <meta property="og:url" content="http://hollton.github.io/2017/10/28/highcharts实践/index.html">
 <meta property="og:site_name" content="HOLLTON">
-<meta property="og:description" content="highcharts介绍Highcharts是一个用纯JavaScript编写的图表库，基于svg技术。可兼容支持IE6+以及移动端，但低版本浏览器的渲染性能则稍差。Highcharts支持多种图表类型，较为常用的是柱状图、饼状图、雷达图。
-引入CND服务&amp;lt;script src=&amp;quot;http://cdn.hcharts.cn/highcharts/highcharts.js&amp;quot">
-<meta property="og:updated_time" content="2017-10-31T08:25:02.849Z">
+<meta property="og:description" content="highcharts介绍Highcharts是一个用纯JavaScript编写的图表库，基于svg技术。可兼容支持IE6+以及移动端，但低版本浏览器的渲染性能则稍差。Highcharts支持多种图表类型，较为常用的是柱状图、饼状图、雷达图。 引入CND服务&amp;lt;script src=&amp;quot;http://cdn.hcharts.cn/highcharts/highcharts.js&amp;quot">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-10-31T08:25:02.850Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="highcharts实践">
-<meta name="twitter:description" content="highcharts介绍Highcharts是一个用纯JavaScript编写的图表库，基于svg技术。可兼容支持IE6+以及移动端，但低版本浏览器的渲染性能则稍差。Highcharts支持多种图表类型，较为常用的是柱状图、饼状图、雷达图。
-引入CND服务&amp;lt;script src=&amp;quot;http://cdn.hcharts.cn/highcharts/highcharts.js&amp;quot">
+<meta name="twitter:description" content="highcharts介绍Highcharts是一个用纯JavaScript编写的图表库，基于svg技术。可兼容支持IE6+以及移动端，但低版本浏览器的渲染性能则稍差。Highcharts支持多种图表类型，较为常用的是柱状图、饼状图、雷达图。 引入CND服务&amp;lt;script src=&amp;quot;http://cdn.hcharts.cn/highcharts/highcharts.js&amp;quot">
 
 
 
@@ -412,7 +411,7 @@ if($scope.customOption){
 
 $(&apos;#container&apos;).highcharts(baseOption);
 </code></pre><h2 id="实践总结"><a href="#实践总结" class="headerlink" title="实践总结"></a>实践总结</h2><h3 id="移动端渲染抖动"><a href="#移动端渲染抖动" class="headerlink" title="移动端渲染抖动"></a>移动端渲染抖动</h3><p>渲染图表时有一个从无到有的过程，通过tab切换数据渲染图表时，在移动端会有较明显的页面跳动，可通过对图表容器设置min-height解决。</p>
-<h3 id="依据数据量调整图表宽高"><a href="#依据数据量调整图表宽高" class="headerlink" title="依据数据量调整图表宽高"></a>依据数据量调整图表宽高</h3><p>图表宽高会依据父级宽高自适应，但当数据量较大时，由于宽高已由父级确定，会使得图表的数据项挤在一起。这时需要依据数据量手动计算宽高重置图表的宽高，如例子<a href="https://code.hcharts.cn/hollton/HSKjLw" target="_blank" rel="external">图表自适应高度</a></p>
+<h3 id="依据数据量调整图表宽高"><a href="#依据数据量调整图表宽高" class="headerlink" title="依据数据量调整图表宽高"></a>依据数据量调整图表宽高</h3><p>图表宽高会依据父级宽高自适应，但当数据量较大时，由于宽高已由父级确定，会使得图表的数据项挤在一起。这时需要依据数据量手动计算宽高重置图表的宽高，如例子<a href="https://code.hcharts.cn/hollton/HSKjLw" target="_blank" rel="noopener">图表自适应高度</a></p>
 <h2 id="Highcharts-VS-ECharts"><a href="#Highcharts-VS-ECharts" class="headerlink" title="Highcharts VS ECharts"></a>Highcharts VS ECharts</h2><ul><br>    <li>ECharts基于Canvas技术，动态渲染功能丰富；Highcharts基于SVG技术，动态增删节点十分灵活</li><br>    <li>Highcharts只供个人及非商业用途使用；ECharts开源使用</li><br>    <li>Highcharts示例及Api文档十分详尽；ECharts Api文档不够清晰</li><br>    <li>Highcharts对低版本Web浏览器及移动端支持较好；ECharts则稍欠缺，低版本Android特定机型出现过渲染失败的状况</li><br></ul>
       
     </div>
@@ -629,7 +628,7 @@ $(&apos;#container&apos;).highcharts(baseOption);
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
