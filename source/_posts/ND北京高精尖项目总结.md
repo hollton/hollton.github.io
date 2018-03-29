@@ -57,3 +57,39 @@ categories: [工作]
 
 ### 未加密URL参数导致前端页面获取400
 问题：测试环境jsp页面url带有&question={...}时，服务器返回400，而本地运行则正常。后了解到服务器tomcat有做升级，未加密的url {}无法正确解析。encodeURIComponent处理解决，提供给url参数数据都应做加密处理，获取再解密。
+
+### postMessage IE8 接收不到消息
+项目中在iframe页向父级发送postMessage消息，且兼容到IE8，问题就出现在IE8下 `window.attachEvent('message', function(event){})` 监听不到消息，后查找[资料](http://www.zhangxinxu.com/study/201202/web-messing-cross-document-messaging-two-iframe.html)是IE8兼容问题，需使用'onmessage'，完美解决。
+
+iframe.html:
+	
+	// IE9及以下不支持发送object消息
+	window.parent.postMessage(JSON.stringify(msgObj), '*')
+
+parent.html:
+
+	if(window.addEventListener) {
+		window.addEventListener('message', function (event) {
+           console.log(event.data)
+		});
+	}else{
+		window.attachEvent('onmessage',function (event) {
+			console.log(event.data)
+		});
+	}
+
+### IE8 图片加载失效
+使用`image.onload`未触发加载成功响应，触发onload事件的条件是资源从服务器传到本地，即下载完成。但如果资源指向url已在本地有缓存，IE8 及 firefox 下就不会触发onload。因此应当把`image.src`赋值代码放在最后执行，即：
+
+	let image = new Image()
+	// image.src = url
+	image.onload = () => { ... }
+	image.onerror = () => { ... }
+	image.src = url
+
+### Github demo 添加预览地址
+在 demo.index 源码 url 前添加`http://htmlpreview.github.io/?`，例如：
+
+demo ：`https://github.com/hollton/image-viewer/blob/master/demo/index.html`
+
+添加前缀：`http://htmlpreview.github.io/?https://github.com/hollton/image-viewer/blob/master/demo/index.html`
