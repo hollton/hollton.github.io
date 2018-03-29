@@ -457,478 +457,6 @@ $(&apos;#container&apos;).highcharts(baseOption);
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2017/09/15/高精尖总测、微测报告重构文档/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hollton">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HOLLTON">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/09/15/高精尖总测、微测报告重构文档/" itemprop="url">
-                  北京高精尖项目报告文档
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-15T12:03:38+08:00">
-                2017-09-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/工作/" itemprop="url" rel="index">
-                    <span itemprop="name">工作</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/09/15/高精尖总测、微测报告重构文档/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/09/15/高精尖总测、微测报告重构文档/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="一、介绍"><a href="#一、介绍" class="headerlink" title="一、介绍"></a>一、介绍</h1><ul>
-<li>报告模块为多角色公用，无角色访问限制</li>
-<li>提供移动端适配</li>
-</ul>
-<h1 id="二、起步"><a href="#二、起步" class="headerlink" title="二、起步"></a>二、起步</h1><h2 id="1、入口"><a href="#1、入口" class="headerlink" title="1、入口"></a>1、入口</h2><ul>
-<li>路由：<code>report/common/index</code></li>
-<li>依据用户角色CODE及报告类型report_type获取JSON配置文件。但当url传入指定用户角色code及user_id时，则使用指定的用户信息获取配置。</li>
-<li>用户角色code：参见<a href="http://wiki.sdp.nd/index.php?title=%E5%8C%97%E4%BA%AC%E9%AB%98%E7%B2%BE%E5%B0%96-%E7%B3%BB%E7%BB%9F%E8%A7%92%E8%89%B2%E5%AE%9A%E4%B9%89" target="_blank" rel="noopener">北京高精尖-系统角色定义</a></li>
-<li>report_type：报告分类[main:总|微|日常|素质测评，general:综合报告，compositive:能力素养，double:s双师绩效统计，progess:素质测评进度，advance:优势分析，index:首页，psychology:心理建模]</li>
-<li>依据当前配置编译报告模版：<code>&lt;esp-report-container report-option=&quot;reportConfigNow&quot; load-data=&quot;loadData&quot;&gt;&lt;/esp-report-container&gt;</code></li>
-</ul>
-<h2 id="2、JSON配置"><a href="#2、JSON配置" class="headerlink" title="2、JSON配置"></a>2、JSON配置</h2><ul>
-<li>路由：<code>report/common/index/config-data</code></li>
-<li>命名：{角色CODE}_{report_type}.json</li>
-<li>containerTemplate：报告容器使用的模版类型</li>
-<li><p>search：报告搜索，可指定指令类型(directiveName)、搜索参数(paramData)、额外配置(customOption)等，例如：</p>
-<pre><code>&quot;search&quot;: {
-  &quot;directiveName&quot;: &quot;tabselect&quot;,
-  &quot;customOption&quot;: {
-    &quot;selectData&quot;:[{
-      &quot;code&quot;:&quot;class&quot;
-    }],
-    &quot;paramData&quot;: {
-      &quot;exam_id&quot;: {
-        &quot;variableType&quot;: &quot;$stateParams&quot;,
-        &quot;variableKey&quot;: &quot;exam_id&quot;
-      }
-    }
-  }
-}
-</code></pre></li>
-<li>navigation：侧边栏导航，可指定指令类型(directiveName)</li>
-<li>tab：报告tab切换，可指定指令类型(directiveName)、额外配置(customOption)中使用tabData获取tab数据项</li>
-<li>groupName：当前分组类型，当前角色查看其他角色报告时，需用groupName过滤panel项</li>
-<li><p>reportPanelArrayOther：其他角色JSON配置，当前角色查看其他角色报告时，需先引入其配置，例如市级管理员引入区县管理员的报告配置：</p>
-<pre><code>&quot;reportPanelArrayOther&quot;:[{
-  &quot;groupName&quot;: &quot;county&quot;,
-  &quot;configKey&quot;:&quot;AREA_ADMIN_main&quot;
-}]
-</code></pre></li>
-<li>reportPanelArray：当前角色报告内容项。可指定子分类及tab分类，用于切换tab时过滤展示报告项(subGroupName)、panel指令名称后缀(panelType)、API接口，支持String及Array类型，Array类型可进一步指定个性参数及返回数据key(apiUrl)、额外配置(customOption)</li>
-</ul>
-<h2 id="3、容器report-container"><a href="#3、容器report-container" class="headerlink" title="3、容器report-container"></a>3、容器report-container</h2><ul>
-<li>路由：<code>report/common/index</code></li>
-</ul>
-<h1 id="原型地址"><a href="#原型地址" class="headerlink" title="原型地址"></a>原型地址</h1><p><a href="http://svn.sdp.nd/svn/bj-edu/doc/%E6%9C%AA%E6%9D%A5%E6%95%99%E8%82%B2%E5%B9%B3%E5%8F%B0/03.%E8%AE%BE%E8%AE%A1/%E7%AD%96%E5%88%92%E8%AE%BE%E8%AE%A1/%E5%90%84%E7%89%88%E6%9C%AC%E5%8E%9F%E5%9E%8B%E6%96%87%E4%BB%B6/V0.8.23_2017.09.13/TQD61086_6%E3%80%90%E5%8C%97%E4%BA%AC%E9%AB%98%E7%B2%BE%E5%B0%96%E3%80%91%E3%80%90%E6%99%BA%E6%85%A7%E5%AD%A6%E4%BC%B4%E3%80%91%E8%AF%8A%E6%96%AD%E6%8A%A5%E5%91%8A_%E6%80%BB%E6%B5%8B%E5%BE%AE%E6%B5%8B%E6%8A%A5%E5%91%8A%E4%BC%98%E5%8C%96/TQD61086_6%E3%80%90%E5%8C%97%E4%BA%AC%E9%AB%98%E7%B2%BE%E5%B0%96%E3%80%91%E3%80%90%E6%99%BA%E6%85%A7%E5%AD%A6%E4%BC%B4%E3%80%91%E8%AF%8A%E6%96%AD%E6%8A%A5%E5%91%8A_%E6%80%BB%E6%B5%8B%E5%BE%AE%E6%B5%8B%E6%8A%A5%E5%91%8A%E4%BC%98%E5%8C%96/start.html#g=1&amp;p=版本管理" target="_blank" rel="noopener">诊断报告_总测微测报告优化</a></p>
-<h1 id="开发时间"><a href="#开发时间" class="headerlink" title="开发时间"></a>开发时间</h1><ul>
-<li>开发：2017.08.23</li>
-<li>提测：2017.09.12</li>
-<li>生产：2017.09.19</li>
-</ul>
-<h1 id="开发人员"><a href="#开发人员" class="headerlink" title="开发人员"></a>开发人员</h1><ul>
-<li>前端：刘浩东(170776) 念高伟(294310) 董海根(720114) 唐焱鑫(380984)</li>
-<li>服务端：曹长荣(633592) 杨英宝(150303) 唐强(127002)</li>
-<li>IOS：吴于凌(520510)</li>
-<li>Android:葛文斌(890420)</li>
-</ul>
-<h1 id="代码规范"><a href="#代码规范" class="headerlink" title="代码规范"></a>代码规范</h1><h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><p><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/C3F08A20F6D3491B8AE2C94769A8D923/7693" alt="image"></p>
-<h3 id="directive"><a href="#directive" class="headerlink" title="$directive"></a>$directive</h3><p><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/3490F9A11BBD488A9290E4D8357D5CEF/7692" alt="image"></p>
-<ul>
-<li>1、simple-xx：基础图表，与业务数据无关，越简单越好，如本次“学科关联性”图表可像这样新增一个指令</li>
-<li>2、report-container：报告容器，提供多种容器模版。报告在此根据JSON配置编译组装report-search、report-panel指令，报告即由某个container模版包含某个search模版+多个panel模版组成</li>
-<li>3、report-search：报告搜索头，提供多种模版，根据不同搜索条件查询服务端接口</li>
-<li>4、report-panel：报告内容元，展示具体的业务数据，命名规则为”report-panel-xxx”（xxx均小写），如提供移动端模版，追加”-phone/pad”，本版本开发中，新增的panel指令，建议统一使用”report-panel-newxxx”命名以示区分（如report-panel-newability）</li>
-</ul>
-<h3 id="service"><a href="#service" class="headerlink" title="$service"></a>$service</h3><ul>
-<li>1、report-util：报告公用方法，有报告间公用逻辑可写在此</li>
-</ul>
-<h3 id="common-index-config-data"><a href="#common-index-config-data" class="headerlink" title="common/index/config-data"></a>common/index/config-data</h3><ul>
-<li><p>2、JSON配置：</p>
-<p>  “TERMTEST”：测评类型（“TERMTEST”、“UNITTEST”、“QOMTEST”）</p>
-<p>  “containerTemplate”：container模版</p>
-<p>  “search”：搜索部分，包含搜索模版及公用动态参数配置，动态参数指定解析类型及key，具体见report-container.js，开始访问api时解析参数</p>
-<p>  “reportPanelArray”：panel数组配置，指定每个panel指令名称（panelType）、指令个性配置（customOption）、服务端api地址配置（apiUrl），需访问多个api接口可配置为数组形式，使用resDataKey以区分不同返回结果及使用paramData提供不同参数</p>
-</li>
-</ul>
-<p><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/9DADD3B1CDA14E2AA303C4361CEF0414/7686" alt="image"></p>
-<h3 id="移动端模版"><a href="#移动端模版" class="headerlink" title="移动端模版"></a>移动端模版</h3><ul>
-<li>在src/main/webapp/template.js文件中新增移动端模版路径配置，通过在报告页面url追加&amp;from_where=ios&amp;client=phone&amp;mode=debug访问。</li>
-<li>如：’views/report/$directive/report-panel/report-panel-basedata.html’: {phone: ‘phone’}</li>
-</ul>
-<h3 id="报告下载"><a href="#报告下载" class="headerlink" title="报告下载"></a>报告下载</h3><ul>
-<li>模版中添加’report-download-item’下载报告时截取此dom。panel指令里都需要添加，包括移动端模版。</li>
-<li>若模版内容较多，需拆分设置该类名，且覆盖整个模版有效区域，如：<br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/4239B085BC4948F8B52CD9B350BEE4D7/7951" alt="image"></li>
-</ul>
-<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>除了提供代码注释外，建议加上配置项的注释 ︿(￣︶￣)︽(￣︶￣)︿飞.飞.飞.<br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/221BA1DCA5CA4BD180BEF370B1682732/7683" alt="image"></p>
-<h2 id="新版报告配置"><a href="#新版报告配置" class="headerlink" title="新版报告配置"></a>新版报告配置</h2><p>参考CITY_ADMIN_main.json</p>
-<ul>
-<li>“containerTemplate”: “tab”</li>
-<li>搜索模版使用”directiveName”: “tabselect”</li>
-<li>搜索新增tabData：报告内页切换（测评情况-能力分析）</li>
-<li>搜索新增selectData：报告下拉项，其中”depend”表明其数据依赖项</li>
-<li>reportPanelArrayOther：配置下级角色的报告复用，与selectData呼应，其中configKey指定所复用的配置文件</li>
-<li>reportPanelArray：本级报告配置项，其中subGroupName表显示报告项，overview-测评情况，analysis-能力分析</li>
-</ul>
-<h1 id="功能拆分"><a href="#功能拆分" class="headerlink" title="功能拆分"></a>功能拆分</h1><h3 id="报告内容：使用角色-开发类型-优先级-周期-开发人员-备注"><a href="#报告内容：使用角色-开发类型-优先级-周期-开发人员-备注" class="headerlink" title="报告内容：使用角色 + 开发类型 + 优先级 + 周期 + 开发人员 + 备注"></a>报告内容：使用角色 + 开发类型 + 优先级 + 周期 + 开发人员 + 备注</h3><h5 id="开发类型：new为需新开发；edit为可修改原有指令开发；edit-new为建议拷贝已有代码，新建指令修改开发"><a href="#开发类型：new为需新开发；edit为可修改原有指令开发；edit-new为建议拷贝已有代码，新建指令修改开发" class="headerlink" title="开发类型：new为需新开发；edit为可修改原有指令开发；edit+new为建议拷贝已有代码，新建指令修改开发"></a>开发类型：new为需新开发；edit为可修改原有指令开发；edit+new为建议拷贝已有代码，新建指令修改开发</h5><h5 id="优先级：-越多优先级建议越高"><a href="#优先级：-越多优先级建议越高" class="headerlink" title="优先级：!越多优先级建议越高"></a>优先级：!越多优先级建议越高</h5><h5 id="学生、教师角色需考虑移动端的样式"><a href="#学生、教师角色需考虑移动端的样式" class="headerlink" title="学生、教师角色需考虑移动端的样式"></a>学生、教师角色需考虑移动端的样式</h5><h5 id="panel指令都需提供空数据冒泡"><a href="#panel指令都需提供空数据冒泡" class="headerlink" title="panel指令都需提供空数据冒泡"></a>panel指令都需提供空数据冒泡</h5><p>表明当前panel数据是否为空，如：</p>
-<pre><code>$scope.$emit(&quot;report:panel:showEmpty&quot;,isEmpty);
-</code></pre><ul>
-<li><p>[x] 1、Tab搜索report-search：全角色 new  !!! 1 浩东<br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/14EAA37ED1D04C898F301A64002275F4/7679" alt="image"></p>
-</li>
-<li><p>[x] 2、报告页内导航，考虑布局：全角色 new  !!! 1 浩东<br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/FF3C3A7397104825A4FB1E91F31F1024/7681" alt="image"></p>
-</li>
-<li><p>[x] 3、tab跳转按钮：全角色 new !! 1 浩东<br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/74AC593EE52E45ED88B50F25F701018D/7696" alt="image"></p>
-</li>
-<li><p>[x] 4、测评情况-整体情况（分数排名）：学生（移动端） edit+new !! 1 海根 参考report-panel-basedata<br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/8C6DF816F14B46F79D259FF8B036DA09/7689" alt="image"></p>
-</li>
-<li><p>5、测评情况-答题详情：学生（移动端） new !! 1 海根<br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/D82E447FC2794B2AADBD9AAE6E95E271/7694" alt="image"></p>
-</li>
-<li><p>[x] 6、测评情况-薄弱知识点分析：学生（移动端） new !! 1 高伟<br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/2CE4F964327E4AF7AD9C57D850837EEA/7857" alt="image"></p>
-</li>
-<li><p>[x] 7、测评情况-薄弱知识点分析：学生（移动端） new !! 1 高伟<br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/9C457C6E9ECA449ABB3BF29B59CD2EB7/7688" alt="image"></p>
-</li>
-<li><p>[x] 8、测评情况-学习提升：学生（移动端） new !! 1 高伟<br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/D978720B3CF947D89E57F3F12F6C743A/7695" alt="image"></p>
-</li>
-<li><p>[x] 9、能力分析-整体情况(考试评价)：学生（移动端） edit+new !!  1 海根 参考report-panel-basedata<br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/E0C0C0C8E8E74B0791FEE6664DA43052/7668" alt="image"></p>
-</li>
-<li><p>[x] 10、能力分析-学科能力表现：学生+教师（移动端）+班主任 edit+new !!! 1 浩东<br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/3C2EA58BE76A43A5BF8F2D9A9013217B/7664" alt="image"></p>
-</li>
-</ul>
-<ul>
-<li><p>[x] 11、能力分析-学科能力表现：年级主任+教研员+学校+学区+区县+市级+学科  !!! 1 浩东<br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/6B771829B5EE47878261867EF2025E63/7669" alt="image"></p>
-</li>
-<li><p>[x] 12、能力分析-主题能力表现：学生+教师（移动端）+班主任  !!! 1 浩东 部分复用10<br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/5359A4DBCBE84C82AB20FACF46294485/7670" alt="image"></p>
-</li>
-<li><p>[x] 13、能力分析-主题能力表现：年级主任+教研员+学校+学区+区县+市级+学科  !!! 1 浩东 部分复用11<br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/2FB233DA63744026932FFB97500938ED/7682" alt="image"></p>
-</li>
-</ul>
-<ul>
-<li><p>[x] 14、能力分析-核心素养表现：学生+教师（移动端）+班主任 edit+new !! 2 高伟 参考report-panel-tagscore<br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/6A06607D78104FE0A870B99152E091A3/7678" alt="image"></p>
-</li>
-<li><p>15、能力分析-核心素养表现：年级主任+教研员+学校+学区+区县+市级+学科 edit+new !! 2 高伟 参考report-panel-tagscore<br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/FAB9A34A66814346A78445E56464216A/8001" alt="image"></p>
-</li>
-<li><p>[x] 16、能力素养-历次总测总分排名：学生（移动端） edit ! 2 海根 report-panel-termtestscoreorderhistorydatas<br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/109AE3ADD03543F9B60E8D5D4F11CDF0/7677" alt="image"></p>
-</li>
-<li><p>[x] 17、测评情况-整体情况(考试概况+分数分布)：教师（移动端）+班主任+年级主任+教研员+学校+学区+区县+市级+学科 new !!! 1 浩东  参考report-panel-scoredistribution<br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/E88CD7F850984448AEADFD0063B9D424/7680" alt="image"><br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/2C934406C6BA43FABE1E6C0F04BBA5B3/7675" alt="image"></p>
-</li>
-<li><p>[x] 18、测评情况-整体情况(考试概况+分数分布)：教师（移动端）+班主任+年级主任+教研员+学校+学区+区县+市级+学科 new !!! 1 浩东  参考report-panel-scoredistribution 部分复用17<br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/E88CD7F850984448AEADFD0063B9D424/7680" alt="image"><br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/2C934406C6BA43FABE1E6C0F04BBA5B3/7675" alt="image"></p>
-</li>
-</ul>
-<ul>
-<li>[x] 19、测评情况-学生成绩详情(学生作答情况)：教师（移动端）+班主任+年级主任+学校+学区+区县+市级 new !!! 1 浩东<br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/51F32EE6E35A422784762A7BAFEDA635/7674" alt="image"></li>
-</ul>
-<ul>
-<li><p>20、测评情况-试卷作答统计：教师（移动端）+班主任+年级主任+教研员+学校+学区+区县+市级+学科 new !!! 2 高伟<br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/9F98600D8EAE48EA9EBDE5CCBC26DDD9/7671" alt="image"></p>
-</li>
-<li><p>[x] 21、测评情况-知识点掌握情况：教师（移动端）+班主任+年级主任+教研员+学校+学区+区县+市级+学科 edit+new !!! 2 海根 参考report-panel-basedata<br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/FBDAC96E17A446FC812401F8DDA9BBE2/7690" alt="image"></p>
-</li>
-<li><p>[x] 22、测评情况-学习目标掌握情况：教师（移动端）+班主任+年级主任+教研员+学校+学区+区县+市级+学科 edit+new !!! 2 海根 参考report-panel-basedata<br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/BCE773EBE8E443019B946452BAAFD528/7999" alt="image"></p>
-</li>
-<li><p>[x] 23、能力分析-能力水平分布：教师（移动端）+班主任+年级主任+教研员+学校+学区+区县+市级+学科 edit+new !!! 1 浩东 参考report-panel-abilityscale<br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/4345E97D307B4135B446E850B64C6C46/7673" alt="image"><br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/91F0F570DCE845AE8B9FE7715996C234/7672" alt="image"></p>
-</li>
-<li><p>24、能力分析-试卷分析：教师（移动端）+班主任+年级主任+教研员+学校+学区+区县+市级+学科 edit !! 2 唐总 report-panel-paperanalysis<br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/C0854D34D33A47BDBA6ED0859A8F6F18/7666" alt="image"></p>
-</li>
-<li><p>25、能力素养-学生能力水平分布：教师（移动端） edit ! 2 浩东<br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/AD880FDCEFCF48BB8B5C3F482372D778/7687" alt="image"></p>
-</li>
-<li><p>26、总测列表-综合报告列表+学科报告列表：班主任+年级主任+学校+学区+区县+市级 edit !!! 1 唐总<br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/20A3A0349C694C1B982744C8C0CDC76B/7691" alt="image"></p>
-</li>
-<li><p>[x] 27、综合报告-能力分析-学科能力表现：班主任+年级主任+学校+学区+区县+市级 new !! 2 浩东<br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/37D10F18E3D343718819836019B709F4/7667" alt="image"></p>
-</li>
-<li><p>[x] 28、综合报告-能力分析-学科关联性：年级主任+学校+学区+区县+市级 new !! 1 高伟  参考<a href="https://www.hcharts.cn/demo/highcharts/heatmap" target="_blank" rel="noopener">highcharts dome</a><br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/AD45C53F34554A988EB68B9FD5C8571C/7684" alt="image"></p>
-</li>
-<li><p>29、测评情况-班级成绩分析（班级成绩分布+班级成绩详情-可复用学生成绩详情部分）：年级主任+教研员+学校+学区+区县+市级+学科 new !! 2 浩东<br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/B159D31D0C364D79BDAF7DB0AC0EACF5/7665" alt="image"></p>
-</li>
-<li><p>30、报告设置：系统管理员 new !! 2 海根<br><img src="http://note.youdao.com/yws/public/resource/e1fd652d2a1b26e7528c50434db8d311/xmlnote/814D72B4646A44C3AB1310182042D805/7851" alt="image"></p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2017/07/15/素质测评管理后台特性问题记录/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hollton">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HOLLTON">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/15/素质测评管理后台特性问题记录/" itemprop="url">
-                  素质测评管理后台特性问题记录
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-15T17:09:42+08:00">
-                2017-07-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/工作/" itemprop="url" rel="index">
-                    <span itemprop="name">工作</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/07/15/素质测评管理后台特性问题记录/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/07/15/素质测评管理后台特性问题记录/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="引发BUG诱因"><a href="#引发BUG诱因" class="headerlink" title="引发BUG诱因"></a>引发BUG诱因</h1><h2 id="原型粗略"><a href="#原型粗略" class="headerlink" title="原型粗略"></a>原型粗略</h2><p>原型只涉及到通用量表的操作控制，而未考虑到某些量表的特殊性，卓国铨零零散散的与策划澄清原型时间长一个月，就能说明原型本身很有问题了。</p>
-<h2 id="涉及范围之广"><a href="#涉及范围之广" class="headerlink" title="涉及范围之广"></a>涉及范围之广</h2><p>涉及到六大量表的题型编辑、量表配置及由此相关的考试、报告。</p>
-<h2 id="开放操作控制"><a href="#开放操作控制" class="headerlink" title="开放操作控制"></a>开放操作控制</h2><p>面对用户不可预知的操作，对以上所提到的各量表的题型及标注都需要添加控制操作，尤其标注的操作控制，在后端的代码中后面发现针对特殊量表如汉语阅读、亲子关系存在着前端所不知道的隐含逻辑。</p>
-<h2 id="特性开发工作过渡"><a href="#特性开发工作过渡" class="headerlink" title="特性开发工作过渡"></a>特性开发工作过渡</h2><p>新接触这部分代码并进行二次开发，前期做了不少熟悉业务及代码逻辑的工作。</p>
-<h2 id="测试时间少"><a href="#测试时间少" class="headerlink" title="测试时间少"></a>测试时间少</h2><p>一是开发的量表维度多，留给测试的时间少；<br>二是需要测试的量表类型多，没那么多精力时间一一测过去。</p>
-<h2 id="用例覆盖范围"><a href="#用例覆盖范围" class="headerlink" title="用例覆盖范围"></a><del>用例覆盖范围</del></h2><p><del>用例覆盖到本版本特性的试卷编辑管理，没涉及到对考试、报告的影响。</del></p>
-<h1 id="BUG量统计"><a href="#BUG量统计" class="headerlink" title="BUG量统计"></a>BUG量统计</h1><h2 id="共计解决BUG-19-个"><a href="#共计解决BUG-19-个" class="headerlink" title="共计解决BUG 19 个"></a>共计解决BUG 19 个</h2><h3 id="建议及重复BUG-10-个-（5-5）"><a href="#建议及重复BUG-10-个-（5-5）" class="headerlink" title="建议及重复BUG 10 个 （5+5）"></a>建议及重复BUG 10 个 （5+5）</h3><h3 id="需求问题BUG-3-个"><a href="#需求问题BUG-3-个" class="headerlink" title="需求问题BUG 3 个"></a>需求问题BUG 3 个</h3><h3 id="有效BUG-6-个"><a href="#有效BUG-6-个" class="headerlink" title="有效BUG　6　个"></a>有效BUG　6　个</h3><h4 id="非本版本特性开发产生而是由于开放配置，其他模块不兼容产生的BUG-4-个"><a href="#非本版本特性开发产生而是由于开放配置，其他模块不兼容产生的BUG-4-个" class="headerlink" title="非本版本特性开发产生而是由于开放配置，其他模块不兼容产生的BUG 4 个"></a>非本版本特性开发产生而是由于开放配置，其他模块不兼容产生的BUG 4 个</h4><h4 id="本版本特性开发BUG-2-个"><a href="#本版本特性开发BUG-2-个" class="headerlink" title="本版本特性开发BUG 2 个"></a>本版本特性开发BUG 2 个</h4><h5 id="由于后端历史遗留问题产生BUG-1-个"><a href="#由于后端历史遗留问题产生BUG-1-个" class="headerlink" title="由于后端历史遗留问题产生BUG 1 个"></a>由于后端历史遗留问题产生BUG 1 个</h5><p>如后端做校验控制抛异常码，并未列在WIKI上，前端未捕获提示，导致页面报错。之前陈广文也处理过类似问题BUG，这种问题在责任划分上应该归于哪端问题？</p>
-<h5 id="版本开发代码逻辑不严谨产生BUG-1-个"><a href="#版本开发代码逻辑不严谨产生BUG-1-个" class="headerlink" title="版本开发代码逻辑不严谨产生BUG 1 个"></a>版本开发代码逻辑不严谨产生BUG 1 个</h5><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>本版本的开发内容及成果。。。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2017/06/18/读书列表/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1407,6 +935,360 @@ selfFn.fn2();
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2017/06/11/设计模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hollton">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HOLLTON">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/11/设计模式/" itemprop="url">
+                  设计模式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-11T15:28:34+08:00">
+                2017-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/11/设计模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/06/11/设计模式/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>之前有学习整理过针对JavaScript语言的设计模式，但局限于特定语言且不太深入，现在不如我们从头开始，学习设计模式相关的内容。</p>
+<h1 id="面向对象设计（Object-Oriented-Design，OOD）"><a href="#面向对象设计（Object-Oriented-Design，OOD）" class="headerlink" title="面向对象设计（Object-Oriented Design，OOD）"></a>面向对象设计（Object-Oriented Design，OOD）</h1><h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><p><ol><br>    <li>面向对象</li><br>    <li>复用</li><br>    <li>变化的代价极小</li><br>    <li>无需改代码即可扩展</li><br></ol></p>
+<h2 id="基本原则（SOLID五项原则）"><a href="#基本原则（SOLID五项原则）" class="headerlink" title="基本原则（SOLID五项原则）"></a>基本原则（SOLID五项原则）</h2><p><ol><br>    <li>S = 单一责任原则</li><br>    <li>O = 开闭原则</li><br>    <li>L = Liscov替换原则</li><br>    <li>I = 接口隔离原则</li><br>    <li>D = 依赖倒置原则</li><br></ol></p>
+<h3 id="单一责任原则"><a href="#单一责任原则" class="headerlink" title="单一责任原则"></a>单一责任原则</h3><p>“导致类变化的因素永远不要多于一个”，即一个类有且只有一个职责。如果一个类的职责多于一个，就需要根据职责拆分为多个类，但这并不意味着一个类中不能有多个方法，但要求多个方法是为了同一个目的。</p>
+<h3 id="开闭原则"><a href="#开闭原则" class="headerlink" title="开闭原则"></a>开闭原则</h3><p>“软件实体（类，模块，函数等）应该对扩展开放，对修改关闭”</p>
+<h3 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h3><p>“子类型必须能够替换它们的基类”即子类可以扩展父类的功能，但不能改变父类原有的功能</p>
+<h3 id="接口隔离原则"><a href="#接口隔离原则" class="headerlink" title="接口隔离原则"></a>接口隔离原则</h3><p>“用户不应该被迫依赖他们不使用的接口”，一个类对另一个类的依赖应该建立在最小的接口上</p>
+<h3 id="依赖倒置原则"><a href="#依赖倒置原则" class="headerlink" title="依赖倒置原则"></a>依赖倒置原则</h3><p>“高层次的模块不应该依赖于低层次的模块，而都应依赖于抽象；抽象不应该依赖细节，细节应该依赖抽象”</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2017/05/14/ND北京高精尖项目总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hollton">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HOLLTON">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/05/14/ND北京高精尖项目总结/" itemprop="url">
+                  ND北京高精尖项目总结
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-14T17:41:07+08:00">
+                2017-05-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/工作/" itemprop="url" rel="index">
+                    <span itemprop="name">工作</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/14/ND北京高精尖项目总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/14/ND北京高精尖项目总结/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="工作时间"><a href="#工作时间" class="headerlink" title="工作时间"></a>工作时间</h1><p>2016/02/02 - 至今</p>
+<h2 id="项目概述"><a href="#项目概述" class="headerlink" title="项目概述"></a>项目概述</h2><h2 id="工作内容"><a href="#工作内容" class="headerlink" title="工作内容"></a>工作内容</h2><h2 id="工作总结"><a href="#工作总结" class="headerlink" title="工作总结"></a>工作总结</h2><h3 id="Hash定位"><a href="#Hash定位" class="headerlink" title="Hash定位"></a>Hash定位</h3><p>需求：业务中移动端使用web html5页面，左上角返回按钮调用<code>history.back()</code>关闭当前页回退。</p>
+<p>最初实现：设置hash值再定位到此，即：</p>
+<pre><code>$location.hash(idName);
+$anchorScroll();
+</code></pre><p>问题：每次定位会记录到历史记录，使用<code>history.back()</code>回退时会回到每次hash定位位置，导致移动端多次点击回退按钮才会关闭页面。</p>
+<p>改进：关键使用<code>$location.replace();</code>不记录历史信息：先获取当前url地址，并去除hash信息，再添加上hash锚点，使用<code>replace()</code>替换当前url地址且不会存入历史记录，最后滚动定位到hash位置。</p>
+<pre><code>var url = $location.url();
+url = url.substr(0,url.indexOf(&apos;#&apos;));
+$location.url(url+&apos;#&apos;+idName).replace();
+$anchorScroll();
+</code></pre><h3 id="异步加载"><a href="#异步加载" class="headerlink" title="异步加载"></a>异步加载</h3><p>问题背景：使用VueJs开发作答组件，对服务端返回的数据进行音视频id解析，并用videojs渲染展示。<br>问题：IE下存在多个视频的情况下，总会出现视频渲染失败的情况，videojs报错提示<code>The element or id is not exist</code>即无法找到要渲染的dom元素。<br>解决尝试：由于渲染的时机我是放在mounted之后，我最初怀疑ie下mounted后挂载有问题？然而我试着延时5s再渲染问题仍旧存在才意识到问题并没有那么简单[允悲]。<br>醍醐灌顶：吃晚饭的时候到了，主程唐总来约着吃饭，和他说了这个问题，看了下ie下渲染的视频id，指出可能是因为这重复的id。原来是给id追加indx的部分不够严谨，ie下异步会计算出重复index，若id也一样，就会导致报错，紧接着其他视频也渲染出错。</p>
+<h3 id="ng-repeat内使用编译指令"><a href="#ng-repeat内使用编译指令" class="headerlink" title="ng-repeat内使用编译指令"></a>ng-repeat内使用编译指令</h3><p>问题背景：需要在ng-repeat内容动态插入html并可执行ng-click事件获取当前item。如下方案显然不可取，因为compile的scope与repeat的scope不是同一个作用域，并不能获取到</p>
+<pre><code>var html = &apos;&lt;a ng-click=clickFn(item)&gt;&lt;/a&gt;&apos;;
+var chtml = $compile(html)($scope);
+$(&apos;p&apos;).append(chtml);
+</code></pre><p>解决：compile时新建作用域</p>
+<pre><code>var html = &apos;&lt;a ng-click=clickFn(item)&gt;&lt;/a&gt;&apos;;
+var newScope = $scope.$new();
+newScope.item = item;
+var chtml = $compile(html)(newScope);
+$(&apos;p&apos;).append(chtml);
+</code></pre><h3 id="v-model数据更新"><a href="#v-model数据更新" class="headerlink" title="v-model数据更新"></a>v-model数据更新</h3><p>问题背景：获取当前题的批阅分值，添加到题目对象上并使用v-model绑定在input。切换题目时若下一题的批阅分值为空且没有为题目对象初始化分值属性，使得v-model数据未更新，仍显示上一题的数据。<br>解决：每次切换均初始化分值属性，无则设置为null，保证切换时v-model更新。同时注意vue中为数组对象设置false类型值（如false，’’，null）时，直接使用<code>item.score = null</code>无效，需使用<code>this.$set(item,&#39;score&#39;,null)</code></p>
+<h3 id="android端报告横向滑动"><a href="#android端报告横向滑动" class="headerlink" title="android端报告横向滑动"></a>android端报告横向滑动</h3><p>问题：发现小米、华为机型下，报告panel横向滑动内容4无法滑动<br><img src="/img/work_report_mobile.png" alt=""><br>排查：点击5菜单展开遮罩再收起后，4即可滑动。查看遮罩样式发现有设置height:100%，手动为3内滚动框设置height:100%即可正常滚动（不可思议有什么关联）。但出现其它问题，滚动到底部会使1头部消失。为3设置计算高度height:calc(100% - xx);4panel横向滚动失效(┬＿┬)。设置3height:100%，同时设置1position:fixed解决滚动底部1消失问题，但存在点击5菜单6panel-title无法准确定位问题，排查后发现是因为触发了2外框的滚动，即双滚动条的定位。切图排查也无解后最终采用唐总的思路：点击菜单定位同时控制外框滚动。<br>解决：针对android端做处理，减少影响范围。设置3内滚动框height:100%+设置1头部fixed定位+点击菜单跳转最后一个目录控制2外滚动框滚动到底部，否则就滚动到顶部。<br>新问题：三星等特定机型向下滚动时，内滚动条滚动到底部后，不会触发外滚动条。导致不能完全显示全部内容，各种尝试无果后，只能还原样式更改，使用draggable.js拖拽解决横向滑动问题。这里还出现一个小问题：拖拽绑定后，table内的click失效。通过设置拖拽句柄而不把拖拽设置在table上解决</p>
+<h3 id="未加密URL参数导致前端页面获取400"><a href="#未加密URL参数导致前端页面获取400" class="headerlink" title="未加密URL参数导致前端页面获取400"></a>未加密URL参数导致前端页面获取400</h3><p>问题：测试环境jsp页面url带有&amp;question={…}时，服务器返回400，而本地运行则正常。后了解到服务器tomcat有做升级，未加密的url {}无法正确解析。encodeURIComponent处理解决，提供给url参数数据都应做加密处理，获取再解密。</p>
+<h3 id="postMessage-IE8-接收不到消息"><a href="#postMessage-IE8-接收不到消息" class="headerlink" title="postMessage IE8 接收不到消息"></a>postMessage IE8 接收不到消息</h3><p>项目中在iframe页向父级发送postMessage消息，且兼容到IE8，问题就出现在IE8下 <code>window.attachEvent(&#39;message&#39;, function(event){})</code> 监听不到消息，后查找<a href="http://www.zhangxinxu.com/study/201202/web-messing-cross-document-messaging-two-iframe.html" target="_blank" rel="noopener">资料</a>是IE8兼容问题，需使用’onmessage’，完美解决。</p>
+<p>iframe.html:</p>
+<pre><code>// IE9及以下不支持发送object消息
+window.parent.postMessage(JSON.stringify(msgObj), &apos;*&apos;)
+</code></pre><p>parent.html:</p>
+<pre><code>if(window.addEventListener) {
+    window.addEventListener(&apos;message&apos;, function (event) {
+       console.log(event.data)
+    });
+}else{
+    window.attachEvent(&apos;onmessage&apos;,function (event) {
+        console.log(event.data)
+    });
+}
+</code></pre><h3 id="IE8-图片加载失效"><a href="#IE8-图片加载失效" class="headerlink" title="IE8 图片加载失效"></a>IE8 图片加载失效</h3><p>使用<code>image.onload</code>未触发加载成功响应，触发onload事件的条件是资源从服务器传到本地，即下载完成。但如果资源指向url已在本地有缓存，IE8 及 firefox 下就不会触发onload。因此应当把<code>image.src</code>赋值代码放在最后执行，即：</p>
+<pre><code>let image = new Image()
+// image.src = url
+image.onload = () =&gt; { ... }
+image.onerror = () =&gt; { ... }
+image.src = url
+</code></pre><h3 id="Github-demo-添加预览地址"><a href="#Github-demo-添加预览地址" class="headerlink" title="Github demo 添加预览地址"></a>Github demo 添加预览地址</h3><p>在 demo.index 源码 url 前添加<code>http://htmlpreview.github.io/?</code>，例如：</p>
+<p>demo ：<code>https://github.com/hollton/image-viewer/blob/master/demo/index.html</code></p>
+<p>添加前缀：<code>http://htmlpreview.github.io/?https://github.com/hollton/image-viewer/blob/master/demo/index.html</code></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -1456,7 +1338,7 @@ selfFn.fn2();
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
