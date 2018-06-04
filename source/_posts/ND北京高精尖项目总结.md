@@ -93,3 +93,26 @@ parent.html:
 demo ：`https://github.com/hollton/image-viewer/blob/master/demo/index.html`
 
 添加前缀：`http://htmlpreview.github.io/?https://github.com/hollton/image-viewer/blob/master/demo/index.html`
+
+### git merge push fail
+git merge，然后 push 到 gerrit 上提示 no new changes 。此时是线性合并，合并的历史 commit 节点已被评审，所以 gerrit 认为无新提交，不允许提交评审。使用 `git merge xx --no-ff` 合并生产一条新的 commit 。
+
+### shuffle 洗牌排序算法
+[Fisher-Yates_shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)
+
+    var shuffle = function(metadata) {
+        metadata.forEach((item, index) => {
+            var randomIndex = Math.floor(Math.random() * (metadata.length - index));
+            var randomItem = metadata[randomIndex];
+            metadata[randomIndex] = metadata[index];
+            metadata[index] = randomItem;
+        })
+        return metadata;
+    };
+    
+
+### chrome type="password" autocomplete="off" 失效
+`autocomplete="new-password"`解决
+
+### 函数名判断在混淆代码失效
+使用函数名判断是否执行函数，代码混淆后函数名被更改，导致判断失效。
