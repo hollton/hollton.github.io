@@ -116,3 +116,16 @@ git merge，然后 push 到 gerrit 上提示 no new changes 。此时是线性�
 
 ### 函数名判断在混淆代码失效
 使用函数名判断是否执行函数，代码混淆后函数名被更改，导致判断失效。
+
+### ios输入框不失焦
+输入框完成输入，点击其他处，焦点仍在输入框内。主动触发失焦
+
+	function isTextInput(node) {
+		return ['INPUT'].indexOf(node.nodeName) !== -1;
+	}
+
+	document.addEventListener('touchstart', function(e) {
+		if (!isTextInput(e.target) && isTextInput(document.activeElement)) {
+			document.activeElement.blur();
+		}
+	}, false);
