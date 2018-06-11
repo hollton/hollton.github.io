@@ -431,7 +431,17 @@ image.src = url
 };
 </code></pre><h3 id="chrome-type-”password”-autocomplete-”off”-失效"><a href="#chrome-type-”password”-autocomplete-”off”-失效" class="headerlink" title="chrome type=”password” autocomplete=”off” 失效"></a>chrome type=”password” autocomplete=”off” 失效</h3><p><code>autocomplete=&quot;new-password&quot;</code>解决</p>
 <h3 id="函数名判断在混淆代码失效"><a href="#函数名判断在混淆代码失效" class="headerlink" title="函数名判断在混淆代码失效"></a>函数名判断在混淆代码失效</h3><p>使用函数名判断是否执行函数，代码混淆后函数名被更改，导致判断失效。</p>
+<h3 id="ios输入框不失焦"><a href="#ios输入框不失焦" class="headerlink" title="ios输入框不失焦"></a>ios输入框不失焦</h3><p>输入框完成输入，点击其他处，焦点仍在输入框内。主动触发失焦</p>
+<pre><code>function isTextInput(node) {
+    return [&apos;INPUT&apos;].indexOf(node.nodeName) !== -1;
+}
 
+document.addEventListener(&apos;touchstart&apos;, function(e) {
+    if (!isTextInput(e.target) &amp;&amp; isTextInput(document.activeElement)) {
+        document.activeElement.blur();
+    }
+}, false);
+</code></pre>
           
         
       
