@@ -87,18 +87,18 @@
 
 
 
-<meta name="description" content="大致目录：需求选型es6组件化http://www.cnblogs.com/rock-roll/p/5692891.html  需求选型项目中原有的作答批阅组件是用Knockout构建的，由于新的交互设计优化及一些新功能，就有了造轮子的需求，而技术栈则采用：vue + vuex + es6 + webpack。下面则是我对项目开发中用到的、遇到的一些特性问题总结思考。 ES6虽然es6早已">
+<meta name="description" content="需求选型项目中原有的作答批阅组件是用Knockout构建的，由于新的交互设计优化及一些新功能，就有了造轮子的需求，而技术栈则采用：vue + vuex + es6 + webpack。下面则是我对项目开发中用到的、遇到的一些特性问题总结思考。">
 <meta name="keywords" content="vue">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vue项目组件化实践思考">
 <meta property="og:url" content="http://hollton.github.io/2017/06/18/vue项目组件化实践思考/index.html">
 <meta property="og:site_name" content="HOLLTON">
-<meta property="og:description" content="大致目录：需求选型es6组件化http://www.cnblogs.com/rock-roll/p/5692891.html  需求选型项目中原有的作答批阅组件是用Knockout构建的，由于新的交互设计优化及一些新功能，就有了造轮子的需求，而技术栈则采用：vue + vuex + es6 + webpack。下面则是我对项目开发中用到的、遇到的一些特性问题总结思考。 ES6虽然es6早已">
+<meta property="og:description" content="需求选型项目中原有的作答批阅组件是用Knockout构建的，由于新的交互设计优化及一些新功能，就有了造轮子的需求，而技术栈则采用：vue + vuex + es6 + webpack。下面则是我对项目开发中用到的、遇到的一些特性问题总结思考。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-06-19T11:06:33.836Z">
+<meta property="og:updated_time" content="2018-06-12T09:46:43.430Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue项目组件化实践思考">
-<meta name="twitter:description" content="大致目录：需求选型es6组件化http://www.cnblogs.com/rock-roll/p/5692891.html  需求选型项目中原有的作答批阅组件是用Knockout构建的，由于新的交互设计优化及一些新功能，就有了造轮子的需求，而技术栈则采用：vue + vuex + es6 + webpack。下面则是我对项目开发中用到的、遇到的一些特性问题总结思考。 ES6虽然es6早已">
+<meta name="twitter:description" content="需求选型项目中原有的作答批阅组件是用Knockout构建的，由于新的交互设计优化及一些新功能，就有了造轮子的需求，而技术栈则采用：vue + vuex + es6 + webpack。下面则是我对项目开发中用到的、遇到的一些特性问题总结思考。">
 
 
 
@@ -365,9 +365,8 @@
       
 
       
-        <p style="display:none"><br>    大致目录：<br>需求选型<br>es6<br>组件化<br><a href="http://www.cnblogs.com/rock-roll/p/5692891.html" target="_blank" rel="noopener">http://www.cnblogs.com/rock-roll/p/5692891.html</a><br></p>
-
-<h1 id="需求选型"><a href="#需求选型" class="headerlink" title="需求选型"></a>需求选型</h1><p>项目中原有的作答批阅组件是用Knockout构建的，由于新的交互设计优化及一些新功能，就有了造轮子的需求，而技术栈则采用：vue + vuex + es6 + webpack。下面则是我对项目开发中用到的、遇到的一些特性问题总结思考。</p>
+        <h1 id="需求选型"><a href="#需求选型" class="headerlink" title="需求选型"></a>需求选型</h1><p>项目中原有的作答批阅组件是用Knockout构建的，由于新的交互设计优化及一些新功能，就有了造轮子的需求，而技术栈则采用：vue + vuex + es6 + webpack。下面则是我对项目开发中用到的、遇到的一些特性问题总结思考。</p>
+<a id="more"></a>
 <h1 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h1><p>虽然es6早已在2015年下半年定稿，但在此之前我对它的了解也仅限于网上教程以及小打小闹的demo实践，并没有应用到项目中。而这次则亲身体验了把es6的一些优秀特性，对于还不熟悉的特性则参考着阮一峰的<a href="http://es6.ruanyifeng.com" target="_blank" rel="noopener">ECMAScript 6 入门</a>。</p>
 <h2 id="import、export"><a href="#import、export" class="headerlink" title="import、export"></a>import、export</h2><p>es6中实现了模块体系，完全可以取代 CommonJS 及 AMD 规范，从而实现模块化开发。</p>
 <h3 id="export"><a href="#export" class="headerlink" title="export"></a>export</h3><p>输出模块对外接口，其主要写法有：</p>
@@ -535,7 +534,7 @@ selfFn.fn2();
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -544,7 +543,7 @@ selfFn.fn2();
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
