@@ -15,6 +15,8 @@ categories: [前端]
 	<!-- html中传参+串联 -->
 	{{index | indexToLetterFilter('arg1', arg2) | anotherFilter}}
 
+<!-- more -->
+
 # data、computed、props优先级
 data > computed > props
 

@@ -10,6 +10,9 @@ categories: [前端]
 ## 定义
 UML（Unified Modeling Language）:统一建模语言。
 
+
+<!-- more -->
+
 ## 分类
 结构型（Structrue Diagram）：
 <ul>

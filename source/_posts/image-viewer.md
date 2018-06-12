@@ -8,11 +8,11 @@ categories:
 ---
 ## 背景
 项目中需实现简易的图片预览功能，满足图片的旋转、缩放及放大后的拖动查看即可。考虑到现有的开源组件与其交互、UI、功能需求等差异，自己封装成组件实现。
-[demo](http://htmlpreview.github.io/?https://github.com/hollton/image-viewer/blob/master/demo/index.html)
-![](/img/clipboard.png)
 
 <!-- more -->
 
+[demo](http://htmlpreview.github.io/?https://github.com/hollton/image-viewer/blob/master/demo/index.html)
+![](/img/clipboard.png)
 ## 使用
 
 ### 引入

@@ -12,6 +12,9 @@ tags:
 ## highcharts介绍
 Highcharts是一个用纯JavaScript编写的图表库，基于svg技术。可兼容支持IE6+以及移动端，但低版本浏览器的渲染性能则稍差。Highcharts支持多种图表类型，较为常用的是柱状图、饼状图、雷达图。
 
+<!-- more -->
+
+
 ## 引入
 
 ### CND服务

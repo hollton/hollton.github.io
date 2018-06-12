@@ -9,6 +9,8 @@ categories: [前端]
 ## shell 命令
 `$ npm install -g cnpm --registry=https://registry.npm.taobao.org`(使用taobao NPM镜像，可用cnpm代替npm)
 
+<!-- more -->
+
 `cd E:/WWW`
 
 `npm install -g vue-cli`(全局安装vue-cli)
