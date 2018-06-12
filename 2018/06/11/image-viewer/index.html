@@ -87,18 +87,18 @@
 
 
 
-<meta name="description" content="背景项目中需实现简易的图片预览功能，满足图片的旋转、缩放及放大后的拖动查看即可。考虑到现有的开源组件与其交互、UI、功能需求等差异，自己封装成组件实现。demo">
+<meta name="description" content="背景项目中需实现简易的图片预览功能，满足图片的旋转、缩放及放大后的拖动查看即可。考虑到现有的开源组件与其交互、UI、功能需求等差异，自己封装成组件实现。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="图片预览控件：支持旋转，缩放，拖动">
 <meta property="og:url" content="http://hollton.github.io/2018/06/11/image-viewer/index.html">
 <meta property="og:site_name" content="HOLLTON">
-<meta property="og:description" content="背景项目中需实现简易的图片预览功能，满足图片的旋转、缩放及放大后的拖动查看即可。考虑到现有的开源组件与其交互、UI、功能需求等差异，自己封装成组件实现。demo">
+<meta property="og:description" content="背景项目中需实现简易的图片预览功能，满足图片的旋转、缩放及放大后的拖动查看即可。考虑到现有的开源组件与其交互、UI、功能需求等差异，自己封装成组件实现。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://hollton.github.io/img/clipboard.png">
-<meta property="og:updated_time" content="2018-06-12T07:11:13.332Z">
+<meta property="og:updated_time" content="2018-06-12T09:47:53.823Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图片预览控件：支持旋转，缩放，拖动">
-<meta name="twitter:description" content="背景项目中需实现简易的图片预览功能，满足图片的旋转、缩放及放大后的拖动查看即可。考虑到现有的开源组件与其交互、UI、功能需求等差异，自己封装成组件实现。demo">
+<meta name="twitter:description" content="背景项目中需实现简易的图片预览功能，满足图片的旋转、缩放及放大后的拖动查看即可。考虑到现有的开源组件与其交互、UI、功能需求等差异，自己封装成组件实现。">
 <meta name="twitter:image" content="http://hollton.github.io/img/clipboard.png">
 
 
@@ -377,8 +377,9 @@
       
 
       
-        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>项目中需实现简易的图片预览功能，满足图片的旋转、缩放及放大后的拖动查看即可。考虑到现有的开源组件与其交互、UI、功能需求等差异，自己封装成组件实现。<br><a href="http://htmlpreview.github.io/?https://github.com/hollton/image-viewer/blob/master/demo/index.html" target="_blank" rel="noopener">demo</a><br><img src="/img/clipboard.png" alt=""></p>
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>项目中需实现简易的图片预览功能，满足图片的旋转、缩放及放大后的拖动查看即可。考虑到现有的开源组件与其交互、UI、功能需求等差异，自己封装成组件实现。</p>
 <a id="more"></a>
+<p><a href="http://htmlpreview.github.io/?https://github.com/hollton/image-viewer/blob/master/demo/index.html" target="_blank" rel="noopener">demo</a><br><img src="/img/clipboard.png" alt=""></p>
 <h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm i es-image-viewer --save</div><div class="line">import imageViewer from &apos;es-image-viewer&apos;</div></pre></td></tr></table></figure>
 <h3 id="初始化-initImage"><a href="#初始化-initImage" class="headerlink" title="初始化 initImage"></a>初始化 initImage</h3><p>捕获待操作图片，配置初始化参数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * imgDom: 必须，操作图片dom</div><div class="line"> * containerDom: 非必须，容器dom, 默认为图片dom父节点。用于计算与限制图片拖动范围</div><div class="line"> * options: 非必须，可选配置</div><div class="line"> * &#123;</div><div class="line"> *   disableWheel: bool, // 禁用滚轮缩放，默认false</div><div class="line"> *   rotateStep: Number, // 旋转角度步进，默认90</div><div class="line"> *   scaleStep: Number, // 缩放步进，默认0.25</div><div class="line"> *   scaleRange: Array // 缩放约束范围，默认[0.5, 2]</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line">initImage(imgDom, containerDom, options)</div></pre></td></tr></table></figure></p>
 <h3 id="图片旋转，缩放操作-handleImage"><a href="#图片旋转，缩放操作-handleImage" class="headerlink" title="图片旋转，缩放操作 handleImage"></a>图片旋转，缩放操作 handleImage</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * &#123;</div><div class="line"> *   type: string, // 操作类型，支持&apos;rotate&apos;、&apos;scale&apos;</div><div class="line"> *   inc: Number // 操作增量，1为右旋或放大；-1为左旋或缩小</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line">handleImage(&#123;type: &apos;string&apos;, inc: Number&#125;)</div></pre></td></tr></table></figure>
