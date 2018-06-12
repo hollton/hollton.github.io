@@ -261,6 +261,474 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2017/02/25/javascript设计模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hollton">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HOLLTON">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/25/javascript设计模式/" itemprop="url">
+                  JavaScript设计模式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-25T16:05:40+08:00">
+                2017-02-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/25/javascript设计模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/25/javascript设计模式/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="第一章-富有表现力的javascript"><a href="#第一章-富有表现力的javascript" class="headerlink" title="第一章 富有表现力的javascript"></a>第一章 富有表现力的javascript</h1><h2 id="javascript的灵活性"><a href="#javascript的灵活性" class="headerlink" title="javascript的灵活性"></a>javascript的灵活性</h2><h3 id="过程式程序设计模式"><a href="#过程式程序设计模式" class="headerlink" title="过程式程序设计模式"></a>过程式程序设计模式</h3><pre><code>function startRun(){ ... };
+function stopRun(){ ... };
+</code></pre><p>特点：简单，但无法创建可以保存状态且具有仅对其内部状态进行操作的方法的对象。</p>
+<h3 id="定义类，并把方法赋给该类的prototype属性"><a href="#定义类，并把方法赋给该类的prototype属性" class="headerlink" title="定义类，并把方法赋给该类的prototype属性"></a>定义类，并把方法赋给该类的prototype属性</h3><pre><code>var Run = function(){ ... };
+Run.prototype = {
+    start:function(){ ... },
+    stop:function(){ ... }
+};
+/* usage */
+var myRun = new Run();
+myRun.start();
+</code></pre><h3 id="自定义为类添加新方法"><a href="#自定义为类添加新方法" class="headerlink" title="自定义为类添加新方法"></a>自定义为类添加新方法</h3><pre><code>/* 给函数添加可自定义方法的方法 */
+Function.prototype.customMethod = function(name,fn){
+    this.prototype[name] = fn;
+    //以下代码可使customMethod被链式调用
+    //return this;
+};
+var Run = function(){ ... }
+Run.customMethod(&apos;start&apos;,fuction(){
+    ...
+});
+</code></pre><h2 id="弱类型语言"><a href="#弱类型语言" class="headerlink" title="弱类型语言"></a>弱类型语言</h2><h3 id="原始数据类型"><a href="#原始数据类型" class="headerlink" title="原始数据类型"></a>原始数据类型</h3><p>布尔（Boolean），数值（Number不区分整数、浮点数），字符串（String），空（Null），未定义（Undefined）：按值传送</p>
+<h3 id="复合数据类型"><a href="#复合数据类型" class="headerlink" title="复合数据类型"></a>复合数据类型</h3><p>对象（Object：无序键值对；数组特殊对象：为有序集合）：按引用传送</p>
+<h1 id="第二章-接口"><a href="#第二章-接口" class="headerlink" title="第二章 接口"></a>第二章 接口</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>接口提供了一种用以说明一个对象应该具有哪些方法的手段。我的理解是接口声明了一个方法所需的参数及返回的数据，并在类中去实现它。</p>
+<h2 id="js模仿接口"><a href="#js模仿接口" class="headerlink" title="js模仿接口"></a>js模仿接口</h2><h3 id="注释描述"><a href="#注释描述" class="headerlink" title="注释描述"></a>注释描述</h3><p>在注释中使用interface,implements关键字。实现简单但仅限制于文档规范阶段，并没做实现检查，也不会抛出错误提示。</p>
+<pre><code>/*
+    interface Composite {
+        function add(item);
+    }
+*/
+var CompositeForm = function(id,method,action){  //implements Composite
+};
+//implement the Composite interface
+CompositeForm.prototype.add = function(item){ ... }
+</code></pre><h3 id="属性检查"><a href="#属性检查" class="headerlink" title="属性检查"></a>属性检查</h3><p>即通过检查属性判断是否实现此接口，没有则抛出错误，但并未对接口的真正实现做检查。</p>
+<h3 id="鸭式辨型"><a href="#鸭式辨型" class="headerlink" title="鸭式辨型"></a>鸭式辨型</h3><p>不关注是否声明支持哪些方法，而只要具有这些接口的方法就行。双重遍历检测每个接口是否实现了某种方法.</p>
+<h2 id="interface类"><a href="#interface类" class="headerlink" title="interface类"></a>interface类</h2><p>接口在运用设计模式实现复杂系统时能体现其价值，可降低对象间的耦合度，但对于小型项目，好处并不明显且徒增复杂度。</p>
+<h1 id="第三章-封装和信息隐藏"><a href="#第三章-封装和信息隐藏" class="headerlink" title="第三章 封装和信息隐藏"></a>第三章 封装和信息隐藏</h1><h2 id="封装是面向对象设计的基石"><a href="#封装是面向对象设计的基石" class="headerlink" title="封装是面向对象设计的基石"></a>封装是面向对象设计的基石</h2><p>将方法或属性声明为私用，可以让对象的实现细节对其他对象保密以降低对象间耦合度，且可以保持数据的完整性并对其修改方式加以约束。js中可使用闭包创建只允许从对象内部访问的属性和方法，以达到封装数据的效果。</p>
+<h2 id="创建对象的基本模式"><a href="#创建对象的基本模式" class="headerlink" title="创建对象的基本模式"></a>创建对象的基本模式</h2><h3 id="门户大开型"><a href="#门户大开型" class="headerlink" title="门户大开型"></a>门户大开型</h3><p>传统方式，用函数做其构造器，属性和方法公开，用this关键字创建属性。</p>
+<pre><code>var book = function(title){
+    this.setTitle(title);
+};
+book.prototype = {
+    getTitle:function(){
+        return this.title;
+    },
+    setTitle:function(title){
+        this.title = title;
+    },
+    display:function(){ ... }
+};
+</code></pre><h3 id="命名规范（-）"><a href="#命名规范（-）" class="headerlink" title="命名规范（_）"></a>命名规范（_）</h3><p>属性和方法前添加下划线（_）以示其私有性。</p>
+<h3 id="作用域、嵌套函数、闭包"><a href="#作用域、嵌套函数、闭包" class="headerlink" title="作用域、嵌套函数、闭包"></a>作用域、嵌套函数、闭包</h3><p>闭包函数能够访问另一个函数的内部变量，函数作用域内return一个嵌套函数即构成闭包。<br>之所以会产生闭包是因为js的作用域是词法性的，即函数运行在定义它们的作用域中，而不是调用它们的作用域。</p>
+<pre><code>var book = function(newTitle){
+    //私有属性
+    var title;
+    //特权方法（privileged method，公用却能访问私有属性）
+    this.getTitle = function(){
+        return title;
+    };
+    this.setTitle = function(newTitle){
+        title = newTitle;
+    };
+    //构造函数代码
+    this.setTitle(newTitle);
+};
+//公用方法
+book.prototype.display = function(){ ... };
+</code></pre><p>前两种方式的方法都创建在原型对象中，无论生成多少对象实例，方法只在内存中存一份。而采用闭包则每生成一个对象实例都为每一个私有方法和特权方法生成新副本，更耗内存。</p>
+<h1 id="第四章-继承"><a href="#第四章-继承" class="headerlink" title="第四章 继承"></a>第四章 继承</h1><h2 id="类式继承"><a href="#类式继承" class="headerlink" title="类式继承"></a>类式继承</h2><h3 id="简单类声明"><a href="#简单类声明" class="headerlink" title="简单类声明"></a>简单类声明</h3><p>函数声明类，new关键字创建实例。创建构造函数，其名称就是类名，首字母大写，实例属性使用this关键字，方法添加到其prototype对象中。</p>
+<pre><code>/* Class Person */
+function Person (name){
+    this.name = name;
+};
+Person.prototype.getName = function(){
+    return this.name;
+};
+</code></pre><p>关键字new调用构造函数创建该类实例，即可访问实例属性及方法。</p>
+<pre><code>var hollton = new Person(&apos;hollton&apos;);
+</code></pre><h3 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h3><ol><br>    <li>创建一个构造函数，在函数中调用超类的构造函数。<ul><li>使用new时，系统会创建一个空对象，然后调用构造函数，在此过程中这个空对象处于作用域链最前端。而子类调用超类的构造函数时，必须手动完成这项工作。“Person.call(this,name)”使空对象（用this代表），name作参数传入。</li></ul></li><br>    <li>设置原型链，指向实例超类<ul><li>访问对象的某个成员时，如果在当前对象中查找不到，javascript会沿着对象的原型链向上逐一访问其原型对象查找，因此将子类的prototype指向超类的一个实例，即可使子类继承超类。</li></ul></li><br>    <li>重新设置constructor属性为本构造函数<ul><li>定义构造函数时，默认的prototype对象是Object类型的实例，其constructor属性会被自动设置为该构造函数。但手动将其prototype设置为另一个对象时，其constructor属也变成新对象的constructor值，因此需要重新设置为本构造函数。</li></ul></li><br></ol>
+
+<pre><code>/* Class Programmer */
+function Programmer(name,programs){
+    Person.call(this,name);//当前作用域调用超类的构造函数
+    this.programs = programs;//添加新属性
+};
+Programmer.prototype = new Person();//设置原型链
+Programmer.prototype.constructor = Programmer;//重新设置constructor属性
+Programmer.prototype.getPrograms = function(){//添加新方法
+    return this.programs;
+};
+</code></pre><p>创建子类实例则不变</p>
+<pre><code>var holltonliu = new Programmer(&apos;hollton&apos;,[&apos;javascript_code&apos;]);
+</code></pre><h3 id="自定义extend函数"><a href="#自定义extend函数" class="headerlink" title="自定义extend函数"></a>自定义extend函数</h3><p>仿照extend关键字自定义函数实现基于给定类结构创建新类。其中添加一个空函数fn，其prototype指向超类的prototype并创建对象实例插入到子类的原型链中。这样是为了避免创建超类的实例（直接使用超类可能：比较大；有副作用；执行大量计算任务）。</p>
+<pre><code>/* Extend function */
+function extend(subClass, superClass) {
+    var fn = function(){};
+    fn.prototype = superClass.prototype;
+    subClass.prototype = new fn();
+    subClass.prototype.constructor = subClass;
+}
+</code></pre><p>使用extend函数对上述例子改造：</p>
+<pre><code>function Programmer(name,programs){
+    Person.call(this,name);  //存在耦合
+    this.programs = programs;
+};
+extend(Programmer,Person);
+Programmer.prototype.getPrograms = function(){
+    return this.programs;
+};
+</code></pre><p>存在缺陷：超类（Person）被固化在子类（Programmer）的声明中，为子类添加superPrototype属性解决↓</p>
+<pre><code>/* ---Improved Extend function--- */
+function extend(subClass, superClass) {
+    var fn = function(){};
+    fn.prototype = superClass.prototype;
+    subClass.prototype = new fn();
+    subClass.prototype.constructor = subClass;
+
+    subClass.superPrototype = superClass.prototype;
+    //超类为Object类或也由他处继承而来时，有可能导致constructor指向不正确，不正确时修复。
+    //子类会通过constructor指向调用超类构造函数，因此这个判断修复很重要！
+    if(superClass.prototype.constructor == Object.prototype.constructor){
+        superClass.prototype.constructor = superClass;
+    }
+}
+function Programmer(name,programs){
+    Person.superPrototype.constructor.call(this,name);
+    this.programs = programs;
+};
+extend(Programmer,Person);
+</code></pre><h2 id="原型式继承"><a href="#原型式继承" class="headerlink" title="原型式继承"></a>原型式继承</h2><h3 id="实现机制"><a href="#实现机制" class="headerlink" title="实现机制"></a>实现机制</h3><p>创建一个对象，由于原型链的查找机制，新对象只需重用此对象即可实现继承。</p>
+<pre><code>/* Person Prototype Object */
+var Person = {
+    name:&apos;default&apos;,
+    getName:function(){
+        return this.name;
+    }
+};
+//customClone创建并返回新空对象，其原型对象指向父级对象
+//当新对象找不到某个属性或方法时会在原型链上查找
+function customClone(superObject) {
+    function fn() {};
+    fn.prototype = superObject;
+    return new fn;  //相当于new fn()
+}
+/* Programmer Prototype Object */
+var Programmer = customClone(Person);
+Programmer.programs = [];
+Programmer.getPrograms = function(){
+    return this.programs;
+};
+var hollton = customClone(Programmer);
+hollton.name = &apos;hollton&apos;;
+hollton.programs = [&apos;javascript_code&apos;];
+hollton.getName();
+hollton.getPrograms();
+</code></pre><h3 id="继承成员的读写不对等性"><a href="#继承成员的读写不对等性" class="headerlink" title="继承成员的读写不对等性"></a>继承成员的读写不对等性</h3><p>在类式继承中，每个实例都有一份自己的副本，而通过原型继承，实例只是以父对象为原型对象的空对象，没为其指定属性时，读取是返指原型链上的同名属性，写入则为其定义一个新属性。这里特别要注意的是，对于引用传递的数据类型如数组，对新对象第一次不赋值写入而做操作如push时会修改其原型链上的数据。</p>
+<pre><code>var hd = customClone(Programmer);
+console.log(Programmer.programs);  //[]
+//不应这么做
+hd.programs.push(&apos;javascript_code&apos;);
+console.log(Programmer.programs);  //[&apos;javascript_code&apos;]
+//应该
+hd.programs = [];  //为hd对象添加新属性
+hd.programs.push(&apos;javascript_code&apos;);
+console.log(Programmer.programs);  //[]
+</code></pre><h3 id="工厂方式实现"><a href="#工厂方式实现" class="headerlink" title="工厂方式实现"></a>工厂方式实现</h3><p>如果需求继承一个对象而只修改其子对象的的一个属性保留其他，应用上种方法你必须知道对象的全部属性及其默认值并做覆盖操作，显然不合适。</p>
+<pre><code>var CompoundObject = {};
+CompoundObject.name = &apos;haha&apos;;
+CompoundObject.createChildObject = function(){
+    return {
+        num:10,
+        bool:true
+    }
+};
+CompoundObject.childObject = CompoundObject.createChildObject();
+
+var compoundObjectClone = customClone(CompoundObject);
+compoundObjectClone.childObject = CompoundObject.createChildObject();
+compoundObjectClone.childObject.num = 5;  //修改不会影响CompoundObject
+</code></pre><h2 id="参元类"><a href="#参元类" class="headerlink" title="参元类"></a>参元类</h2><p>包含通用方法的类，用来扩充其他类，称这个通用类为参元类(mixin class)。它们通常不会被实例或直接调用，只是向其他类提供自己的方法。</p>
+<pre><code>/* Mixin class */
+var Mixin = function(){};
+Mixin.prototype = {
+    fnName:function(){ ... }
+}
+</code></pre><p>这个方法在不同类中用到时，没必要都去继承它，我们可以自定义个customArgument函数将它添加到需要用到它的类中。</p>
+<pre><code>function customArgument(receiveClass, giveClass){
+    for(methodName in giveClass.prototype){
+        if(!receiveClass.prototype[methodName]){
+            receiveClass.prototype[methodName] = giveClass.prototype[methodName];
+        }
+    }
+}
+
+customArgument(Programmer,Mixin);
+var hd. = new Programmer(&apos;hollton&apos;,[&apos;javascript_code&apos;]);
+hd.fnName();  //使用参元类方法
+</code></pre><h1 id="第五章-单体模式"><a href="#第五章-单体模式" class="headerlink" title="第五章 单体模式"></a>第五章 单体模式</h1><p>单体是一个用来划分命名空间并将一批相关方法和属性组织在一起的对象，如果可被实例化，则只能被实例化一次。</p>
+<h2 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h2><pre><code>/* 简单单体（对象字面量） */
+var Singleton = {
+    attribute:10,
+    method:function(){}
+};
+</code></pre><h2 id="拥有私有成员的单体"><a href="#拥有私有成员的单体" class="headerlink" title="拥有私有成员的单体"></a>拥有私有成员的单体</h2><p>创建类的私有成员的做法缺点在于较耗内存，因为每个实例都具有方法的一份新副本。由于单体对象只会被实例化一次，因此为其定义私用方法是不必考虑内存方面的问题。</p>
+<h3 id="下划线标识"><a href="#下划线标识" class="headerlink" title="下划线标识"></a>下划线标识</h3><h3 id="使用闭包"><a href="#使用闭包" class="headerlink" title="使用闭包"></a>使用闭包</h3><pre><code>MyNamespace.Singleton = (function(){
+    //私有
+    var privateAtti = false;
+    function privateMethod = function(){};
+    //公有
+    return {
+        publicAtti = true;
+        publicMethod = function(){};
+    };
+})();
+</code></pre><p>这种单体模式又称模块模式，它可以把一批相关的方法和属性组织为模块并起到划分命名空间的作用。</p>
+<h2 id="惰性实例化"><a href="#惰性实例化" class="headerlink" title="惰性实例化"></a>惰性实例化</h2><p>将单体对象实例化推迟到需要使用的时候，称为惰性加载。特别之处是需借助静态方法调用MyNamespace.Singleton.publicMethod -&gt; MyNamespace.Singleton.getInstace().publicMethod。getInstace方法会检查并返回该单体的实例化对象。</p>
+<pre><code>MyNamespace.Singleton = (function(){
+    function constructor(){
+        var privateAtti = false;
+        function privateMethod = function(){};
+        return {
+            publicAtti = true;
+            publicMethod = function(){};
+        };
+    }
+    var uniqueInstance;
+    return {
+        getInstance:function(){
+            if(!uniqueInstance){
+                uniqueInstance = constructor();
+            }
+            return uniqueInstance;
+        }
+    }
+})();
+</code></pre><h1 id="第六章-方法的链式调用"><a href="#第六章-方法的链式调用" class="headerlink" title="第六章 方法的链式调用"></a>第六章 方法的链式调用</h1><p>类的每个方法都return this实现支持方法链式调用的类。</p>
+<h1 id="第七章-工厂模式"><a href="#第七章-工厂模式" class="headerlink" title="第七章 工厂模式"></a>第七章 工厂模式</h1><p>简单工厂使用一个类（通常是一个单体）来生成实例，标准工厂使用子类来决定一个成员变量应该是哪个具体类的实例。</p>
+<h2 id="简单工厂"><a href="#简单工厂" class="headerlink" title="简单工厂"></a>简单工厂</h2><p>简单工厂就像一个单例，它有一个或多个方法来创建或者返回对象。</p>
+<pre><code>/* BicycleShop Class */
+var BicycleShop = function(){};
+BicycleShop.prototype = {
+    sellBicycle:function(model){
+        var bicycle;
+        switch (model){
+            case &apos;speedster&apos;:
+                bicycle = new Speedster();
+                break;
+            case &apos;lowrider&apos;:
+                bicycle = new Lowrider();
+                break;
+            default:
+                bicycle = new Common();
+        }
+        return bicycle;
+    }
+}
+
+/* Speedster Class */
+var Speedster = function(){};
+Speedster.prototype = {
+    assemble:function(){},
+    ride:function(){}
+}
+var newBicycleShop = new BicycleShop();
+var newBike = newBicycleShop.sellBicycle(&apos;speedster&apos;);
+</code></pre><p>当添加一种车型时，不得不BicycleShop代码，更好的方式是在子类中创建车型。</p>
+<h2 id="标准工厂"><a href="#标准工厂" class="headerlink" title="标准工厂"></a>标准工厂</h2><p>工厂是一个将其成员对象的实例化推迟到子类中进行的类。把BicycleShop设计成抽象类，只实现通用方法，让子类各自实现个性如createBicycle方法。</p>
+<pre><code>/* BicycleShop Class (abstract) */
+var BicycleShop = function(){};
+BicycleShop.prototype = {
+    sellBicycle:function(model){
+        var bicycle = this.createBicycle(model);
+        return bicycle;
+    },
+    createBicycle:function(model){
+        throw new Error(&apos;createBicycle须由子类实现&apos;);
+    };
+}
+
+/* SubBicycleShop Class */
+var SubBicycleShop = function(){};
+SubBicycleShop.prototype = new BicycleShop();
+SubBicycleShop.prototype.createBicycle = function(model){
+        var bicycle;
+        switch (model){
+            case &apos;speedster&apos;:
+                bicycle = new SubSpeedster();
+                break;
+            case &apos;lowrider&apos;:
+                bicycle = new SubLowrider();
+                break;
+            default:
+                bicycle = new SubCommon();
+        }
+        return bicycle;
+    };
+}
+</code></pre><h2 id="memoizing技术"><a href="#memoizing技术" class="headerlink" title="memoizing技术"></a>memoizing技术</h2><p>memoizing把函数的每次执行结果都存入键值对(数组)，下次直接在键值对中查找值，有则返回该值，没有则执行函数体并再次缓存。</p>
+<h1 id="第八章-桥接模式"><a href="#第八章-桥接模式" class="headerlink" title="第八章 桥接模式"></a>第八章 桥接模式</h1><p>桥接模式最常见和实际的应用场合之一是事件监听器回调函数。</p>
+<h2 id="示例：事件监听器"><a href="#示例：事件监听器" class="headerlink" title="示例：事件监听器"></a>示例：事件监听器</h2><pre><code>addEvent(ele,&apos;click&apos;,getBeerById);
+function getBeerById (e){
+    asyncRequest(&apos;GET&apos;,&apos;/getBeer?id=&apos;+this.id,function(resp){
+        console.log(resp);
+    });
+}
+</code></pre><p>作为一个API函数，不应与特定实现混在一起。用桥接模式修改，把抽象隔离开来。</p>
+<pre><code>function getBeerById (id,callBack){
+    asyncRequest(&apos;GET&apos;,&apos;/getBeer?id=&apos;+id,function(resp){
+        callBack(resp);
+    });
+}
+addEvent(ele,&apos;click&apos;,getBeerByIdBridge);
+function getBeerByIdBridge (e){
+    getBeerById(this.id,function(beer){
+        console.log(beer);
+    });
+}
+</code></pre><p>如果一个桥接函数被用于连接两个函数，而其中某个函数根本不会在桥接函数外被调用，那么这个桥接函数就是不必要的。</p>
+<h1 id="第九章-组合模式"><a href="#第九章-组合模式" class="headerlink" title="第九章 组合模式"></a>第九章 组合模式</h1>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2016/12/19/vue-cli/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -967,7 +1435,7 @@ $(&quot;img&quot;).unveil(100, function() {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -976,7 +1444,7 @@ $(&quot;img&quot;).unveil(100, function() {
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -985,7 +1453,7 @@ $(&quot;img&quot;).unveil(100, function() {
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
