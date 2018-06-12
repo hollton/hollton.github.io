@@ -4,6 +4,9 @@ tags: [Unveil.js,Layzr.js]
 categories: [前端]
 ---
 ## Unveil.js是一个jQuery图片延时加载插件且极轻量。支持IE7。
+
+<!-- more -->
+
 ### 使用方法
 	<img src="bg.png" data-src="original-img.jpg" data-src-retina="img-retina.jpg" />
 

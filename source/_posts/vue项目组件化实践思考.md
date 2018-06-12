@@ -3,16 +3,11 @@ date: 2017-06-18 17:17:12
 tags: [vue]
 categories: [前端]
 ---
-<p style="display:none">
-    大致目录：
-需求选型
-es6
-组件化
-http://www.cnblogs.com/rock-roll/p/5692891.html
-</p>
 
 # 需求选型
 项目中原有的作答批阅组件是用Knockout构建的，由于新的交互设计优化及一些新功能，就有了造轮子的需求，而技术栈则采用：vue + vuex + es6 + webpack。下面则是我对项目开发中用到的、遇到的一些特性问题总结思考。
+
+<!-- more -->
 
 # ES6
 虽然es6早已在2015年下半年定稿，但在此之前我对它的了解也仅限于网上教程以及小打小闹的demo实践，并没有应用到项目中。而这次则亲身体验了把es6的一些优秀特性，对于还不熟悉的特性则参考着阮一峰的[ECMAScript 6 入门](http://es6.ruanyifeng.com)。
