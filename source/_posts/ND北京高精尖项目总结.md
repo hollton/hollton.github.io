@@ -132,3 +132,9 @@ git merge，然后 push 到 gerrit 上提示 no new changes 。此时是线性�
 			document.activeElement.blur();
 		}
 	}, false);
+
+### npm install 出错
+npm install 时出现 "Unexpected end of JSON input while parsing near..."，尝试清除缓存npm cache clean --force，换成淘宝镜像npm config set registry https://registry.npm.taobao.org 等方法均无效。最终google到npm与node版本不兼容问题，于是npm由5降级到4，node保持8成功。
+
+### ios9不支持es6语法
+移动端使用web h5页面，但在5s下打不开，而在我的ios11正常，最终排查到同事用了es6 const，导致ios9下报错执行中断。
