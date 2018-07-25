@@ -138,3 +138,8 @@ npm install 时出现 "Unexpected end of JSON input while parsing near..."，尝
 
 ### ios9不支持es6语法
 移动端使用web h5页面，但在5s下打不开，而在我的ios11正常，最终排查到同事用了es6 const，导致ios9下报错执行中断。
+
+### React Event Pooling
+>https://reactjs.org/docs/events.html#event-pooling
+
+使用函数去抖处理 onChange 时间，发现 debounce 函数 setTimeout 内执行的 args 变量和上面保存下来的不一致，导致后续执行取不到 event.target 数值。查找资料发现是 React event 引起，其不是真正的 DOM event，特点是在下一个 event loop 会被释放掉，因此不能用于异步操作里。需要使用`event.persist()`持久化 event 对象
