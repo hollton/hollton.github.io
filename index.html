@@ -261,6 +261,191 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2018/07/25/函数去抖（debounce）与函数节流（throttle）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hollton">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HOLLTON">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/07/25/函数去抖（debounce）与函数节流（throttle）/" itemprop="url">
+                  函数去抖（debounce）与函数节流（throttle）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-25T16:11:14+08:00">
+                2018-07-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/07/25/函数去抖（debounce）与函数节流（throttle）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/07/25/函数去抖（debounce）与函数节流（throttle）/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>拖拽mousemove事件、文字输入等由于频繁被触发而执行DOM操作、资源加载等行为时，可导致性能损耗卡顿。针对此可采用函数去抖（debounce）和函数节流（throttle）解决。</p>
+<h1 id="函数去抖（debounce）"><a href="#函数去抖（debounce）" class="headerlink" title="函数去抖（debounce）"></a>函数去抖（debounce）</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>简言之某段时间内不再被触发即执行一次操作。例如乘坐电梯，当人进入电梯时，10s后电梯关门。而当10s内有人再次进入，则中断关门操作，再次等待10s后关门。</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><pre><code>/**
+ * [debounce] 函数去抖：N ms内不再被触发时即执行一次
+ * @param  {[Function]} func:执行函数
+ * @param  {[Number]} delay:执行间隔，单位毫秒（ms）
+ * @return {[Function]} 去抖函数
+ */
+let debounce = (func, delay) =&gt; {
+    let timer;
+    let context;
+    let args;
+
+    return function() {
+        context = this;
+        args = arguments;
+
+        clearTimeout(timer);
+
+        timer = setTimeout(() =&gt; {
+            func.apply(context, args);
+        }, delay);
+    }
+};
+</code></pre><h1 id="函数节流（throttle）"><a href="#函数节流（throttle）" class="headerlink" title="函数节流（throttle）"></a>函数节流（throttle）</h1><h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><p>保证某段时间后执行一次操作。针对函数去抖乘坐电梯的例子，如果一直有人进出电梯（这里不考虑超重哈哈），电梯岂不是一直无法运行？而函数节流就是为保证如20s后电梯总要关门一次，并进入下一个周期。</p>
+<h2 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h2><pre><code>/**
+ * [throttle] 函数节流：保证N ms后执行一次
+ * @param  {[Function]} func:执行函数
+ * @param  {[Number]} delay:执行间隔，单位毫秒（ms）
+ * @return {[Function]} 节流函数
+ */
+let throttle = (func, delay) =&gt; {
+    let timer;
+    let context;
+    let args;
+    let lastTime;
+    let currTime;
+    return function() {
+        context = this;
+        args = arguments;
+        currTime = +new Date();
+
+        clearTimeout(timer);
+
+        if (!lastTime) {
+            lastTime = currTime;
+        }
+        if (currTime - lastTime &gt;= delay) {
+            func.apply(context, args);
+            lastTime = currTime;
+        } else {
+            timer = setTimeout(() =&gt; {
+                func.apply(context, args);
+            }, delay)
+        }
+    }
+};
+</code></pre><h1 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h1><p><a href="http://demo.nimius.net/debounce_throttle" target="_blank" rel="noopener">演示</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2018/07/12/设计模式-面向对象的JavaScript/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1024,160 +1209,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2017/06/18/读书列表/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="hollton">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HOLLTON">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/18/读书列表/" itemprop="url">
-                  读书列表
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-18T18:04:08+08:00">
-                2017-06-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/读书/" itemprop="url" rel="index">
-                    <span itemprop="name">读书</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/06/18/读书列表/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/06/18/读书列表/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>以下是一些我读过的书。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/06/18/读书列表/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1227,7 +1258,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
