@@ -143,3 +143,6 @@ npm install 时出现 "Unexpected end of JSON input while parsing near..."，尝
 >https://reactjs.org/docs/events.html#event-pooling
 
 使用函数去抖处理 onChange 时间，发现 debounce 函数 setTimeout 内执行的 args 变量和上面保存下来的不一致，导致后续执行取不到 event.target 数值。查找资料发现是 React event 引起，其不是真正的 DOM event，特点是在下一个 event loop 会被释放掉，因此不能用于异步操作里。需要使用`event.persist()`持久化 event 对象
+
+### 移动端浏览器设备检测
+项目中扫描二维码下载app，根据手机浏览器的navigator.userAgent判断android或是ios,跳转下载对应的app，但线上用户反馈某台手机扫描跳转系统登录页，经排查发现是用户手机浏览器开启桌面UA，userAgent识别出Windows导致。添加navigator.platform判断，android手机platform.indexOf('Linux') > -1。
