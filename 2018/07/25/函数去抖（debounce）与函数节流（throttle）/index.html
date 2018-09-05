@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="前言拖拽mousemove事件、文字输入等由于频繁被触发而执行DOM操作、资源加载等行为时，可导致性能损耗卡顿。针对此可采用函数去抖（debounce）和函数节流（throttle）解决。 函数去抖（debounce）定义简言之某段时间内不再被触发即执行一次操作。例如乘坐电梯，当人进入电梯时，10s后电梯关门。而当10s内有人再次进入，则中断关门操作，再次等待10s后关门。 实现/**  * [d">
+<meta name="description" content="前言拖拽mousemove事件、文字输入等由于频繁被触发而执行DOM操作、资源加载等行为时，可导致性能损耗卡顿。针对此可采用函数去抖（debounce）和函数节流（throttle）解决。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="函数去抖（debounce）与函数节流（throttle）">
 <meta property="og:url" content="http://hollton.github.io/2018/07/25/函数去抖（debounce）与函数节流（throttle）/index.html">
 <meta property="og:site_name" content="HOLLTON">
-<meta property="og:description" content="前言拖拽mousemove事件、文字输入等由于频繁被触发而执行DOM操作、资源加载等行为时，可导致性能损耗卡顿。针对此可采用函数去抖（debounce）和函数节流（throttle）解决。 函数去抖（debounce）定义简言之某段时间内不再被触发即执行一次操作。例如乘坐电梯，当人进入电梯时，10s后电梯关门。而当10s内有人再次进入，则中断关门操作，再次等待10s后关门。 实现/**  * [d">
+<meta property="og:description" content="前言拖拽mousemove事件、文字输入等由于频繁被触发而执行DOM操作、资源加载等行为时，可导致性能损耗卡顿。针对此可采用函数去抖（debounce）和函数节流（throttle）解决。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-25T13:47:28.977Z">
+<meta property="og:updated_time" content="2018-07-26T06:47:23.606Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="函数去抖（debounce）与函数节流（throttle）">
-<meta name="twitter:description" content="前言拖拽mousemove事件、文字输入等由于频繁被触发而执行DOM操作、资源加载等行为时，可导致性能损耗卡顿。针对此可采用函数去抖（debounce）和函数节流（throttle）解决。 函数去抖（debounce）定义简言之某段时间内不再被触发即执行一次操作。例如乘坐电梯，当人进入电梯时，10s后电梯关门。而当10s内有人再次进入，则中断关门操作，再次等待10s后关门。 实现/**  * [d">
+<meta name="twitter:description" content="前言拖拽mousemove事件、文字输入等由于频繁被触发而执行DOM操作、资源加载等行为时，可导致性能损耗卡顿。针对此可采用函数去抖（debounce）和函数节流（throttle）解决。">
 
 
 
@@ -343,6 +343,7 @@
 
       
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>拖拽mousemove事件、文字输入等由于频繁被触发而执行DOM操作、资源加载等行为时，可导致性能损耗卡顿。针对此可采用函数去抖（debounce）和函数节流（throttle）解决。</p>
+<a id="more"></a>
 <h1 id="函数去抖（debounce）"><a href="#函数去抖（debounce）" class="headerlink" title="函数去抖（debounce）"></a>函数去抖（debounce）</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>简言之某段时间内不再被触发即执行一次操作。例如乘坐电梯，当人进入电梯时，10s后电梯关门。而当10s内有人再次进入，则中断关门操作，再次等待10s后关门。</p>
 <h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><pre><code>/**
  * [debounce] 函数去抖：N ms内不再被触发时即执行一次
