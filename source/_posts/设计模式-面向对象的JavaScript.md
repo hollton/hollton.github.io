@@ -74,3 +74,8 @@ categories: [设计模式]
 
 ### JavaScript中的原型继承
 
+#### 所有的数据都是对象
+JavaScript数据类型：
+* 基本类型： Number,String, Boolean,null,undefined
+* 对象类型（引用类型）： Object,Function,Array
+JavaScript根对象是Object.prototype对象，为一个空对象。JavaScript每个对象实际都是从Object.prototype对象克隆而来，Object.prototype对象为它们的原型。

@@ -146,3 +146,7 @@ npm install 时出现 "Unexpected end of JSON input while parsing near..."，尝
 
 ### 移动端浏览器设备检测
 项目中扫描二维码下载app，根据手机浏览器的navigator.userAgent判断android或是ios,跳转下载对应的app，但线上用户反馈某台手机扫描跳转系统登录页，经排查发现是用户手机浏览器开启桌面UA，userAgent识别出Windows导致。添加navigator.platform判断，android手机platform.indexOf('Linux') > -1。
+
+### ng-src IE iframe 重复请求
+iframe嵌入其他组件，IE下时长出现nonce串无效，即mac授权已被使用过，排查到ng-src问题，IE iframe中发起多次请求，改用src。见：[ngSrc duplicate request for iframe in IE](https://github.com/angular/angular.js/issues/9843)
+而此设置会导致url未请求到时即被iframe发起请求，页面载入出错，添加ng-if判断解决。
