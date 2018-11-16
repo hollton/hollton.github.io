@@ -1,0 +1,788 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hollton, F2E" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="本次分析的源码采用的是16.6.1的版本，和16版本之前的源码对比，入口和构造器有些差异。 React APInpm i react --save安装好react之后，打开node_nodules/react/index.js入口文件。指向打开开发版本代码react.development.js。源码分析自然从对外暴露的接口入手，即最下面的React。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React源码解析">
+<meta property="og:url" content="http://hollton.github.io/2018/11/15/React源码解析/index.html">
+<meta property="og:site_name" content="HOLLTON">
+<meta property="og:description" content="本次分析的源码采用的是16.6.1的版本，和16版本之前的源码对比，入口和构造器有些差异。 React APInpm i react --save安装好react之后，打开node_nodules/react/index.js入口文件。指向打开开发版本代码react.development.js。源码分析自然从对外暴露的接口入手，即最下面的React。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://hollton.github.io/img/react_code/simple_module_log.png">
+<meta property="og:image" content="http://hollton.github.io/img/react_code/simple_module_add_log.png">
+<meta property="og:image" content="http://hollton.github.io/img/react_code/component.png">
+<meta property="og:image" content="http://hollton.github.io/img/react_code/component.xmind.png">
+<meta property="og:updated_time" content="2018-11-16T08:47:03.638Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React源码解析">
+<meta name="twitter:description" content="本次分析的源码采用的是16.6.1的版本，和16版本之前的源码对比，入口和构造器有些差异。 React APInpm i react --save安装好react之后，打开node_nodules/react/index.js入口文件。指向打开开发版本代码react.development.js。源码分析自然从对外暴露的接口入手，即最下面的React。">
+<meta name="twitter:image" content="http://hollton.github.io/img/react_code/simple_module_log.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://hollton.github.io/2018/11/15/React源码解析/"/>
+
+
+
+
+
+  <title> React源码解析 | HOLLTON </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5cb002190f487bd635c567d87b3f7765";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">HOLLTON</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">懂点编程，懂点艺术，懂点美。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://hollton.github.io/2018/11/15/React源码解析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hollton">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HOLLTON">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                React源码解析
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-15T14:55:42+08:00">
+                2018-11-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/15/React源码解析/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/11/15/React源码解析/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本次分析的源码采用的是16.6.1的版本，和16版本之前的源码对比，入口和构造器有些差异。</p>
+<h1 id="React-API"><a href="#React-API" class="headerlink" title="React API"></a>React API</h1><p><code>npm i react --save</code><br>安装好react之后，打开<code>node_nodules/react/index.js</code>入口文件。指向打开开发版本代码<code>react.development.js</code>。<br>源码分析自然从对外暴露的接口入手，即最下面的<code>React</code>。</p>
+<a id="more"></a>
+<pre><code>var React = {
+  Children: {
+    map: mapChildren,
+    forEach: forEachChildren,
+    count: countChildren,
+    toArray: toArray,
+    only: onlyChild
+  },
+
+  createRef: createRef,
+  Component: Component,
+  PureComponent: PureComponent,
+
+  createContext: createContext,
+  forwardRef: forwardRef,
+  lazy: lazy,
+  memo: memo,
+
+  Fragment: REACT_FRAGMENT_TYPE,
+  StrictMode: REACT_STRICT_MODE_TYPE,
+  Suspense: REACT_SUSPENSE_TYPE,
+
+  createElement: createElementWithValidation,
+  cloneElement: cloneElementWithValidation,
+  createFactory: createFactoryWithValidation,
+  isValidElement: isValidElement,
+
+  version: ReactVersion,
+
+  __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED: ReactSharedInternals
+};
+</code></pre><h2 id="Children-子组件"><a href="#Children-子组件" class="headerlink" title="Children 子组件"></a>Children 子组件</h2><p>为处理<code>this.props.children</code>封闭的数据结构提供了的工具集。<code>this.props</code>对象的属性与组件的属性一一对应，但有个例外，就是<code>this.props.children</code>属性，它表示组件的所有子节点。</p>
+<h2 id="Components-组件"><a href="#Components-组件" class="headerlink" title="Components 组件"></a>Components 组件</h2><p>Components 是 React 组件使用 ES6 类(classes) 定义时的基类。</p>
+<pre><code>Component, // 创建组件
+PureComponent, // 创建纯组件
+</code></pre><p>React 将UI拆分为独立的可重用的模块，并且每个模块逻辑也是独立的。PureComponent与Component的区别仅在于PureComponent内部实现了shouldComponentUpdate()中的 props 和 state 的浅比较，来提升性能。但若包含复杂数据结构判断时会有偏差，后续详细介绍。</p>
+<pre><code>memo, // 高阶组件，用于包裹函数式组件，而不是类组件
+</code></pre><h2 id="Refs"><a href="#Refs" class="headerlink" title="Refs"></a>Refs</h2><pre><code>createRef, // 创建一个ref，可以通过ref属性关联react元素
+forwardRef, // 创建一个组件，将它接收的 ref 属性转发给组件树下的另一个组件
+</code></pre><h2 id="createElement-创建元素"><a href="#createElement-创建元素" class="headerlink" title="createElement 创建元素"></a>createElement 创建元素</h2><pre><code>createElement, // 创建返回一个新的给定类型的 React 元素，JSX 元素即是它的语法糖，因此JSX不必显示调用
+createFactory, // 同上
+cloneElement, // 克隆的元素将浅层合并props
+</code></pre><h2 id="isValidElement-判断元素"><a href="#isValidElement-判断元素" class="headerlink" title="isValidElement 判断元素"></a>isValidElement 判断元素</h2><pre><code>isValidElement, // 验证对象是否是一个 React 元素。 返回 true 或 false
+</code></pre><h2 id="Fragments-片段"><a href="#Fragments-片段" class="headerlink" title="Fragments 片段"></a>Fragments 片段</h2><pre><code>Fragment, // 渲染多个元素而无需创建额外的 DOM 元素
+</code></pre><h2 id="createContext-创建Context组件"><a href="#createContext-创建Context组件" class="headerlink" title="createContext 创建Context组件"></a>createContext 创建Context组件</h2><pre><code>createContext, // 创建一个 Context 对象，可用于跨组件传递内容。
+               //该对象包含 Provider（提供数据） 和 Consumer（消费数据），分别为两个 React 组件
+</code></pre><h2 id="Code-Spliting-代码拆分"><a href="#Code-Spliting-代码拆分" class="headerlink" title="Code-Spliting 代码拆分"></a>Code-Spliting 代码拆分</h2><pre><code>lazy, // 动态渲染组件
+Suspense, // lazy渲染加载时显示的内容
+</code></pre><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p><code>React</code>是 React 库的入口，以上方法都可通过<code>React</code>变量调用。</p>
+<h1 id="组件的实现"><a href="#组件的实现" class="headerlink" title="组件的实现"></a>组件的实现</h1><p>当我们使用React创建一个组件时，是否有好奇过它是什么？是DOM？JavaScript？还是其他意识形态？接下来我们详细看看。</p>
+<h2 id="组件本质是对象"><a href="#组件本质是对象" class="headerlink" title="组件本质是对象"></a>组件本质是对象</h2><p>编写一个简单的组件，并<code>log</code>输出看得到了什么。</p>
+<pre><code>import React, { Component } from &apos;react&apos;;
+
+class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {};
+  }
+
+  render() {
+    return &lt;div&gt;组件&lt;/div&gt;;
+  }
+}
+
+console.log(&lt;App /&gt;);
+export default App;
+</code></pre><p><code>console.log</code>输出<code>&lt;App /&gt;</code><br><img src="/img/react_code/simple_module_log.png" alt=""></p>
+<p>可以看出<code>&lt;App /&gt;</code>并不是真实的DOM而是js对象，带有很多属性。此时<code>props</code>是空对象，给它加点内容看看。</p>
+<pre><code>console.log(&lt;App&gt;&lt;p&gt;新增&lt;/p&gt;&lt;/App&gt;);
+</code></pre><p><img src="/img/react_code/simple_module_add_log.png" alt=""><br><code>props</code>发生了变化，由于<code>&lt;App&gt;</code>组件嵌套了<code>&lt;p&gt;</code>，<code>&lt;p&gt;</code>中嵌套文字，因此在描述<code>&lt;App&gt;</code>对象中多了<code>children</code>属性，用来描述<code>div</code>对象。依此类推可进行多层组件嵌套。</p>
+<h2 id="虚拟DOM"><a href="#虚拟DOM" class="headerlink" title="虚拟DOM"></a>虚拟DOM</h2><p>我们知道了react 的组件只是对象，而真正的页面是由一个个 DOM 节点组成的，在jQuery时代，通过JS来操纵真实的DOM元素，而复杂或频繁的DOM操作通常是性能瓶颈产生的原因，因此React引入了虚拟DOM（Virtual DOM）的概念。<br><a href="http://www.alloyteam.com/2015/10/react-virtual-analysis-of-the-dom/" target="_blank" rel="noopener">React虚拟DOM浅析 | AlloyTeam</a><br>简单来说就是，无论多复杂的操作，都先进行虚拟DOM的JS计算，组件对象计算好之后再一次性通过Diff算法进行渲染或者更新，而不是每次都直接操作真实的DOM。</p>
+<h2 id="组件的本源"><a href="#组件的本源" class="headerlink" title="组件的本源"></a>组件的本源</h2><p><code>&lt;App /&gt;</code>组件是基于<code>React</code>的<code>Component</code>创建，所以我们打开<code>react.js</code>追溯到<code>Component</code>查看代码：<br><img src="/img/react_code/component.png" alt=""><br>单纯的构造函数，接收<code>props</code>、<code>context</code>等参数，并且<code>prototype</code>原型上定义<code>setState</code>方法，接收的两个参数对于我们平常开发来说并不陌生。</p>
+<h2 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h2><p>至此我们发现声明的组件<code>&lt;App /&gt;</code>是继承自<code>React.Component</code>类的子类，其原型具有<code>setState</code>等方法。<br><img src="/img/react_code/component.xmind.png" alt=""></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/25/你不知道的JavaScript（上）/" rel="next" title="你不知道的JavaScript（上）">
+                <i class="fa fa-chevron-left"></i> 你不知道的JavaScript（上）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/11/15/React源码解析/"
+           data-title="React源码解析" data-url="http://hollton.github.io/2018/11/15/React源码解析/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="hollton" />
+          <p class="site-author-name" itemprop="name">hollton</p>
+           
+              <p class="site-description motion-element" itemprop="description">前端开发一枚，F2E</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/hollton" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/hollton" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#React-API"><span class="nav-number">1.</span> <span class="nav-text">React API</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Children-子组件"><span class="nav-number">1.1.</span> <span class="nav-text">Children 子组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Components-组件"><span class="nav-number">1.2.</span> <span class="nav-text">Components 组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Refs"><span class="nav-number">1.3.</span> <span class="nav-text">Refs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#createElement-创建元素"><span class="nav-number">1.4.</span> <span class="nav-text">createElement 创建元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#isValidElement-判断元素"><span class="nav-number">1.5.</span> <span class="nav-text">isValidElement 判断元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fragments-片段"><span class="nav-number">1.6.</span> <span class="nav-text">Fragments 片段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#createContext-创建Context组件"><span class="nav-number">1.7.</span> <span class="nav-text">createContext 创建Context组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code-Spliting-代码拆分"><span class="nav-number">1.8.</span> <span class="nav-text">Code-Spliting 代码拆分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">1.9.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#组件的实现"><span class="nav-number">2.</span> <span class="nav-text">组件的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#组件本质是对象"><span class="nav-number">2.1.</span> <span class="nav-text">组件本质是对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟DOM"><span class="nav-number">2.2.</span> <span class="nav-text">虚拟DOM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件的本源"><span class="nav-number">2.3.</span> <span class="nav-text">组件的本源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结-1"><span class="nav-number">2.4.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hollton</span>
+  <span class="view-count with-love">
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="site-uv" style="display: none;">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  </span>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"hollton"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
