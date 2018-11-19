@@ -2,11 +2,6 @@ title: React源码解析
 date: 2018-11-15 14:55:42
 tags:
 categories:
-https://github.com/facebook/react/tree/master
-https://juejin.im/post/5983dfbcf265da3e2f7f32de
-https://github.com/amandakelake/blog/issues/27
-http://huziketang.mangojuice.top/books/react/
-https://react.css88.com/
 ---
 本次分析的源码采用的是16.6.1的版本，和16版本之前的源码对比，入口和构造器有些差异。
 
@@ -163,3 +158,11 @@ React 将UI拆分为独立的可重用的模块，并且每个模块逻辑也是
 | ref | 真实DOM的引用 |
 | props | 子结构相关信息(有则增加children字段/没有为空)和组件属性(如style) |
 | _owner | _owner === ReactCurrentOwner.current(ReactCurrentOwner.js),值为创建当前组件的对象，默认值为null |
+
+
+
+https://github.com/facebook/react/tree/master
+https://juejin.im/post/5983dfbcf265da3e2f7f32de
+https://github.com/amandakelake/blog/issues/27
+http://huziketang.mangojuice.top/books/react/
+https://react.css88.com/
