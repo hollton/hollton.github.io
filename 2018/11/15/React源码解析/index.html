@@ -98,7 +98,8 @@
 <meta property="og:image" content="http://hollton.github.io/img/react_code/simple_module_add_log.png">
 <meta property="og:image" content="http://hollton.github.io/img/react_code/component.png">
 <meta property="og:image" content="http://hollton.github.io/img/react_code/component.xmind.png">
-<meta property="og:updated_time" content="2018-11-16T08:47:03.638Z">
+<meta property="og:image" content="http://hollton.github.io/img/react_code/create_element.png">
+<meta property="og:updated_time" content="2018-11-19T07:16:15.758Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React源码解析">
 <meta name="twitter:description" content="本次分析的源码采用的是16.6.1的版本，和16版本之前的源码对比，入口和构造器有些差异。 React APInpm i react --save安装好react之后，打开node_nodules/react/index.js入口文件。指向打开开发版本代码react.development.js。源码分析自然从对外暴露的接口入手，即最下面的React。">
@@ -399,7 +400,7 @@ cloneElement, // 克隆的元素将浅层合并props
 </code></pre><h2 id="Code-Spliting-代码拆分"><a href="#Code-Spliting-代码拆分" class="headerlink" title="Code-Spliting 代码拆分"></a>Code-Spliting 代码拆分</h2><pre><code>lazy, // 动态渲染组件
 Suspense, // lazy渲染加载时显示的内容
 </code></pre><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p><code>React</code>是 React 库的入口，以上方法都可通过<code>React</code>变量调用。</p>
-<h1 id="组件的实现"><a href="#组件的实现" class="headerlink" title="组件的实现"></a>组件的实现</h1><p>当我们使用React创建一个组件时，是否有好奇过它是什么？是DOM？JavaScript？还是其他意识形态？接下来我们详细看看。</p>
+<h1 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h1><p>当我们使用React创建一个组件时，是否有好奇过它是什么？是DOM？JavaScript？还是其他意识形态？接下来我们详细看看。</p>
 <h2 id="组件本质是对象"><a href="#组件本质是对象" class="headerlink" title="组件本质是对象"></a>组件本质是对象</h2><p>编写一个简单的组件，并<code>log</code>输出看得到了什么。</p>
 <pre><code>import React, { Component } from &apos;react&apos;;
 
@@ -423,6 +424,44 @@ export default App;
 <h2 id="虚拟DOM"><a href="#虚拟DOM" class="headerlink" title="虚拟DOM"></a>虚拟DOM</h2><p>我们知道了react 的组件只是对象，而真正的页面是由一个个 DOM 节点组成的，在jQuery时代，通过JS来操纵真实的DOM元素，而复杂或频繁的DOM操作通常是性能瓶颈产生的原因，因此React引入了虚拟DOM（Virtual DOM）的概念。<br><a href="http://www.alloyteam.com/2015/10/react-virtual-analysis-of-the-dom/" target="_blank" rel="noopener">React虚拟DOM浅析 | AlloyTeam</a><br>简单来说就是，无论多复杂的操作，都先进行虚拟DOM的JS计算，组件对象计算好之后再一次性通过Diff算法进行渲染或者更新，而不是每次都直接操作真实的DOM。</p>
 <h2 id="组件的本源"><a href="#组件的本源" class="headerlink" title="组件的本源"></a>组件的本源</h2><p><code>&lt;App /&gt;</code>组件是基于<code>React</code>的<code>Component</code>创建，所以我们打开<code>react.js</code>追溯到<code>Component</code>查看代码：<br><img src="/img/react_code/component.png" alt=""><br>单纯的构造函数，接收<code>props</code>、<code>context</code>等参数，并且<code>prototype</code>原型上定义<code>setState</code>方法，接收的两个参数对于我们平常开发来说并不陌生。</p>
 <h2 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h2><p>至此我们发现声明的组件<code>&lt;App /&gt;</code>是继承自<code>React.Component</code>类的子类，其原型具有<code>setState</code>等方法。<br><img src="/img/react_code/component.xmind.png" alt=""></p>
+<h2 id="组件的初始化"><a href="#组件的初始化" class="headerlink" title="组件的初始化"></a>组件的初始化</h2><p>声明<code>&lt;App /&gt;</code>后，即可在其内部定义方法或使用生命周期方法，最重要的是必须有<code>render</code>方法<code>return</code>类似DOM元素的结构挂载到真实的DOM上，即调用<code>React.createElement</code>初始化组件，顺藤摸瓜找到<code>ReactElement</code>方法。</p>
+<p><img src="/img/react_code/create_element.png" alt=""></p>
+<p>看到这里是不是有似曾相识的感觉？没错和 log <code>&lt;App /&gt;</code>的对象格式很像，因此每个组件对象都是通过<code>React.createElement</code>方法创建出的<code>ReactElement</code>类型的对象。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$$typeof</td>
+<td>组件标识信息</td>
+</tr>
+<tr>
+<td>type</td>
+<td>type</td>
+</tr>
+<tr>
+<td>key</td>
+<td>DOM结构唯一标识，提升update性能</td>
+</tr>
+<tr>
+<td>ref</td>
+<td>真实DOM的引用</td>
+</tr>
+<tr>
+<td>props</td>
+<td>子结构相关信息(有则增加children字段/没有为空)和组件属性(如style)</td>
+</tr>
+<tr>
+<td>_owner</td>
+<td>_owner === ReactCurrentOwner.current(ReactCurrentOwner.js),值为创建当前组件的对象，默认值为null</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://github.com/facebook/react/tree/master" target="_blank" rel="noopener">https://github.com/facebook/react/tree/master</a><br><a href="https://juejin.im/post/5983dfbcf265da3e2f7f32de" target="_blank" rel="noopener">https://juejin.im/post/5983dfbcf265da3e2f7f32de</a><br><a href="https://github.com/amandakelake/blog/issues/27" target="_blank" rel="noopener">https://github.com/amandakelake/blog/issues/27</a><br><a href="http://huziketang.mangojuice.top/books/react/" target="_blank" rel="noopener">http://huziketang.mangojuice.top/books/react/</a><br><a href="https://react.css88.com/" target="_blank" rel="noopener">https://react.css88.com/</a></p>
 
       
     </div>
@@ -610,7 +649,7 @@ export default App;
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#React-API"><span class="nav-number">1.</span> <span class="nav-text">React API</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Children-子组件"><span class="nav-number">1.1.</span> <span class="nav-text">Children 子组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Components-组件"><span class="nav-number">1.2.</span> <span class="nav-text">Components 组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Refs"><span class="nav-number">1.3.</span> <span class="nav-text">Refs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#createElement-创建元素"><span class="nav-number">1.4.</span> <span class="nav-text">createElement 创建元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#isValidElement-判断元素"><span class="nav-number">1.5.</span> <span class="nav-text">isValidElement 判断元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fragments-片段"><span class="nav-number">1.6.</span> <span class="nav-text">Fragments 片段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#createContext-创建Context组件"><span class="nav-number">1.7.</span> <span class="nav-text">createContext 创建Context组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code-Spliting-代码拆分"><span class="nav-number">1.8.</span> <span class="nav-text">Code-Spliting 代码拆分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">1.9.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#组件的实现"><span class="nav-number">2.</span> <span class="nav-text">组件的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#组件本质是对象"><span class="nav-number">2.1.</span> <span class="nav-text">组件本质是对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟DOM"><span class="nav-number">2.2.</span> <span class="nav-text">虚拟DOM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件的本源"><span class="nav-number">2.3.</span> <span class="nav-text">组件的本源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结-1"><span class="nav-number">2.4.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#React-API"><span class="nav-number">1.</span> <span class="nav-text">React API</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Children-子组件"><span class="nav-number">1.1.</span> <span class="nav-text">Children 子组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Components-组件"><span class="nav-number">1.2.</span> <span class="nav-text">Components 组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Refs"><span class="nav-number">1.3.</span> <span class="nav-text">Refs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#createElement-创建元素"><span class="nav-number">1.4.</span> <span class="nav-text">createElement 创建元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#isValidElement-判断元素"><span class="nav-number">1.5.</span> <span class="nav-text">isValidElement 判断元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fragments-片段"><span class="nav-number">1.6.</span> <span class="nav-text">Fragments 片段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#createContext-创建Context组件"><span class="nav-number">1.7.</span> <span class="nav-text">createContext 创建Context组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code-Spliting-代码拆分"><span class="nav-number">1.8.</span> <span class="nav-text">Code-Spliting 代码拆分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">1.9.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#组件"><span class="nav-number">2.</span> <span class="nav-text">组件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#组件本质是对象"><span class="nav-number">2.1.</span> <span class="nav-text">组件本质是对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟DOM"><span class="nav-number">2.2.</span> <span class="nav-text">虚拟DOM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件的本源"><span class="nav-number">2.3.</span> <span class="nav-text">组件的本源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结-1"><span class="nav-number">2.4.</span> <span class="nav-text">小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件的初始化"><span class="nav-number">2.5.</span> <span class="nav-text">组件的初始化</span></a></li></ol></li></ol></div>
             
 
           </div>
