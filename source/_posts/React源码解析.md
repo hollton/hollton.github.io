@@ -2,6 +2,11 @@ title: React源码解析
 date: 2018-11-15 14:55:42
 tags:
 categories:
+https://github.com/facebook/react/tree/master
+https://juejin.im/post/5983dfbcf265da3e2f7f32de
+https://github.com/amandakelake/blog/issues/27
+http://huziketang.mangojuice.top/books/react/
+https://react.css88.com/
 ---
 本次分析的源码采用的是16.6.1的版本，和16版本之前的源码对比，入口和构造器有些差异。
 
@@ -92,7 +97,7 @@ React 将UI拆分为独立的可重用的模块，并且每个模块逻辑也是
 
 `React`是 React 库的入口，以上方法都可通过`React`变量调用。
 
-# 组件的实现
+# 组件
 
 当我们使用React创建一个组件时，是否有好奇过它是什么？是DOM？JavaScript？还是其他意识形态？接下来我们详细看看。
 
@@ -141,3 +146,20 @@ React 将UI拆分为独立的可重用的模块，并且每个模块逻辑也是
 
 至此我们发现声明的组件`<App />`是继承自`React.Component`类的子类，其原型具有`setState`等方法。
 ![](/img/react_code/component.xmind.png)
+
+## 组件的初始化
+
+声明`<App />`后，即可在其内部定义方法或使用生命周期方法，最重要的是必须有`render`方法`return`类似DOM元素的结构挂载到真实的DOM上，即调用`React.createElement`初始化组件，顺藤摸瓜找到`ReactElement`方法。
+
+![](/img/react_code/create_element.png)
+
+看到这里是不是有似曾相识的感觉？没错和 log `<App />`的对象格式很像，因此每个组件对象都是通过`React.createElement`方法创建出的`ReactElement`类型的对象。
+
+| 参数 | 功能 |
+| ------ | ------ |
+| $$typeof | 组件标识信息 |
+| type | type |
+| key | DOM结构唯一标识，提升update性能 |
+| ref | 真实DOM的引用 |
+| props | 子结构相关信息(有则增加children字段/没有为空)和组件属性(如style) |
+| _owner | _owner === ReactCurrentOwner.current(ReactCurrentOwner.js),值为创建当前组件的对象，默认值为null |
