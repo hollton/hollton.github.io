@@ -153,12 +153,13 @@ React 将UI拆分为独立的可重用的模块，并且每个模块逻辑也是
 | 参数 | 功能 |
 | ------ | ------ |
 | $$typeof | 组件标识信息 |
-| type | type |
+| type | 声明创建的DOM类型：① 原生DOM（'span'）②自定义的Web Component|
 | key | DOM结构唯一标识，提升update性能 |
 | ref | 真实DOM的引用 |
 | props | 子结构相关信息(有则增加children字段/没有为空)和组件属性(如style) |
 | _owner | _owner === ReactCurrentOwner.current(ReactCurrentOwner.js),值为创建当前组件的对象，默认值为null |
 
+## 组件的挂载
 
 
 https://github.com/facebook/react/tree/master
