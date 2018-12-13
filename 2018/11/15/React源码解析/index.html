@@ -99,7 +99,7 @@
 <meta property="og:image" content="http://hollton.github.io/img/react_code/component.png">
 <meta property="og:image" content="http://hollton.github.io/img/react_code/component.xmind.png">
 <meta property="og:image" content="http://hollton.github.io/img/react_code/create_element.png">
-<meta property="og:updated_time" content="2018-11-19T07:16:15.758Z">
+<meta property="og:updated_time" content="2018-11-30T09:00:21.322Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React源码解析">
 <meta name="twitter:description" content="本次分析的源码采用的是16.6.1的版本，和16版本之前的源码对比，入口和构造器有些差异。 React APInpm i react --save安装好react之后，打开node_nodules/react/index.js入口文件。指向打开开发版本代码react.development.js。源码分析自然从对外暴露的接口入手，即最下面的React。">
@@ -441,7 +441,7 @@ export default App;
 </tr>
 <tr>
 <td>type</td>
-<td>type</td>
+<td>声明创建的DOM类型：① 原生DOM（’span’）②自定义的Web Component</td>
 </tr>
 <tr>
 <td>key</td>
@@ -461,7 +461,7 @@ export default App;
 </tr>
 </tbody>
 </table>
-<p><a href="https://github.com/facebook/react/tree/master" target="_blank" rel="noopener">https://github.com/facebook/react/tree/master</a><br><a href="https://juejin.im/post/5983dfbcf265da3e2f7f32de" target="_blank" rel="noopener">https://juejin.im/post/5983dfbcf265da3e2f7f32de</a><br><a href="https://github.com/amandakelake/blog/issues/27" target="_blank" rel="noopener">https://github.com/amandakelake/blog/issues/27</a><br><a href="http://huziketang.mangojuice.top/books/react/" target="_blank" rel="noopener">http://huziketang.mangojuice.top/books/react/</a><br><a href="https://react.css88.com/" target="_blank" rel="noopener">https://react.css88.com/</a></p>
+<h2 id="组件的挂载"><a href="#组件的挂载" class="headerlink" title="组件的挂载"></a>组件的挂载</h2><p><a href="https://github.com/facebook/react/tree/master" target="_blank" rel="noopener">https://github.com/facebook/react/tree/master</a><br><a href="https://juejin.im/post/5983dfbcf265da3e2f7f32de" target="_blank" rel="noopener">https://juejin.im/post/5983dfbcf265da3e2f7f32de</a><br><a href="https://github.com/amandakelake/blog/issues/27" target="_blank" rel="noopener">https://github.com/amandakelake/blog/issues/27</a><br><a href="http://huziketang.mangojuice.top/books/react/" target="_blank" rel="noopener">http://huziketang.mangojuice.top/books/react/</a><br><a href="https://react.css88.com/" target="_blank" rel="noopener">https://react.css88.com/</a></p>
 
       
     </div>
@@ -501,6 +501,10 @@ export default App;
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/13/whistle/" rel="prev" title="whistle调试移动端">
+                whistle调试移动端 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -576,7 +580,7 @@ export default App;
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -649,7 +653,7 @@ export default App;
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#React-API"><span class="nav-number">1.</span> <span class="nav-text">React API</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Children-子组件"><span class="nav-number">1.1.</span> <span class="nav-text">Children 子组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Components-组件"><span class="nav-number">1.2.</span> <span class="nav-text">Components 组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Refs"><span class="nav-number">1.3.</span> <span class="nav-text">Refs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#createElement-创建元素"><span class="nav-number">1.4.</span> <span class="nav-text">createElement 创建元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#isValidElement-判断元素"><span class="nav-number">1.5.</span> <span class="nav-text">isValidElement 判断元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fragments-片段"><span class="nav-number">1.6.</span> <span class="nav-text">Fragments 片段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#createContext-创建Context组件"><span class="nav-number">1.7.</span> <span class="nav-text">createContext 创建Context组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code-Spliting-代码拆分"><span class="nav-number">1.8.</span> <span class="nav-text">Code-Spliting 代码拆分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">1.9.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#组件"><span class="nav-number">2.</span> <span class="nav-text">组件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#组件本质是对象"><span class="nav-number">2.1.</span> <span class="nav-text">组件本质是对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟DOM"><span class="nav-number">2.2.</span> <span class="nav-text">虚拟DOM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件的本源"><span class="nav-number">2.3.</span> <span class="nav-text">组件的本源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结-1"><span class="nav-number">2.4.</span> <span class="nav-text">小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件的初始化"><span class="nav-number">2.5.</span> <span class="nav-text">组件的初始化</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#React-API"><span class="nav-number">1.</span> <span class="nav-text">React API</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Children-子组件"><span class="nav-number">1.1.</span> <span class="nav-text">Children 子组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Components-组件"><span class="nav-number">1.2.</span> <span class="nav-text">Components 组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Refs"><span class="nav-number">1.3.</span> <span class="nav-text">Refs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#createElement-创建元素"><span class="nav-number">1.4.</span> <span class="nav-text">createElement 创建元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#isValidElement-判断元素"><span class="nav-number">1.5.</span> <span class="nav-text">isValidElement 判断元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fragments-片段"><span class="nav-number">1.6.</span> <span class="nav-text">Fragments 片段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#createContext-创建Context组件"><span class="nav-number">1.7.</span> <span class="nav-text">createContext 创建Context组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code-Spliting-代码拆分"><span class="nav-number">1.8.</span> <span class="nav-text">Code-Spliting 代码拆分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">1.9.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#组件"><span class="nav-number">2.</span> <span class="nav-text">组件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#组件本质是对象"><span class="nav-number">2.1.</span> <span class="nav-text">组件本质是对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟DOM"><span class="nav-number">2.2.</span> <span class="nav-text">虚拟DOM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件的本源"><span class="nav-number">2.3.</span> <span class="nav-text">组件的本源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结-1"><span class="nav-number">2.4.</span> <span class="nav-text">小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件的初始化"><span class="nav-number">2.5.</span> <span class="nav-text">组件的初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件的挂载"><span class="nav-number">2.6.</span> <span class="nav-text">组件的挂载</span></a></li></ol></li></ol></div>
             
 
           </div>
