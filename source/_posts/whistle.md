@@ -27,4 +27,4 @@ categories:
 
 ### 调试页面
 * 若刷新监听页面，Targets 显示为none，需要将以下代码嵌入到调试页面。
-    `<script src=”http://localhost:8080/target/target-script-min.js#anonymous”></script>`
+    `<script src="http://localhost:8080/target/target-script-min.js#anonymous"></script>`

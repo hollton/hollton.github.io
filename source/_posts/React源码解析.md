@@ -137,6 +137,26 @@ React 将UI拆分为独立的可重用的模块，并且每个模块逻辑也是
 ![](/img/react_code/component.png)
 单纯的构造函数，接收`props`、`context`等参数，并且`prototype`原型上定义`setState`方法，接收的两个参数对于我们平常开发来说并不陌生。
 
+### Component
+
+`setState` 方法先判断非法的类型并用 invariant 函数处理，然后执行`updater.enqueueSetState`，而 updater 是 Component 构造函数传入的参数，但有个缺省值 ReactNoopUpdateQueue，ReactNoopUpdateQueue.enqueueSetState 则仅调用 warnNoop 处理提示错误并未处理 state ，那么真正的 updater 一定是在 Component 创建时传入，为验证这点，在 react-dom 源码中找到 classComponentUpdater.enqueueSetState，并向上追溯 adoptClassInstance ——> constructClassInstance，因此 updater.enqueueSetState 即为 classComponentUpdater.enqueueSetState。
+
+### PureComponent
+
+PureComponent 的定义与 Component 一致，但原型方法却是继承自 Component。
+首先定义 ComponentDummy 构造器，其原型指向 Component 的原型，此时它也可访问原型上的方法和属性。
+
+    function ComponentDummy() {}
+    ComponentDummy.prototype = Component.prototype;
+
+实例化 ComponentDummy 出 pureComponentPrototype 对象，然后将其 constructor 指回 PureComponent，实现原型继承 Component。_assign 合并Component.prototype，理解为减少原型链的查找。
+
+    var pureComponentPrototype = PureComponent.prototype = new ComponentDummy();
+    pureComponentPrototype.constructor = PureComponent;
+    // Avoid an extra prototype jump for these methods.
+    _assign(pureComponentPrototype, Component.prototype);
+    pureComponentPrototype.isPureReactComponent = true;
+
 ## 小结
 
 至此我们发现声明的组件`<App />`是继承自`React.Component`类的子类，其原型具有`setState`等方法。
@@ -161,6 +181,7 @@ React 将UI拆分为独立的可重用的模块，并且每个模块逻辑也是
 
 ## 组件的挂载
 
+组件挂载通过 ReactDOM.render(component,mountNode) 实现，
 
 https://github.com/facebook/react/tree/master
 https://juejin.im/post/5983dfbcf265da3e2f7f32de
