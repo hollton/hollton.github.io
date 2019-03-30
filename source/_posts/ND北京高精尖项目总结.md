@@ -150,3 +150,6 @@ npm install 时出现 "Unexpected end of JSON input while parsing near..."，尝
 ### ng-src IE iframe 重复请求
 iframe嵌入其他组件，IE下时长出现nonce串无效，即mac授权已被使用过，排查到ng-src问题，IE iframe中发起多次请求，改用src。见：[ngSrc duplicate request for iframe in IE](https://github.com/angular/angular.js/issues/9843)
 而此设置会导致url未请求到时即被iframe发起请求，页面载入出错，添加ng-if判断解决。
+
+### iframe内跳转浏览器回退时监听不到popstate
+由于特殊业务需求，需要实现点击触发页面内iframe跳转，并在浏览器回退时重载此页面，最初是对iframe赋值url，但回退时监听不到popstate事件，经[前端技术之Iframe - 7.iframe加载的页面与浏览器历史记录](https://blog.csdn.net/tan9374/article/details/77714199)启发，采用`iframe.contentWindow.location.replace(url)`赋值跳转，不记录浏览器历史，手动执行`window.history.pushState`增加历史记录，便可在回退时成功捕获到popstate。
